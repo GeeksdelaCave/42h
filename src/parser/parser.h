@@ -3,6 +3,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#define TRUE 1
+#define FALSE 0
+
+#define ZeroORMany(R)                                  \
+    ({                                                 \
+        while(R)                                       \
+            ;                                          \
+        true;                                          \
+    })                                                 \
+
+#define OneORMany(R)                            \
+    ({ int res = FALSE;                         \
+        if (R)                                  \
+        {                                       \
+            while(R)                            \
+                ;                               \
+            res = TRUE;                         \
+        }                                       \
+        res;                                    \
+    })                                          \
+
+#define ZeroOrOne(R)                            \
+    ({  R;                                      \
+        true;                                   \
+    })                                          \
+
+
 struct parser_s
 {
     int cursor;
