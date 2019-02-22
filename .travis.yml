@@ -4,6 +4,9 @@ compiler:
 - gcc
 - clang
 
+python:
+- "3.6"
+
 before_script:
 - mkdir build
 - cd build
@@ -14,3 +17,8 @@ before_script:
 script: 
 - make
 - make test
+
+addons:
+  apt:
+    packages:
+      - cmake
