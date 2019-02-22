@@ -9,6 +9,7 @@ before_script:
 - cd build
 - cmake ..
 - cmake --version
+- python3 --version
 
 script: 
 - make
