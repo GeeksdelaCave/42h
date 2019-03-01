@@ -407,12 +407,7 @@ struct parser_s *set_token_list(char *str[], int size)
 	      printf("%s\n", parser->input);
 	      capt.end = parser->cursor;
 	      list_capt_store(&parser->capture, "Number", &capt);
-	    }
-	  if (parser_readchar(parser, ' '))
-	    {
-	      printf("Space\n");
-	      capt.end = parser->cursor;
-	      list_capt_store(&parser->capture, "Space", &capt);  
+	      parser->cursor = 0;
 	    }
 	}
     }
@@ -420,7 +415,6 @@ struct parser_s *set_token_list(char *str[], int size)
 }
 int main(int argc, char *argv[])
 {
-  set_token_list(argv, argc);
-  //printf("%s\n", argv[2]);
+  struct parser_s *parser = set_token_list(argv, argc);
 }
 
