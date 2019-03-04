@@ -19,6 +19,11 @@ color_dict = {
 }
 
 
+# Change output color
+def set_color(color):
+    return "\033[0m" if (color == 'RESET') else "\033[" + color_dict[color] + "m"
+
+
 # Launch process in child process
 def run(cmd):
     return subprocess.run(cmd,
@@ -28,12 +33,8 @@ def run(cmd):
                           stderr=subprocess.PIPE)
 
 
-# Change output color
-def set_color(color):
-    return "\033[0m" if (color == 'RESET') else "\033[" + color_dict[color] + "m"
-
 def main():
-    with open("tests_yaml.yml", "r") as f:
+    with open("tests/tests_yaml.yml", "r") as f:
         tests = yaml.load(f)
 
     ok = 0
@@ -86,4 +87,5 @@ def main():
     print(f'{ko}{set_color("RED")} failed{set_color("RESET")} ({(ko * 100) // (ko + ok)}.{ko % (ko + ok) * 100 // 100}%)')
 
 if __name__ == "__main__":
+    print(f'\n\n{set_color("RED")}Launching tests YAML{set_color("RESET")}\n')
     main()
