@@ -15,7 +15,7 @@ TEST-02:
 
 TEST-03:
     desc: echo "Hello cat World"
-    ref: echo "Hello catWorld"
+    ref: echo "Hello cat World"
     cmd: echo "Hello cat World"
 
 TEST-04:
@@ -36,7 +36,7 @@ TEST-06:
 TEST-07:
     desc: echo "Hello cat World"
     ref: echo "Hello cat World"
-    cmd: echo "Hello catWorld"
+    cmd: echo "Hello cat World"
 
 TEST-08:
     desc: echo "Hello cat World"

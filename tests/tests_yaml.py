@@ -42,7 +42,7 @@ def main():
 
     for test, data in tests.items():
         ref = run("bash --posix -c '" + data["ref"] + "'")
-        cmd = run("bash --posix -c '" + data["cmd"] + "'")
+        cmd = run("./42sh -c " + data["cmd"] + "'")
 
         errors = []
         if ref.stdout != cmd.stdout:

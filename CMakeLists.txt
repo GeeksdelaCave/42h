@@ -21,7 +21,7 @@ configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  CO
 
 add_executable(42sh src/core/main.c)
 
-add_custom_target(test
+add_custom_target(check
                   COMMAND python3 tests/tests_unit.py
                   COMMAND python3 tests/tests_yaml.py)
 
