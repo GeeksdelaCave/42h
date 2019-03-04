@@ -10,5 +10,5 @@ add_executable(42sh src/core/main.c)
 
 add_test(NAME testsuit
         COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/tests/tests.py)
-add_test(NAME test2
-        COMMAND echo "test")
+add_test(NAME test_yaml
+        COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/tests/tests_yaml.yml)
