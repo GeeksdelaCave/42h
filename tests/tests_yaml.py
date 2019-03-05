@@ -21,8 +21,7 @@ color_dict = {
 
 # Change output color
 def set_color(color):
-    return "\033[0m" if (color == 'RESET') else \
-        "\033[" + color_dict[color] + "m"
+    return "\033[0m" if (color == 'RESET') else "\033[" + color_dict[color] + "m"
 
 
 # Launch process in child process
@@ -62,31 +61,23 @@ def main():
             ok += 1
 
         # Output
-        log = f'  {set_color("L_YELLOW")}{test:14}' \
-              f'{set_color("L_GRAY")}{data["desc"]:50}' \
-              f'{res:12}{set_color("RESET")}'
+        log = f'  {set_color("L_YELLOW")}{test:14} {set_color("L_GRAY")}{data["desc"]:50} {res:12}{set_color("RESET")}'
         print(log)
 
         if "STDOUT" in errors:
-            print(f'\t\t\t{set_color("RED")}command stdout differs from ref.',
-                  f'{set_color("RESET")}')
+            print(f'\t\t\t{set_color("RED")}command stdout differs from ref.{set_color("RESET")}')
 
         if "STDERR" in errors:
-            print(f'\t\t\t{set_color("RED")}command stderr differs from ref.',
-                  f'{set_color("RESET")}')
+            print(f'\t\t\t{set_color("RED")}command stderr differs from ref.{set_color("RESET")}')
 
         if "RETURN CODE" in errors:
-            print(f'\t\t\t{set_color("RED")}command return differs from ref.',
-                  f'{set_color("RESET")}')
+            print(f'\t\t\t{set_color("RED")}command return differs from ref.{set_color("RESET")}')
 
     print(f'\n\nRan {set_color("YELLOW")}{ok + ko}{set_color("RESET")} tests.')
-    print(f'{ok}{set_color("GREEN")} passed{set_color("RESET")}',
-          f'({(ok * 100) // (ko + ok)}.{ok % (ko + ok) * 100 // 100}%)')
-    print(f'{ko}{set_color("RED")} failed{set_color("RESET")}',
-          f'({(ko * 100) // (ko + ok)}.{ko % (ko + ok) * 100 // 100}%)')
+    print(f'{ok}{set_color("GREEN")} passed{set_color("RESET")} ({(ok * 100) // (ko + ok)}.{ok % (ko + ok) * 100 // 100}%)')
+    print(f'{ko}{set_color("RED")} failed{set_color("RESET")} ({(ko * 100) // (ko + ok)}.{ko % (ko + ok) * 100 // 100}%)')
 
 
 if __name__ == "__main__":
-    print(f'\n\n{set_color("L_YELLOW")}Launching tests YAML'
-          f'{set_color("RESET")}\n')
+    print(f'\n\n{set_color("L_YELLOW")}Launching tests YAML{set_color("RESET")}\n')
     main()

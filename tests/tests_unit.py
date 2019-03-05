@@ -29,6 +29,5 @@ class TestSuite(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    print(f'\n\n{set_color("L_YELLOW")}Launching tests UNIT',
-          f'{set_color("RESET")}\n')
+    print(f'\n\n{set_color("L_YELLOW")}Launching tests UNIT{set_color("RESET")}\n')
     unittest.main()
