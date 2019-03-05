@@ -4,8 +4,10 @@ compiler:
 - gcc
 - clang
 
+dist: xenial
+
 python:
-- '3.6.0'
+- "3.6"
 
 before_script:
 - mkdir build
