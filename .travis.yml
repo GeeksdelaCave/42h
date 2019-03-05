@@ -16,7 +16,7 @@ before_script:
 
 script: 
 - make
-- make test
+- make check
 
 addons:
   apt:
