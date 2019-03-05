@@ -27,7 +27,8 @@ class TestSuite(unittest.TestCase):
     def test_hello_world(self):
         self.assertEqual('test', 'test')
 
+
 if __name__ == "__main__":
-    print(f'\n\n{set_color("L_YELLOW")}Launching tests UNIT'
+    print(f'\n\n{set_color("L_YELLOW")}Launching tests UNIT',
           f'{set_color("RESET")}\n')
     unittest.main()
