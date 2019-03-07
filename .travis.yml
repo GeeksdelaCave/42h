@@ -1,14 +1,24 @@
-language: c
-
-compiler:
-- gcc
-- clang
-
 dist: xenial
-language: python
+# language: python
+# python: 3.7
 
-python:
-- 3.6
+# compiler:
+# - gcc
+# - clang
+
+# python: 3.6
+
+
+
+matrix:
+  include:
+    - language: python
+      python: 3.6
+
+    - language: c
+      compiler:
+      - gcc
+      - clang
 
 before_script:
 - mkdir build
