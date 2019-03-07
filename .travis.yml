@@ -5,6 +5,7 @@ compiler:
 - clang
 
 dist: xenial
+language: python
 
 python:
 - 3.6
