@@ -8,19 +8,22 @@ dist: xenial
 
 # python: 3.6
 
+language: python
+python: 3.6
+install:
+- pip install PyYAML
 
+#matrix:
+#  include:
+#    - language: python
+#      python: 3.6
+#      install:
+#      - pip install PyYAML
 
-matrix:
-  include:
-    - language: python
-      python: 3.6
-      install:
-      - pip install PyYAML
-
-    - language: c
-      compiler:
-      - gcc
-      - clang
+#    - language: c
+#      compiler:
+#      - gcc
+#      - clang
 
 before_script:
 - mkdir build
