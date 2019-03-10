@@ -313,29 +313,29 @@ struct parser_s *set_token_list(char *str[], int size)
     struct list_capt_s *capture = NULL;
     const char *text = copieInput(str);
     int i = 1;
-
+    
     if (size > 1)
-    {
+      {
         parser = parser_new_from_string(text);
         printf("À l'entrer : %s\n", parser->input);
         while (i < size)
     	{
-            capture = init_list_capt(parser);
-    	    capture->capt.begin = parser->cursor;
-            printf("LA DEBUT DE DU CURSOR de input numero %d est %d \n",i, capture->capt.begin);
-            capture->capt.end = (strlen(str[i]) + parser->cursor) - 1;
-            printf("LA FIN DE DU CURSOR de input numero %d est %d \n",i, capture->capt.end);
-            printf("LE CURSOR EST A %d\n", parser->cursor);
-    	    if (parser_readinteger(parser, capture->capt.end))
+	  capture = init_list_capt(parser);
+	  capture->capt.begin = parser->cursor;
+	  printf("LA DEBUT DE DU CURSOR de input numero %d est %d \n",i, capture->capt.begin);
+	  capture->capt.end = (strlen(str[i]) + parser->cursor) - 1;
+	  printf("LA FIN DE DU CURSOR de input numero %d est %d \n",i, capture->capt.end);
+	  printf("LE CURSOR EST A %d\n", parser->cursor);
+	  if (parser_readinteger(parser, capture->capt.end))
     	    {
-                parser->capture = list_capt_store(parser->capture, "Number", &capture->capt);
+	      parser->capture = list_capt_store(parser->capture, "Number", &capture->capt);
             }
-            else if(parser_readidentifier(parser, capture->capt.end))
+	  else if(parser_readidentifier(parser, capture->capt.end))
             {
-                parser->capture = list_capt_store(parser->capture, 
-                "readIndentifier", &capture->capt);
+	      parser->capture = list_capt_store(parser->capture, 
+						"readIndentifier", &capture->capt);
             }
-	    else if (parser_readoutset(parser, "+-*/"))
+	  else if (parser_readoutset(parser, "+-*/"))
 	      {
 		parser->capture = list_capt_store(parser->capture, "Operation", &capture->capt);
 	      }
@@ -351,10 +351,9 @@ struct parser_s *set_token_list(char *str[], int size)
     print_content_listToken(parser);
     return parser;
 }
-/*
+
 int main(int argc, char *argv[])
 {
   set_token_list(argv, argc);
   return 0;
 }
-*/
