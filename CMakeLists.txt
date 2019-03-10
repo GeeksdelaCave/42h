@@ -19,13 +19,9 @@ configure_file(${TESTS_DIR_IN}/tests_yaml.yml ${TESTS_DIR_OUT}/tests_yaml.yml CO
 configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  COPYONLY)
 
 
-add_executable(42sh src/core/main.c)
 
+add_executable(42sh src/core/main.c
+               src/parser/parser.c)
 add_custom_target(check
                   COMMAND python3 tests/tests_unit.py
                   COMMAND python3 tests/tests_yaml.py)
-
-#add_test(NAME "unit_tests"
-#        COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/tests/tests.py)
-#add_test(NAME "commands_tests"
-#        COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/tests/tests_yaml.py)
