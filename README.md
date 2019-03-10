@@ -22,6 +22,7 @@ Commit messages must follow this syntax:
     * [UTILS] Utilities such as text manipulation, etc.
     * [DOC] Documentation changes
     * [GIT] For Git stuff (.gitignore, etc.)
+    * [TESTS] Test relative stuff
     * [MISC] Other
 
 Example :
