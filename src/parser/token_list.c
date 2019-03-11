@@ -63,8 +63,8 @@ int parser_begin_capture(struct parser_s *p, const char *tag)
   return 0;
   pcapt->end = p->cursor;
   return 1;
-  
 }
+
 char *parser_get_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s *pcapt = list_capt_lookup(p->capture, tag);

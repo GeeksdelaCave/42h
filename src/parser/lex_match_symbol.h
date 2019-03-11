@@ -9,6 +9,10 @@ enum tag_symbol{
   PIPE,
   QUOTE,
   DQUOTE,
+  EQUAL,
+  DEQUAL,
+  CHEVRON,
+  DCHEVRON,
 };
 enum tag_symbol match_symbol(struct parser_s *parser, int end);
 char *set_condition_symbol(struct parser_s *parser, int end);

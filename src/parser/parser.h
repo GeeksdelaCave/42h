@@ -10,6 +10,7 @@
 enum tag{
   Spaces,
   Id,
+  Identifiant,
   Number,
   Operator,
   Logic,
@@ -18,23 +19,26 @@ enum tag{
   Pipe,
 };
 
+
 struct parser_s
 {
   int cursor;
   char *input;
-  struct list_capt_s *capture;
+  struct list_capt_s *token;
 };
+
 struct capture_s
 {
   int begin;
   int end;
-}; 
+};
+
 struct list_capt_s
 {
-  char *tag;
-  struct capture_s capt;
-  struct list_capt_s *next;
-};
+    char *tag;
+    struct capture_s capt;
+    struct list_capt_s *next;
+}
 struct parser_s *parser_new_from_string(const char *text);
 int parser_readtext(struct parser_s *p, char *text);
 void parser_clean(struct parser_s *p);

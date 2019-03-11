@@ -1,11 +1,12 @@
 #include "parser.h"
+
 struct list_capt_s *list = NULL;
 struct parser_s *parser_new_from_string(const char *text)
 {
   struct parser_s *p = malloc(sizeof(struct parser_s*));
   if (p == NULL)
     {
-      return p;
+     return p;
     }
   p->cursor = 0;
   p->capture = NULL;
@@ -29,6 +30,7 @@ void parser_clean(struct parser_s *p)
 {
   free(p);
 }
+
 int parser_eof(struct parser_s *p)
 {
   if(p->input[p->cursor] == '\0' || p->input[p->cursor] == 0)
@@ -52,6 +54,7 @@ int parser_peekchar(struct parser_s *p, char c)
     }
   return 0;
 }
+
 int parser_readchar(struct parser_s *p, char c)
 {
   if (p->input[p->cursor] == c)
@@ -102,6 +105,7 @@ int parser_readinset(struct parser_s *p, char *set)
     }
   return 0;
 }
+
 int parser_readoutset(struct parser_s *p, char *set)
 {
   for(int i = 0; set[i]; i++)
@@ -137,6 +141,7 @@ struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag)
       return &(capt->capt);
   return NULL;
 }
+
 int parser_readrange(struct parser_s *p, char begin, char end)
 {
   if (p->input[p->cursor] >= begin && p->input[p->cursor] <= end)
@@ -146,6 +151,7 @@ int parser_readrange(struct parser_s *p, char begin, char end)
     }
   return 0;
 }
+
 int parser_readoperation(struct parser_s *p)
 {
   return (parser_readchar(p, '+') || parser_readchar(p, '/') ||
@@ -160,6 +166,7 @@ int count_caracter(char *str[])
       count = count + strlen(str[i]);
     }	  return count;
 }
+
 //function qui copie le contenu d'argv en char*
 char *copieInput(char *str[])
 {

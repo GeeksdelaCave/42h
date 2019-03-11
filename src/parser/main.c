@@ -3,6 +3,7 @@
 #include "lex_match_id.h"
 #include "lex_match_int.h"
 #include "token_list.h"
+
 void print_content_listToken(struct parser_s *parser)
 {
   int cpt = 1;
@@ -21,6 +22,7 @@ void print_content_listToken(struct parser_s *parser)
       p = p->next;
     }
 }
+
 void print_content_Token(struct parser_s *parser)
 {
   struct list_capt_s *p = parser->capture;
@@ -32,6 +34,7 @@ void print_content_Token(struct parser_s *parser)
   printf("END %d\n", p->capt.end);
   printf("\n");
 }
+
 int main(int argc, char *argv[])
 {
   struct parser_s *parser = set_token_list(argv, argc);

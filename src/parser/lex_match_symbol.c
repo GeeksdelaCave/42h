@@ -13,21 +13,56 @@ enum tag_symbol match_symbol(struct parser_s *parser, int end)
       parser->cursor += 1;
       return RBRACK;
     }
-  if (strcmp("{", tmp) == 0)
+  if (strcmp ("{", tmp) == 0)
     {
       parser->cursor += 1;
       return LBRACE;
     }
-  if (strcmp("}", tmp) == 0)
+  if (strcmp ("}", tmp) == 0)
     {
       parser->cursor += 1;
       return RBRACE;
     }
-  if(strcmp("!", tmp) == 0)
+  if(strcmp ("!", tmp) == 0)
     {
       parser->cursor += 1;
       return BRANG;
     }
+  if (strcmp ("|", tmp) == 0)
+  {
+      parser->cursor += 1;
+      return PIPE;
+  }
+  if (strcmp ("'", tmp) == 0)
+  {
+      parser->cursor += 1;
+      return QUOTE;
+  }
+  if (strcmp ("\"", tmp) == 0)
+  {
+      parser->cursor += 1;
+      return DQUOTE;
+  }
+  if (strcmp ("=", tmp) == 0)
+  {
+      parser->cursor += 1;
+      return EQUAL;
+  }
+  if (strcmp ("==", tmp) == 0)
+  {
+      parser->cursor += 1;
+      return DEQUAL;
+  }
+  if (strcmp ("<", tmp) == 0)
+  {
+      parser->cursor += 1;
+      return CHEVRON;
+  }
+  if (strcmp ("<<", tmp) == 0)
+  {
+      parser->cursor += 1;
+      return DCHEVRON;
+  }
   return 0;
 }
 char *set_condition_tag_symbol(struct parser_s *parser, int end)
@@ -57,6 +92,18 @@ char *set_condition_tag_symbol(struct parser_s *parser, int end)
       break;
     case 8:
       return "DQUOTE";
+      break;
+    case 9:
+      return "EQUAL";
+      break;
+    case 10:
+      return "DEQUAL";
+      break;
+    case 11:
+      return "CHEVRON";
+      break;
+    case 12:
+      return "DCHEVRON";
       break;
     }
   return NULL;
