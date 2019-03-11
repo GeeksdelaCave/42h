@@ -1,5 +1,5 @@
 #include "lex_match_symbol.h"
-enum tag_symbol match_symbol(struct parser_s *parser, int end)
+enum tag_symbol match_symbol(struct lexer *parser, int end)
 {
   char *tmp = malloc(sizeof(char) * end - parser->cursor);
   tmp = strncpy(tmp,parser->input + parser->cursor, end - parser->cursor + 1);
@@ -26,7 +26,7 @@ enum tag_symbol match_symbol(struct parser_s *parser, int end)
   if(strcmp ("!", tmp) == 0)
     {
       parser->cursor += 1;
-      return BRANG;
+      return BANG;
     }
   if (strcmp ("|", tmp) == 0)
   {
@@ -65,7 +65,7 @@ enum tag_symbol match_symbol(struct parser_s *parser, int end)
   }
   return 0;
 }
-char *set_condition_tag_symbol(struct parser_s *parser, int end)
+char *set_condition_tag_symbol(struct lexer *parser, int end)
 {
   switch(match_symbol(parser, end))
     {

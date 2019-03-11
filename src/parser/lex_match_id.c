@@ -1,5 +1,5 @@
 #include "lex_match_id.h"
-int parser_readidentifier(struct parser_s *p, int end)
+int parser_readidentifier(struct lexer *p, int end)
 {
   int cpt = p->cursor;
   if (parser_readrange(p, 'a', 'z') || parser_readrange(p, 'A', 'Z') ||
