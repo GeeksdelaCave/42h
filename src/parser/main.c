@@ -11,7 +11,7 @@ void print_content_listToken(struct lexer *parser)
   while(p)
     {
       printf("Token num : %d \n", cpt);
-      printf("TAG : %s\n", p->tag);
+      printf("TAG : %d\n", p->type);
       for(int i = p->token.begin; i < p->token.end+1; i++)
 	     printf("%c", parser->input[i]);
       printf("\n");
@@ -26,7 +26,7 @@ void print_content_listToken(struct lexer *parser)
 void print_content_Token(struct lexer *parser)
 {
   struct token_list *p = parser->token_list;
-  printf("TAG : %s\n", p->tag);
+  printf("TAG : %d\n", p->type);
   for(int i = p->token.begin; i <= p->token.end; i++)
     printf("%c", parser->input[i]);
   printf("\n");

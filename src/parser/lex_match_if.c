@@ -26,7 +26,8 @@ enum tag_condition match_if(struct lexer *parser, int end)
   return 0;
 }
 
-char *set_condition_tag(struct lexer *parser, int end)
+/*
+enum token_type set_condition_tag(struct lexer *parser, int end)
 {
   switch(match_if(parser, end))
     {
@@ -48,3 +49,4 @@ char *set_condition_tag(struct lexer *parser, int end)
     }
   return NULL;
 }
+*/

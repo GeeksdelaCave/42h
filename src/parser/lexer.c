@@ -22,7 +22,7 @@ struct token_list *init_list_capt(struct lexer *p)
   capture->token.begin = 0;
   capture->token.end = 0;
   capture->next = p->token_list;
-  capture->tag = malloc(sizeof(char*));
+  capture->type = 1;
   return capture;
 }
 
@@ -134,10 +134,10 @@ int parser_readeol(struct lexer *p)
   return 0;
 }
 
-struct token_s *list_capt_lookup(struct token_list *capt, const char *tag)
+struct token_s *list_capt_lookup(struct token_list *capt, enum token_type type)
 {
   for (; capt; capt = capt->next)
-    if (!strcmp(capt->tag, tag))
+    if (capt->type == type)
       return &(capt->token);
   return NULL;
 }

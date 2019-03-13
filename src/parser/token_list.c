@@ -1,10 +1,11 @@
 #include "token_list.h"
+
 struct lexer *set_token_list(char *str[], int size)
 {
   struct lexer *parser = NULL;
   struct token_list *capture = NULL;
   const char *text = copieInput(str);
-  char *tag_condition = NULL;
+  enum token_type tag_condition;
   int i = 1;
   if (size > 1)
     {
@@ -16,9 +17,9 @@ struct lexer *set_token_list(char *str[], int size)
 	  capture->token.end = (strlen(str[i]) + parser->cursor) - 1;
 	  if (parser_readinteger(parser, capture->token.end))
 	    {
-	      parser->token_list = list_capt_store(parser->token_list, "Number", &capture->token);
+	      parser->token_list = list_capt_store(parser->token_list, Number, &capture->token);
 	    }
-	  else if ((tag_condition = set_condition_tag(parser, capture->token.end))!= NULL)
+	  else if ((tag_condition = match_if(parser, capture->token.end))!= 0)
 	    {
 	      parser->token_list = list_capt_store(parser->token_list, 
 						tag_condition, &capture->token);
@@ -26,11 +27,11 @@ struct lexer *set_token_list(char *str[], int size)
 	  else if(parser_readidentifier(parser, capture->token.end))
 	    {
 	      parser->token_list = list_capt_store(parser->token_list, 
-						"readIndentifier", &capture->token);
+						Identifiant, &capture->token);
 	    }
 	  else
 	    {
-	      parser->token_list = list_capt_store(parser->token_list,"OTHER",
+	      parser->token_list = list_capt_store(parser->token_list, Other,
 						&capture->token);
 	      parser->cursor = capture->token.end + 1;
 	    }
@@ -40,36 +41,37 @@ struct lexer *set_token_list(char *str[], int size)
   return parser;
 }
 
-struct token_list *list_capt_store(struct token_list *capt, const char *tag, struct token_s *capture)
+struct token_list *list_capt_store(struct token_list *capt, enum token_type type, struct token_s *capture)
 {
   struct token_list *pc = (struct token_list*) malloc(sizeof(struct token_list));
-  pc->tag = malloc(strlen(tag));
-  strcpy(pc->tag,tag);
+  //pc->tag = malloc(strlen(tag));
+  //strcpy(pc->tag,tag);
+  pc->type = type;
   pc->next = capt;
   pc->token.begin = capture->begin;
   pc->token.end = capture->end;
   return pc;
 }
 
-int parser_begin_capture(struct lexer *p, const char *tag)
+int parser_begin_capture(struct lexer *p, enum token_type type)
 {
   struct token_s capt = {p->cursor, 0};
-  list_capt_store((p->token_list), tag, &capt);
+  list_capt_store((p->token_list), type, &capt);
   return 1;
 }
 
-int parser_end_capture(struct lexer *p, const char *tag)
+int parser_end_capture(struct lexer *p, enum token_type type)
 {
-  struct token_s *pcapt = list_capt_lookup(p->token_list, tag);
+  struct token_s *pcapt = list_capt_lookup(p->token_list, type);
   if (!pcapt)
   return 0;
   pcapt->end = p->cursor;
   return 1;
 }
 
-char *parser_get_capture(struct lexer *p, const char *tag)
+char *parser_get_capture(struct lexer *p, enum token_type type)
 {
-  struct token_s *pcapt = list_capt_lookup(p->token_list, tag);
+  struct token_s *pcapt = list_capt_lookup(p->token_list, type);
     if (!pcapt)
       return 0;
     //return strndup(p->input + pcapt->begin, pcapt->end - pcapt->begin);

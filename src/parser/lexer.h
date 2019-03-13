@@ -20,6 +20,7 @@ enum token_type{
   Eof,
   Quote,
   Pipe,
+  Other,
 };
 
 struct token_s
@@ -56,8 +57,8 @@ int parser_readinset(struct lexer *p, char *set);
 int read_Spacing(struct lexer *p);
 int parser_readoutset(struct lexer *p, char *set);
 int parser_readeol(struct lexer *p);
-struct token_s *list_capt_lookup(struct token_list *capt, const char *tag);
-char *parser_get_capture(struct lexer *p, const char *tag);
+struct token_s *list_capt_lookup(struct token_list *capt, enum token_type type);
+//enum token_type parser_get_capture(struct lexer *p, enum token_type type);
 char *copieInput(char *str[]);
 int count_caracter(char *str[]);
 struct token_list *init_list_capt(struct lexer *p);
