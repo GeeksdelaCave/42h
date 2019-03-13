@@ -11,9 +11,12 @@ enum token_type{
   Spaces,
   Id,
   Identifiant,
+  Command,
+  Option
   Number,
   Operator,
   Logic,
+  Separator,
   Eof,
   Quote,
   Pipe,
@@ -27,7 +30,7 @@ struct token_s
 
 struct token_list
 {
-    char *tag;
+    enum token_type type;
     struct token_s token;
     struct token_list *next;
 };
