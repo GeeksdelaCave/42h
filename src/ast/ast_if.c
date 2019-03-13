@@ -28,24 +28,24 @@ void ast_if_print(struct ast_node_compound_list *node, FILE *out,
 
     if (node->type != T_IF)
         return;
-    fprintf(out,"%u [label = \"IF\"];\n", current_node = *node_id);
+    fprintf(out, "%u [label = \"IF\"];\n", current_node = *node_id);
     ++*node_id;
 
     if (node->child.child_if.condition)
     {
-        fprintf(out,"%u->%u\n",current_node, *node_id);
+        fprintf(out, "%u -> %u\n",current_node, *node_id);
         ast_print_node(node->child.child_if.condition, out, node_id);
     }
 
     if (node->child.child_if.if_body)
     {
-        fprintf(out,"%u->%u\n",current_node, *node_id);
+        fprintf(out, "%u->%u\n",current_node, *node_id);
         ast_print_node(node->child.child_if.if_body, out, node_id);
     }
 
     if (node->child.child_if.else_body)
     {
-        fprintf(out,"%u->%u\n",current_node, *node_id);
+        fprintf(out, "%u->%u\n",current_node, *node_id);
         ast_print_node(node->child.child_if.else_body, out, node_id);
     }
 }
