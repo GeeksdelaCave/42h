@@ -12,7 +12,7 @@ enum token_type{
   Id,
   Identifiant,
   Command,
-  Option
+  Option,
   Number,
   Operator,
   Logic,
