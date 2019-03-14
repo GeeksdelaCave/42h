@@ -1,71 +1,36 @@
 #include "lex_match_symbol.h"
-enum tag_symbol match_symbol(struct lexer *parser, int end)
+enum tag_symbol match_symbol(struct parser_s *parser, int end)
 {
   char *tmp = malloc(sizeof(char) * end - parser->cursor);
   tmp = strncpy(tmp,parser->input + parser->cursor, end - parser->cursor + 1);
   if (strcmp("[",tmp) == 0)
     {
-      parser->cursor += 1;
+      parser->cursor += 2;
       return LBRACK;
     }
   if (strcmp("]",tmp) == 0)
     {
-      parser->cursor += 1;
+      parser->cursor += 2;
       return RBRACK;
     }
-  if (strcmp ("{", tmp) == 0)
+  if (strcmp("{", tmp) == 0)
     {
-      parser->cursor += 1;
+      parser->cursor += 2;
       return LBRACE;
     }
-  if (strcmp ("}", tmp) == 0)
+  if (strcmp("}", tmp) == 0)
     {
-      parser->cursor += 1;
+      parser->cursor += 2;
       return RBRACE;
     }
-  if(strcmp ("!", tmp) == 0)
+  if(strcmp("!", tmp) == 0)
     {
-      parser->cursor += 1;
+      parser->cursor += 2;
       return BANG;
     }
-  if (strcmp ("|", tmp) == 0)
-  {
-      parser->cursor += 1;
-      return PIPE;
-  }
-  if (strcmp ("'", tmp) == 0)
-  {
-      parser->cursor += 1;
-      return QUOTE;
-  }
-  if (strcmp ("\"", tmp) == 0)
-  {
-      parser->cursor += 1;
-      return DQUOTE;
-  }
-  if (strcmp ("=", tmp) == 0)
-  {
-      parser->cursor += 1;
-      return EQUAL;
-  }
-  if (strcmp ("==", tmp) == 0)
-  {
-      parser->cursor += 1;
-      return DEQUAL;
-  }
-  if (strcmp ("<", tmp) == 0)
-  {
-      parser->cursor += 1;
-      return CHEVRON;
-  }
-  if (strcmp ("<<", tmp) == 0)
-  {
-      parser->cursor += 1;
-      return DCHEVRON;
-  }
   return 0;
 }
-char *set_condition_tag_symbol(struct lexer *parser, int end)
+char *set_condition_symbol(struct parser_s *parser, int end)
 {
   switch(match_symbol(parser, end))
     {
@@ -84,27 +49,15 @@ char *set_condition_tag_symbol(struct lexer *parser, int end)
     case 5:
       return "BANG";
       break;
-    case 6:
-      return "PIPE";
-      break;
-    case 7:
-      return "QUOTE";
-      break;
-    case 8:
+      /*case 6:
+	return "PIPE";
+	break;
+      case 7:
+    return "QUOTE";
+    break;
+      case 8:
       return "DQUOTE";
-      break;
-    case 9:
-      return "EQUAL";
-      break;
-    case 10:
-      return "DEQUAL";
-      break;
-    case 11:
-      return "CHEVRON";
-      break;
-    case 12:
-      return "DCHEVRON";
-      break;
+      break;*/
     }
   return NULL;
 }

@@ -1,5 +1,5 @@
 #ifndef LEX_MATCH_ID
 #define LEX_MATCH_ID
-#include "lexer.h"
-int parser_readidentifier(struct lexer *p , int end);
+#include "parser.h"
+int parser_readidentifier(struct parser_s *p , int end);
 #endif

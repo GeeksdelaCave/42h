@@ -1,5 +1,5 @@
 #include "lex_match_int.h"
-int parser_readinteger(struct lexer *p, int end)
+int parser_readinteger(struct parser_s *p, int end)
 {
   int cpt = p->cursor;
   if (parser_readrange(p, '0', '9'))

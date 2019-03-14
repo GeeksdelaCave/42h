@@ -1,5 +1,5 @@
 #include "lex_match_if.h"
-enum tag_condition match_if(struct lexer *parser, int end)
+enum tag_condition match_if(struct parser_s *parser, int end)
 {
   char *tmp = malloc(sizeof(char) * end - parser->cursor);
   tmp = strncpy(tmp,parser->input + parser->cursor, end - parser->cursor + 1);
@@ -26,8 +26,7 @@ enum tag_condition match_if(struct lexer *parser, int end)
   return 0;
 }
 
-/*
-enum token_type set_condition_tag(struct lexer *parser, int end)
+char *set_condition_tag(struct parser_s *parser, int end)
 {
   switch(match_if(parser, end))
     {
@@ -49,4 +48,3 @@ enum token_type set_condition_tag(struct lexer *parser, int end)
     }
   return NULL;
 }
-*/
