@@ -2,7 +2,7 @@
 
 int main(int *argc, char *argv[])
 {
-    printf("OK\n");
+    struct ast_node_compount)
     return 0;
 
 }
