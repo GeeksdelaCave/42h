@@ -87,7 +87,7 @@ struct ast_node_compound_list *create_node_if(struct ast_node_compound_list
                                               *else_body);
 
 void ast_if_print(struct ast_node_compound_list *node, FILE *out,
-                  unsigned *node_id);
+                  unsigned int *node_id);
 
 void ast_if_destruct(struct ast_node_compound_list *node);
 

@@ -14,7 +14,7 @@ struct ast_print_switch
 
 struct ast_print_switch print_table[NODE_TYPE_COUNT] =
 {
-    {T_IF, ast_if_print}
+    {T_IF, ast_if_print},{T_WHILE, ast_for_print},{T_FOR,ast_for_print}
 };
 
 void ast_print_node(struct ast_node_compound_list *ast, FILE *out,

@@ -21,7 +21,7 @@ void ast_while_print(struct ast_node_compound_list *node, FILE *out,
                      unsigned int *node_id)
 {
     unsigned lhs_id, rhs_id, current_node; //lhs_id = id du cote gauche
-
+   
     fprinf(out, "%u [label = \"while\"];\n", current_node = *node_id);
     lhs_id = ++*node_id;
     ast_print_node(node->child.child_while.condition, out, node_id);
