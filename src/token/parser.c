@@ -158,7 +158,9 @@ int count_caracter(char *str[])
   for (int i = 1; str[i] != NULL; i++)
     {
       count = count + strlen(str[i]);
-    }	  return count;
+      count++;
+    }
+  return count;
 }
 //function qui copie le contenu d'argv en char*
 char *copieInput(char *str[])
