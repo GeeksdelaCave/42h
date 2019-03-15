@@ -49,6 +49,7 @@ struct parser_s *set_token_list(char *str[], int size)
     }
   return parser;
 }
+
 struct list_capt_s *list_capt_store(struct list_capt_s *capt, const char *tag, struct capture_s *capture)
 {
   struct list_capt_s *pc = (struct list_capt_s*) malloc(sizeof(struct list_capt_s));

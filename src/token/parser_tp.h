@@ -1,9 +1,9 @@
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef PARSER_TP_H
+#define PARSER_TP_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stdbool.h>
 #define TRUE 1
 #define FALSE 0
 /*
@@ -16,21 +16,21 @@ enum tag{
   Eof,
   Quote,
   Pipe,
-};
+  };
 */
 #define OPTIONAL(R)
-({
+{
   R;
   TRUE;
- })
+}
 #define ZeroOrMany(R)
-({
+{
   while(R)
     ;
   TRUE;
- })
+}
 #define OneOrMany(R)
-({ int res = FALSE;
+{ int res = FALSE;
   if(R)
     {
       while(R)
@@ -38,7 +38,7 @@ enum tag{
       res = TRUE;
     }
   res;
- })
+}
 
 struct parser_s
 {
@@ -58,22 +58,25 @@ struct list_capt_s
   struct list_capt_s *next;
 };
 struct parser_s *parser_new_from_string(const char *text);
-int parser_readtext(struct parser_s *p, char *text);
+struct list_capt_s *init_list_capt(struct parser_s *p);
+void free_list_capt_s(struct list_capt_s *capture);
 void parser_clean(struct parser_s *p);
 int parser_eof(struct parser_s *p);
+char parser_getchar(struct parser_s *p);
 int parser_peekchar(struct parser_s *p, char c);
 int parser_readchar(struct parser_s *p, char c);
 int parser_readtext(struct parser_s *p, char *text);
 int parser_readrange(struct parser_s *p, char begin, char end);
-int read_Alpha(struct parser_s *p);
 int parser_readinset(struct parser_s *p, char *set);
-int read_Spacing(struct parser_s *p);
 int parser_readoutset(struct parser_s *p, char *set);
-int parser_readeol(struct parser_s *p);
-struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag);
-char *parser_get_capture(struct parser_s *p, const char *tag);
-char *copieInput(char *str[]);
-int count_caracter(char *str[]);
-struct list_capt_s *init_list_capt(struct parser_s *p);
+int parser_readalpha(struct parser_s *p);
+int parser_readnum(struct parser_s *p);
+int parser_var(struct parser_s *p);
+int parser_readidentifier(struct parser_s *p);
+int parser_readinteger(struct parser_s *p);
+void list_capt_store(struct list_capt_s *capture, const char *tag, struct capture_s *capt);
+int read_Assign(struct parser_s *p);
+static inline bool parser_end_capture(struct parser_s *p, const char *tag);
+struct capture_s *list_capt_loopup(struct list_capt_s *capt, const char *tag);
 #endif
 
