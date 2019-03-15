@@ -1,5 +1,6 @@
 #include "parser_tp.h"
 /* Iniitialisation du parser avec l'input text */
+
 struct parser_s *parser_new_from_string(const char *text)
 {
   struct parser_s *p = malloc(sizeof(struct parser_s*));
@@ -8,7 +9,7 @@ struct parser_s *parser_new_from_string(const char *text)
       return NULL;
     }
   p->cursor = 0;
-  p->capture = NULL;
+  p->capture = init_list_capt();
   p->input = malloc(sizeof(char) * strlen(text));
   strcpy(p->input, text);
   return p;
@@ -162,6 +163,7 @@ int parser_readidentifier(struct parser_s *p)
 {
   if ((parser_readalpha(p) || parser_readchar(p, '_')) && ZeroOrMany(parser_var(p)))
     {
+      printf("j'arrête identifier à ->    %c\n", p->input[p->cursor]);
       return 1;
     }
   return 0;
@@ -178,20 +180,19 @@ int parser_readinteger(struct parser_s *p)
 /* Store the capt add in the list capt*/
 void list_capt_store(struct list_capt_s *capture, const char *tag, struct capture_s *capt)
 {
-  for(;capture; capture = capture->next);
-  capture = init_list_capt();
+  for(; capture->next; capture = capture->next);
+  capture->next = init_list_capt();
   capture->tag = strdup(tag);
-  printf("zekfjzrigrzjg rzugj %s\n", capture->tag);
   capture->capt = *capt;
 }
 /*Parser for assign */
 int read_Assign(struct parser_s *p)
 {
   int tmp = p->cursor;
-  if (parser_begin_capture(p, "id") && parser_readidentifier(p) && parser_end_capture(p, "id")
-      && parser_readchar(p, '=')
-      && parser_begin_capture(p, "num") && parser_readinteger(p) && parser_end_capture(p, "num")
-      )
+  if (parser_begin_capture(p, "id") && parser_readidentifier(p) && 
+  parser_end_capture(p, "id") && parser_readchar(p, '=') &&
+  parser_begin_capture(p, "num") && parser_readinteger(p) && parser_end_capture
+  (p, "num"))
     {
       char *id = parser_get_capture(p, "id");
       char *num = parser_get_capture(p, "num");
@@ -212,22 +213,19 @@ static inline bool parser_begin_capture(struct parser_s *p, const char *tag)
 static inline bool parser_end_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
-  printf("rfdtht III \n");
   if (!pcapt)
     return false;
   pcapt->end = p->cursor;
   return true;
 }
 /*look for the tag in the capt list */
-struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag)
+struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag)
 {
-  printf("dvsvsdvds\n");
-  for (; capt; capt = capt->next)
+  for (; captur->next; captur = captur->next)
     {
-      printf("IIIIIIIIIIIIIIII\n");
-      if (strcmp(capt->tag, tag) == 0)
+    if (strcmp(captur->tag, tag) == 0)
 	{
-	  return &(capt->capt);
+        return &(captur->capt); 
 	}
     }
   return NULL;
@@ -236,10 +234,9 @@ struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag)
 static inline char *parser_get_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
-  printf("hdthdhdhd\n");
-  if (!pcapt)
+  if (!pcapt){
     return false;
-  printf("%d\n", pcapt->end);
+  }
   return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
 }
 int main()
