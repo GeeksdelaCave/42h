@@ -1,6 +1,29 @@
-#include "parser_tp.h"
+#include "ast.h"
+char *parser_get_capture(struct parser_s *p, const char *tag)
+{
+  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
+  if (!pcapt){
+    return false;
+  }
+  return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
+}
+/*Look the same tag in the list and return true */
+bool parser_end_capture(struct parser_s *p, const char *tag)
+{
+  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
+  if (!pcapt)
+    return false;
+  pcapt->end = p->cursor;
+  return true;
+}
+/*Set the begin of the capture and store and the list */
+bool parser_begin_capture(struct parser_s *p, const char *tag)
+{
+  struct capture_s capt = { p->cursor, 0 };
+  list_capt_store(p->capture, tag, &capt);
+  return true;
+}
 /* Iniitialisation du parser avec l'input text */
-
 struct parser_s *parser_new_from_string(const char *text)
 {
   struct parser_s *p = malloc(sizeof(struct parser_s*));
@@ -87,14 +110,17 @@ int parser_readchar(struct parser_s *p, char c)
 int parser_readtext(struct parser_s *p, char *text)
 {
   char *cmp = p->input + p->cursor;
-  int cpt = p->cursor;
-    
-  for(int i = 0; text[i]; i++)
+  int i = 0;
+  
+  for(; text[i]; i++)
     {
-      if(cmp[cpt] != text[i])
+        printf("read_text: input'%c' text:'%c'\n", cmp[i], text[i]);
+      if(cmp[i] != text[i])
+      {
 	return 0;
-      cpt++;
+      }
     }
+  p->cursor = i + 1;
   return 1;
 }
 /* True if the char at the current cursor is respectevely inside the range of the char and move */
@@ -110,26 +136,33 @@ int parser_readrange(struct parser_s *p, char begin, char end)
 /* true if the char at the current cursor is inside the set of char and move */
 int parser_readinset(struct parser_s *p, char *set)
 {
-  for(int i = 0; set[i]; i++)
+    for(int i = 0; set[i]; i++)
     {
-      if (p->input[p->cursor] == set[i])
-	{
-	  return 1;
-	}
-      p->cursor++;
+        if (p->input[p->cursor] == set[i])
+    	{
+            printf("SUCCES Check Space de '%c' à '%c' \n", p->input[p->cursor],
+             set[i]);
+            p->cursor++;
+    	  return 1;
+    	}
     }
+
   return 0;
 }
 /* true if the char at the current cursor is not inside the set of char and move */
 int parser_readoutset(struct parser_s *p, char *set)
 {
+    int tmp = p->cursor;
   for(int i = 0; set[i]; i++)
     {
       if (p->input[p->cursor] == set[i])
-	return 0;
-      p->cursor++;
+      {
+        p->cursor = tmp;
+	   return 0;
+       }
     }
-  return 1;
+    p->cursor++;
+    return 1;
 }
 /* True if the char at the current cursor is a char */
 int parser_readalpha(struct parser_s *p)
@@ -145,6 +178,7 @@ int parser_readnum(struct parser_s *p)
 {
   if(parser_readrange(p, '0', '9'))
     {
+    p->cursor++;
       return 1;
     }
   return 0;
@@ -163,7 +197,7 @@ int parser_readidentifier(struct parser_s *p)
 {
   if ((parser_readalpha(p) || parser_readchar(p, '_')) && ZeroOrMany(parser_var(p)))
     {
-      printf("j'arrête identifier à ->    %c\n", p->input[p->cursor]);
+      //printf("j'arrête identifier à ->    %c\n", p->input[p->cursor]);
       return 1;
     }
   return 0;
@@ -189,60 +223,37 @@ void list_capt_store(struct list_capt_s *capture, const char *tag, struct captur
 int read_Assign(struct parser_s *p)
 {
   int tmp = p->cursor;
-  if (parser_begin_capture(p, "id") && parser_readidentifier(p) && 
-  parser_end_capture(p, "id") && parser_readchar(p, '=') &&
-  parser_begin_capture(p, "num") && parser_readinteger(p) && parser_end_capture
-  (p, "num"))
+  if (ZeroOrMany(read_spaces(p)) && parser_begin_capture(p, "id") && parser_readidentifier(p) && 
+      parser_end_capture(p, "id") && ZeroOrMany(read_spaces(p)) &&
+      parser_readchar(p, '=') && ZeroOrMany(read_spaces(p))
+        && parser_begin_capture(p, "num") && parser_readinteger(p) 
+        && parser_end_capture(p, "num") &&  ZeroOrMany(read_spaces(p)))
     {
       char *id = parser_get_capture(p, "id");
       char *num = parser_get_capture(p, "num");
-      printf("Dans Assignement %s %s\n", id, num);
+      printf("\n");
+      printf("SUCCES dans Assignement %s %s\n", id, num);
       return 1;
     }
+    printf("FAIL dans Assignement\n");
   p->cursor = tmp;
   return 0;
-}
-/*Set the begin of the capture and store and the list */
-static inline bool parser_begin_capture(struct parser_s *p, const char *tag)
-{
-  struct capture_s capt = { p->cursor, 0 };
-  list_capt_store(p->capture, tag, &capt);
-  return true;
-}
-/*Look the same tag in the list and return true */
-static inline bool parser_end_capture(struct parser_s *p, const char *tag)
-{
-  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
-  if (!pcapt)
-    return false;
-  pcapt->end = p->cursor;
-  return true;
 }
 /*look for the tag in the capt list */
 struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag)
 {
   for (; captur->next; captur = captur->next)
     {
-    if (strcmp(captur->tag, tag) == 0)
+      if (strcmp(captur->tag, tag) == 0)
 	{
-        return &(captur->capt); 
+	  return &(captur->capt); 
 	}
     }
   return NULL;
 }
 /*return string if they are the same tag */
-static inline char *parser_get_capture(struct parser_s *p, const char *tag)
-{
-  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
-  if (!pcapt){
-    return false;
-  }
-  return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
-}
 int main()
 {
-  struct parser_s *parser = parser_new_from_string("A142535=1154554");
-  //printf("%d\n", parser_readidentifier(parser))
-  read_Assign(parser);
-  // printf("%s\n", parser->input);
+  struct parser_s *parser = parser_new_from_string(" !tata = 4 && !toto ");
+  read_pipeline(parser);
 }

@@ -9,28 +9,29 @@
 
 #define TRUE 1
 #define FALSE 0
-#define OPTIONAL(R)				\
-  __extension_({				\
-      R;					\
-      TRUE;					\
-    })					
-#define ZeroOrMany(R)		      \
-  __extension__({		      \
-      while(R)			      \
-	;			      \
-      TRUE;			      \
-    })                     
-#define OneOrMany(R)		      \
-  __extension__ ({		      \
-      int res = FALSE;		      \
-      if(R)			      \
-	{			      \
-      while(R)		  \
-	;                 \
-      res = TRUE;	  \
+
+#define ZeroOrOne(R)   \
+  __extension__({      \
+      R;	       \
+      TRUE;	       \
+    })
+#define ZeroOrMany(R)  \
+  __extension__({      \
+      while(R)	       \
+	;	       \
+      TRUE;	       \
+    })
+#define OneOrMany(R)	    \
+  __extension__ ({	    \
+      int res = FALSE;	      \
+      if(R)		      \
+	{		      \
+	  while(R)	      \
+	    ;                 \
+	  res = TRUE;	      \
 	}                 \
       res;		  \
-    })                     
+    })
 struct parser_s
 {
   int cursor;
@@ -41,7 +42,7 @@ struct capture_s
 {
   int begin;
   int end;
-}; 
+};
 struct list_capt_s
 {
   char *tag;
@@ -67,10 +68,9 @@ int parser_readidentifier(struct parser_s *p);
 int parser_readinteger(struct parser_s *p);
 void list_capt_store(struct list_capt_s *capture, const char *tag, struct capture_s *capt);
 int read_Assign(struct parser_s *p);
-static inline bool parser_begin_capture(struct parser_s *p, const char *tag);
-static inline bool parser_end_capture(struct parser_s *p, const char *tag);
-static inline char *parser_get_capture(struct parser_s *p, const char *tag);
+bool parser_begin_capture(struct parser_s *p, const char *tag);
+bool parser_end_capture(struct parser_s *p, const char *tag);
+char *parser_get_capture(struct parser_s *p, const char *tag);
 struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag);
 
 #endif
-
