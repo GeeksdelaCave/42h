@@ -51,3 +51,25 @@ void ast_for_print(struct ast_node_compound_list *node, FILE *out,
     }
 }
 
+
+void ast_for_destruct_node(struct ast_node_compound_list *node)
+{
+    if (node->type != T_FOR)
+        return;
+    free(node->child.child_for.varname);
+        for (register int i = 0; node->child.child_for.values[i]; ++i)
+        {
+            free(node->child.child_for.values[i]);
+        }
+    free(node->child.child_for.values);
+    free(node);
+}
+
+void ast_for_destruct(struct ast_node_compound_list *node)
+{
+    if (node->type != T_FOR)
+        return;
+    ast_destruct(node->child.child_for.exec);
+    ast_for_destruct_node(node);
+
+}
