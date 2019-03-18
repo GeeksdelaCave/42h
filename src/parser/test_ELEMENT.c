@@ -1,17 +1,17 @@
 #include "test.h"
 
-void test_PREFIX()
+void test_ELEMENT()
 {
   int size = 8;
   char *str[] =
     {
-      "a=5",
-      "b=a",
-      "a = 10",
-      "a =                  aveavz",
-      "a                   =                       10",
-      "            b =rvfbv,fsdkvf",
-      " 545454545445445 < WORD",
+      "WORD",
+      "12<10",
+      "10< WORD",
+      "1212123211fbdb",
+      "a10",
+      "rvfbvfsdkvf                <               fjvkfv",
+      "545454545445445 < WORD",
       " sjvghskjvsdfvb  < Word",
     };
   for (int i = 0; i < size; i++)
@@ -19,12 +19,12 @@ void test_PREFIX()
       if ((i % 2) == 0)
 	{
 	  struct parser_s *p = parser_new_from_string(str[i]);
-	  assert(read_prefix(p) == 1);
+	  assert(read_element(p) == 1);
 	}
       else
 	{
 	  struct parser_s *p = parser_new_from_string(str[i]);
-	  assert(read_prefix(p) == 0);
+	  assert(read_element(p) == 0);
 	}
     }
 }

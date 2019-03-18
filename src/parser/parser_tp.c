@@ -232,7 +232,7 @@ int read_Assign(struct parser_s *p)
       //char *id = parser_get_capture(p, "id");
       //char *num = parser_get_capture(p, "num");
       //printf("\n");
-      //printf("SUCCES dans Assignement %s %s\n", id, num);
+      // printf("SUCCES dans Assignement %s %s\n", id, num);
       return 1;
     }
   //printf("FAIL dans Assignement\n");

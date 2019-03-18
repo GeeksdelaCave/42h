@@ -9,10 +9,10 @@ int read_redirection(struct parser_s *p)
 	&& ZeroOrMany(read_spaces(p)))
       {
 	printf("NUM : %s WORD : %s \n", parser_get_capture(p, "num"), parser_get_capture(p, "word"));
-	//	printf("AST REDIRECTION SUCCESS\n");
+	printf("AST REDIRECTION SUCCESS\n");
 	return 1;
       }
     p->cursor = tmp;
-    // printf("AST REDIRECTION FAIL!!!!!!!!!\n");
+    printf("AST REDIRECTION FAIL!!!!!!!!!\n");
     return 0;
 }

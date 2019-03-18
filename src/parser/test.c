@@ -2,8 +2,8 @@
 
 int main()
 {
-  test_WORD();
-  test_PREFIX();
+  //test_REDIRECTION();
+  test_ELEMENT();
   printf("\033[0;32m");
 
   printf("All tests OK!\n");

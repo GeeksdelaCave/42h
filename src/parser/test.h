@@ -5,4 +5,6 @@
 #include "ast.h"
 void test_WORD();
 void test_PREFIX();
+void test_ELEMENT();
+void test_REDIRECTION();
 #endif
