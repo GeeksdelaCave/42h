@@ -11,7 +11,6 @@ OBJ= $(SRC:.c=.o)
 all:$(EXEC)
 	$(CC) $(OBJ) -o $(EXEC)
 	$(SS)
-
-.PHONY:clean
+PHONY:clean
 clean:
-	$(RM) $(OBJ) $(TEST_OBJ) $(EXEC)
+	$(RM) $(OBJ) $(EXEC)

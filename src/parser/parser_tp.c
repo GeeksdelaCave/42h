@@ -112,15 +112,16 @@ int parser_readtext(struct parser_s *p, char *text)
   char *cmp = p->input + p->cursor;
   int i = 0;
   
-  for(; text[i]; i++)
+  for(; *text;)
     {
         printf("read_text: input'%c' text:'%c'\n", cmp[i], text[i]);
-      if(cmp[i] != text[i])
-      {
-	return 0;
-      }
+	if(cmp[i] != text[i])
+	  {
+	    return 0;
+	  }
+	text++;
+	cmp++;
     }
-  p->cursor = i + 1;
   return 1;
 }
 /* True if the char at the current cursor is respectevely inside the range of the char and move */
@@ -140,19 +141,18 @@ int parser_readinset(struct parser_s *p, char *set)
     {
         if (p->input[p->cursor] == set[i])
     	{
-            printf("SUCCES Check Space de '%c' à '%c' \n", p->input[p->cursor],
-             set[i]);
-            p->cursor++;
-    	  return 1;
-    	}
+	  //printf("SUCCES Check Space de '%c' à '%c' \n", p->input[p->cursor],
+	  p->cursor++;
+	  return 1;
+	}
     }
-
-  return 0;
+    return 0;
 }
+
 /* true if the char at the current cursor is not inside the set of char and move */
 int parser_readoutset(struct parser_s *p, char *set)
 {
-    int tmp = p->cursor;
+  int tmp = p->cursor;
   for(int i = 0; set[i]; i++)
     {
       if (p->input[p->cursor] == set[i])
@@ -229,13 +229,13 @@ int read_Assign(struct parser_s *p)
         && parser_begin_capture(p, "num") && parser_readinteger(p) 
         && parser_end_capture(p, "num") &&  ZeroOrMany(read_spaces(p)))
     {
-      char *id = parser_get_capture(p, "id");
-      char *num = parser_get_capture(p, "num");
-      printf("\n");
-      printf("SUCCES dans Assignement %s %s\n", id, num);
+      //char *id = parser_get_capture(p, "id");
+      //char *num = parser_get_capture(p, "num");
+      //printf("\n");
+      //printf("SUCCES dans Assignement %s %s\n", id, num);
       return 1;
     }
-    printf("FAIL dans Assignement\n");
+  //printf("FAIL dans Assignement\n");
   p->cursor = tmp;
   return 0;
 }
@@ -251,9 +251,20 @@ struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag)
     }
   return NULL;
 }
+int read_spaces(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if (parser_readinset(p, " \t"))
+    {
+      return 1;
+    }
+  p->cursor = tmp;
+  return 0;
+}
 /*return string if they are the same tag */
-int main()
+/*int main()
 {
   struct parser_s *parser = parser_new_from_string(" !tata = 4 && !toto ");
   read_pipeline(parser);
 }
+*/
