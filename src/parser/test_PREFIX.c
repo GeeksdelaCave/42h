@@ -2,11 +2,11 @@
 
 void test_PREFIX()
 {
-  int size = 5;
+  int size = 7;
   char *str[] =
     {
       "a=5",
-      "b=b",
+      "b=10",
       "a = 10",
       "a =                  15",
       "a                   =                       10",
@@ -15,8 +15,15 @@ void test_PREFIX()
     };
   for (int i = 0; i < size; i++)
     {
-      struct parser_s *p = parser_new_from_string(str[i]);
-      assert(read_prefix(p) == 1);
+      if ((i % 2) == 0)
+	{
+	  struct parser_s *p = parser_new_from_string(str[i]);
+	  assert(read_prefix(p) == 1);
+	}
+      else
+	{
+	  struct parser_s *p = parser_new_from_string(str[i]);
+	  assert(read_prefix(p) == 1);
+	}
     }
-  
 }

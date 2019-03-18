@@ -4,5 +4,5 @@
 #include <unistd.h>
 #include "ast.h"
 void test_WORD();
-void test_ITEM();
+void test_PREFIX();
 #endif
