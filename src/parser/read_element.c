@@ -14,7 +14,7 @@ int check_element(struct parser_s *p)
 int read_element(struct parser_s *p)
 {
     int tmp = p->cursor;
-    if ( read_word(p) || read_redirection(p))
+    if (read_word(p) || read_redirection(p))
     {
       int res = check_element(p);
       //printf("res %d\n", res);
@@ -23,9 +23,6 @@ int read_element(struct parser_s *p)
 	  printf("AST ELEMENT SUCCESS \n");
 	  return 1;
 	}
-      p->cursor = tmp;
-      printf("AST ELEMENT FAIL \n");
-      return 0;
     }
     p->cursor = tmp;
     printf("AST ELEMENT FAIL \n");    

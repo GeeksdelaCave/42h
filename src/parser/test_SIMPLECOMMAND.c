@@ -1,11 +1,10 @@
 #include "test.h"
-
-void test_REDIRECTION()
+void test_SIMPLECOMMAND()
 {
-  int size = 6;
+  int size = 1;
   char *str[] =
     {
-      "12<WORD",
+      "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG WORD WORD ",
       "       15    <               word",
       "20 < word",
       " 30 < wfvkfdkvndfkbv",
@@ -15,6 +14,7 @@ void test_REDIRECTION()
   for (int i = 0; i < size; i++)
     {
       struct parser_s *p = parser_new_from_string(str[i]);
-      assert(read_redirection(p) == 1);
+      assert(read_simplecommand(p) == 1);
     }  
+
 }

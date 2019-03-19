@@ -6,31 +6,30 @@
 #include <string.h>
 #include <stddef.h>
 #include <stdbool.h>
-
 #define TRUE 1
 #define FALSE 0
 
 #define ZeroOrOne(R)   \
   __extension__({      \
-      R;	       \
-      TRUE;	       \
+      R;       \
+      TRUE;       \
     })
 #define ZeroOrMany(R)  \
   __extension__({      \
-      while(R)	       \
-	;	       \
-      TRUE;	       \
+      while(R)       \
+	;       \
+      TRUE;       \
     })
-#define OneOrMany(R)	    \
-  __extension__ ({	    \
-      int res = FALSE;	      \
-      if(R)		      \
-	{		      \
-	  while(R)	      \
+#define OneOrMany(R)    \
+  __extension__ ({    \
+      int res = FALSE;      \
+      if(R)      \
+	{      \
+	  while(R)      \
 	    ;                 \
-	  res = TRUE;	      \
+	  res = TRUE;      \
 	}                 \
-      res;		  \
+      res;  \
     })
 struct parser_s
 {
@@ -68,9 +67,53 @@ int parser_readidentifier(struct parser_s *p);
 int parser_readinteger(struct parser_s *p);
 void list_capt_store(struct list_capt_s *capture, const char *tag, struct capture_s *capt);
 int read_Assign(struct parser_s *p);
+struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag);
+void parser_eat_capture(struct list_capt_s *capture);
+//bool parser_begin_capture(struct parser_s *p, const char *tag);
+//bool parser_end_capture(struct parser_s *p, const char *tag);
+//char *parser_get_capture(struct parser_s *p, const char *tag);
 bool parser_begin_capture(struct parser_s *p, const char *tag);
-bool parser_end_capture(struct parser_s *p, const char *tag);
+/*
+{
+
+  struct capture_s capt = { p->cursor, 0 };
+
+  list_capt_store(p->capture, tag, &capt);
+
+  return true;
+
+}
+
+*/
+
 char *parser_get_capture(struct parser_s *p, const char *tag);
+/*
+{
+  
+  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
+  if (!pcapt)
+    return false;
+  return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
+
+}
+  */
+bool parser_end_capture(struct parser_s *p, const char *tag);
+/*
+{
+
+  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
+
+  if (!pcapt)
+
+    return false;
+
+  pcapt->end = p->cursor;
+
+  return true;
+
+}
+*/
+
 struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag);
 
 #endif

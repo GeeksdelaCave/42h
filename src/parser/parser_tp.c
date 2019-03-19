@@ -1,13 +1,15 @@
 #include "ast.h"
+
 char *parser_get_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
   if (!pcapt){
     return false;
   }
+  // parser_eat_capture(pcapt);
   return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
 }
-/*Look the same tag in the list and return true */
+//Look the same tag in the list and return true 
 bool parser_end_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
@@ -16,14 +18,14 @@ bool parser_end_capture(struct parser_s *p, const char *tag)
   pcapt->end = p->cursor;
   return true;
 }
-/*Set the begin of the capture and store and the list */
+//Set the begin of the capture and store and the list 
 bool parser_begin_capture(struct parser_s *p, const char *tag)
 {
-  struct capture_s capt = { p->cursor, 0 };
+  struct capture_s capt =  {p->cursor, 0 };
   list_capt_store(p->capture, tag, &capt);
   return true;
 }
-/* Iniitialisation du parser avec l'input text */
+/*1 Iniitialisation du parser avec l'input text */
 struct parser_s *parser_new_from_string(const char *text)
 {
   struct parser_s *p = malloc(sizeof(struct parser_s*));
@@ -156,7 +158,7 @@ int parser_readoutset(struct parser_s *p, char *set)
   for(int i = 0; set[i]; i++)
     {
       if (p->input[p->cursor] == set[i])
-      {
+	{
         p->cursor = tmp;
 	   return 0;
        }

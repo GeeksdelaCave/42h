@@ -8,15 +8,17 @@
 int read_word(struct parser_s *p)
 {
   int tmp = p->cursor;
-  if (ZeroOrMany(parser_readinset(p, " \t\r\n\"'`()|;=&{}"))
+  printf("IIIIIIIII %d\n", p->cursor);
+  if (ZeroOrMany(read_spaces(p))
       && parser_begin_capture(p, "word") &&
       parser_readidentifier(p) && 
       parser_end_capture(p, "word") &&
-      ZeroOrMany(parser_readinset(p, " \t\r\n\"'`()|;=&{}")))
+      ZeroOrMany(read_spaces(p)))
     {
-      printf("%s WORD\n", parser_get_capture(p, "word"));
+      printf("READ WORD : %s\n", parser_get_capture(p, "word"));
       return 1;
     }
+  p->capture->tag = " ";
   p->cursor = tmp;
   return 0;
 }
