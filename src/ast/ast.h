@@ -113,7 +113,7 @@ struct ast_node_compound_list //s_ast_node
     union shell_command_child child;//body
 };
 
-enum {NODE_TYPE_COUNT = 5};
+enum {NODE_TYPE_COUNT = 6};
 
 void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
                     unsigned int *node_id);
