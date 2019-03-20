@@ -1,10 +1,8 @@
 CC=gcc
 CFLAGS= -Wall -Werror -Wextra -pedantic -std=c99 -g
-#TEST_FLAG= -lcheck -lm -lpthread -lrt -lsubunit
 EXEC=42sh
-#TEST=mytest
 
-# scr
+SS=./42sh
 SRC= $(wildcard ./*.c)
 OBJ= $(SRC:.c=.o)
 
@@ -12,7 +10,7 @@ OBJ= $(SRC:.c=.o)
 
 all:$(EXEC)
 	$(CC) $(OBJ) -o $(EXEC)
-
-.PHONY:clean
+	$(SS)
+PHONY:clean
 clean:
-	$(RM) $(OBJ) $(TEST_OBJ) $(EXEC)
+	$(RM) $(OBJ) $(EXEC)

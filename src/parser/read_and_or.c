@@ -13,7 +13,7 @@ int read_and_or(struct parser_s *p)
     {
       printf("AST READANDOR Success \n");
       return 1;
-    }t 
+    }
     p->cursor = tmp;
   printf("READ ANDOR FAil !!!!!!!!!!!!!!!!!!!!\n");
   return 0;
