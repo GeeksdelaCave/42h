@@ -24,10 +24,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile ${CMAKE_CURRENT_BINARY_D
 
 
 
-add_executable(42sh src/core/main.c
+add_executable(42sh
+               src/core/main.c
                #src/parser/parser.c
-               #src/utils/string.h
-               #src/utils/string.c
+               src/utils/string.h
+               src/utils/string.c
                )
 add_custom_target(check
                   COMMAND python3 tests/tests_unit.py
