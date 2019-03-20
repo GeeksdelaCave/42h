@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 project(42sh)
 
-# enable_testing()
-
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "-Wall -Werror -Wextra -std=c99 -pedantic")
 set(CMAKE_CTEST_COMMAND "${CMAKE_CTEST_COMMAND} -V ")
@@ -23,14 +21,19 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/42sh.1 ${CMAKE_CURRENT_BINARY_DIR
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile)
 
 
+# Compile the project
+add_executable(42sh
+            src/core/main.c
+            #src/parser/parser.c
+            src/utils/string.h
+            src/utils/string.c
+        )
 
-add_executable(42sh src/core/main.c
-               #src/parser/parser.c
-               #src/utils/string.h
-               #src/utils/string.c
-               )
+# Run test suite
 add_custom_target(check
                   COMMAND python3 tests/tests_unit.py
                   COMMAND python3 tests/tests_yaml.py)
+
+# Run documentation generation
 add_custom_target(doc
                   COMMAND doxygen doc/Doxyfile)
