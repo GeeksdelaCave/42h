@@ -2,6 +2,7 @@
 int read_redirection(struct parser_s *p)
 {
   int tmp = p->cursor;
+  printf("%d %c cursor \n", tmp, p->input[tmp]);
   if (ZeroOrMany(read_spaces(p)) &&
       parser_begin_capture(p, "num") && parser_readinteger(p) && parser_end_capture(p, "num")
       && ZeroOrMany(read_spaces(p)) &&

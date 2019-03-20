@@ -3,7 +3,7 @@
 int main()
 {
   //test_REDIRECTION();
-  test_ELEMENT();
+  test_SIMPLECOMMAND();
   printf("\033[0;32m");
 
   printf("All tests OK!\n");

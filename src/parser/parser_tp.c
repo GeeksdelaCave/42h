@@ -231,13 +231,13 @@ int read_Assign(struct parser_s *p)
         && parser_begin_capture(p, "num") && parser_readinteger(p) 
         && parser_end_capture(p, "num") &&  ZeroOrMany(read_spaces(p)))
     {
-      //char *id = parser_get_capture(p, "id");
-      //char *num = parser_get_capture(p, "num");
-      //printf("\n");
-      // printf("SUCCES dans Assignement %s %s\n", id, num);
+      /*
+      char *id = parser_get_capture(p, "id");
+      char *num = parser_get_capture(p, "num");
+      printf("\n");
+      printf("SUCCES dans Assignement %s %s\n", id, num);*/
       return 1;
     }
-  //printf("FAIL dans Assignement\n");
   p->cursor = tmp;
   return 0;
 }
