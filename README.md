@@ -16,6 +16,11 @@ Run then the following to compile or recompile:
 * ``make check``: run test suit
 * ``make doc``: generate documentation with Doxygen
 
+### Adding source file to compilation target
+
+To add your own sources files, open ``CMakeLists.txt`` file and add relative
+path (from the project folder) in ``add_executable(...)``. One per line.
+
 ## Tests
 
 ### Applicative test
