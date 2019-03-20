@@ -3,3 +3,7 @@
 .idea/
 cmake-build-debug/
 build/
+
+*.o
+*.a
+*.so
