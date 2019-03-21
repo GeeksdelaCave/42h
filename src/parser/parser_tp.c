@@ -1,24 +1,34 @@
 #include "ast.h"
-
+void eat_list_capt(struct parser_s *p)
+{
+  struct list_capt_s *list = p->capture->next;
+  free(p->capture);
+  p->capture = list;
+}
 char *parser_get_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
   if (!pcapt){
     return false;
   }
-  // parser_eat_capture(pcapt);
+  if (strcmp(tag, "num"))
+    {
+      printf("BEGIN NUM : %d\n", pcapt->begin);
+      printf("END NUM : %d\n", pcapt->end);
+    }
+  eat_list_capt(p);
   return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
 }
 //Look the same tag in the list and return true 
-bool parser_end_capture(struct parser_s *p, const char *tag)
-{
-  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
-  if (!pcapt)
-    return false;
-  pcapt->end = p->cursor;
-  return true;
-}
-//Set the begin of the capture and store and the list 
+  bool parser_end_capture(struct parser_s *p, const char *tag)
+  {
+    struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
+    if (!pcapt)
+      return false;
+    pcapt->end = p->cursor;
+    return true;
+  }
+  //Set the begin of the capture and store and the list 
 bool parser_begin_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s capt =  {p->cursor, 0 };
@@ -98,6 +108,32 @@ int parser_peekchar(struct parser_s *p, char c)
       }
     return 0;
 }
+int read_excla(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, "excla") && parser_readchar(p, '!')
+      && parser_end_capture(p, "excla"))
+    {
+      printf("EXCLAMATION : %s \n", parser_get_capture(p, "excla"));
+      return 1;
+    }
+  p->cursor = tmp;
+  return 0;
+}
+int read_pipe(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, "pipe") && parser_readchar(p, '|')
+      && parser_end_capture(p, "pipe"))
+    {
+      printf("PIPE : %s \n", parser_get_capture(p, "pipe"));
+      printf("LE CURSOR DANS PIPE : %d\n", p->cursor);
+      printf("CARACTER DANS PIPE : %c\n", p->input[p->cursor]);
+      return 1;
+    }
+  p->cursor = tmp;
+  return 0;
+}
 /* true if the current char = c and move cursor */
 int parser_readchar(struct parser_s *p, char c)
 {
@@ -108,6 +144,7 @@ int parser_readchar(struct parser_s *p, char c)
     }
   return 0;
 }
+
 /* true if the string text = the current cursor string */
 int parser_readtext(struct parser_s *p, char *text)
 {
@@ -116,7 +153,7 @@ int parser_readtext(struct parser_s *p, char *text)
   
   for(; *text;)
     {
-        printf("read_text: input'%c' text:'%c'\n", cmp[i], text[i]);
+//printf("read_text: input'%c' text:'%c'\n", cmp[i], text[i]);
 	if(cmp[i] != text[i])
 	  {
 	    return 0;
@@ -131,7 +168,7 @@ int parser_readrange(struct parser_s *p, char begin, char end)
 {
     if (p->input[p->cursor] >= begin && p->input[p->cursor] <= end)
       {
-        p->cursor += 1;
+	p->cursor += 1;
         return 1;
       }
     return 0;
@@ -174,43 +211,57 @@ int parser_readalpha(struct parser_s *p)
       return 1;
     }
   return 0;
-}
+} 
 /* True if the current char is a number */
 int parser_readnum(struct parser_s *p)
 {
+  int tmp = p->cursor;
+  // printf(" PAS BON %d\n", tmp);
   if(parser_readrange(p, '0', '9'))
     {
-    p->cursor++;
+      printf("LE NUM QUE JE TEST : %c\n",p->input[p->cursor - 1]);
+      printf("NUM LE CURSOR EST : %d\n", p->cursor - 1);
+      // p->cursor++;
       return 1;
     }
+  p->cursor = tmp;
+  //printf(" PAS BON %d\n", tmp);
   return 0;
 }
 /* True if the char is a variable*/
 int parser_var(struct parser_s *p)
 {
+  int tmp = p->cursor;
   if (parser_readnum(p) || parser_readalpha(p) || parser_readchar(p, '_'))
     {
       return 1;
     }
+  p->cursor = tmp;
   return 0;
 }
 /*True if the current char is a Id */
 int parser_readidentifier(struct parser_s *p)
 {
+  int tmp = p->cursor;
   if ((parser_readalpha(p) || parser_readchar(p, '_')) && ZeroOrMany(parser_var(p)))
     {
       //printf("j'arrête identifier à ->    %c\n", p->input[p->cursor]);
       return 1;
     }
+  p->cursor = tmp;
   return 0;
 }
 /* True if the current char is a number */
 int parser_readinteger(struct parser_s *p)
 {
+  //int tmp = p->cursor;
+  //printf(" PAS BON %d\n", tmp);
   if (OneOrMany(parser_readnum(p)))
     {
       return 1;
     }
+  //printf(" PAS BON %d\n", tmp);
+  //p->cursor = tmp;
   return 0;
 }
 /* Store the capt add in the list capt*/
@@ -225,17 +276,16 @@ void list_capt_store(struct list_capt_s *capture, const char *tag, struct captur
 int read_Assign(struct parser_s *p)
 {
   int tmp = p->cursor;
+//printf(" ASSIGN %d %c cursor \n", tmp, p->input[tmp]);
   if (ZeroOrMany(read_spaces(p)) && parser_begin_capture(p, "id") && parser_readidentifier(p) && 
-      parser_end_capture(p, "id") && ZeroOrMany(read_spaces(p)) &&
-      parser_readchar(p, '=') && ZeroOrMany(read_spaces(p))
-        && parser_begin_capture(p, "num") && parser_readinteger(p) 
-        && parser_end_capture(p, "num") &&  ZeroOrMany(read_spaces(p)))
+      parser_end_capture(p, "id") && parser_readchar(p, '=')
+      && parser_begin_capture(p, "num") && parser_readinteger(p) 
+      && parser_end_capture(p, "num") && ZeroOrMany(read_spaces(p)))
     {
-      /*
       char *id = parser_get_capture(p, "id");
+      printf("ASSIGN LE CURSOR EST : %d\n", p->cursor- 1 );
       char *num = parser_get_capture(p, "num");
-      printf("\n");
-      printf("SUCCES dans Assignement %s %s\n", id, num);*/
+      printf("id :  %s num : %s\n", id, num);
       return 1;
     }
   p->cursor = tmp;
@@ -263,10 +313,3 @@ int read_spaces(struct parser_s *p)
   p->cursor = tmp;
   return 0;
 }
-/*return string if they are the same tag */
-/*int main()
-{
-  struct parser_s *parser = parser_new_from_string(" !tata = 4 && !toto ");
-  read_pipeline(parser);
-}
-*/

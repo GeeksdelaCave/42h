@@ -2,7 +2,6 @@
 int read_redirection(struct parser_s *p)
 {
   int tmp = p->cursor;
-  printf("%d %c cursor \n", tmp, p->input[tmp]);
   if (ZeroOrMany(read_spaces(p)) &&
       parser_begin_capture(p, "num") && parser_readinteger(p) && parser_end_capture(p, "num")
       && ZeroOrMany(read_spaces(p)) &&
@@ -10,13 +9,12 @@ int read_redirection(struct parser_s *p)
       && ZeroOrMany(read_spaces(p)) && read_word(p) &&
       ZeroOrMany(read_spaces(p)))
     {
-      printf("NUM : %s\n", parser_get_capture(p, "num"));
-      printf("Chevro, : %s\n", parser_get_capture(p, "chevron"));
-      printf("WORD : %s \n", parser_get_capture(p, "word"));
-      printf("AST REDIRECTION SUCCESS\n");
+      char *num = parser_get_capture(p, "num");
+      char *chevron = parser_get_capture(p, "chevron");
+      char *word = parser_get_capture(p, "word");
+      printf("READ_REDIRECTION %s %s  %s\n", num,chevron, word);
       return 1;
     }
   p->cursor = tmp;
-  printf("AST REDIRECTION FAIL!!!!!!!!!\n");
   return 0;
 }

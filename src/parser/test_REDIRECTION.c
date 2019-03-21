@@ -18,3 +18,4 @@ void test_REDIRECTION()
       assert(read_redirection(p) == 1);
     }  
 }
+
