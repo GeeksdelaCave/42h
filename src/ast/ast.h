@@ -6,12 +6,13 @@
 # include <stdlib.h>
 # include <stddef.h>
 
-#include "ast_case.h"
-#include "ast_for.h"
-#include "ast_if.h"
-#include "ast_redirection.h"
-#include "ast_while.h"
-
+# include "ast_case.h"
+# include "ast_for.h"
+# include "ast_if.h"
+# include "ast_redirection.h"
+# include "ast_while.h"
+# include "ast_bin.h"
+# include "ast_and.h"
 # include "error.h"
 
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
@@ -28,7 +29,8 @@ enum shell_command_child_type
     T_FOR,
     T_WHILE,
     T_RED,
-    T_CMD
+    T_CMD,
+    T_AND
 };
 
 // Command ast node
@@ -47,6 +49,7 @@ union shell_command_child
     struct ast_node_while child_while;
     struct ast_red child_red;
     struct s_cmd_node child_cmd;
+    struct s_ast_bin child_and;
 };
 
 
@@ -56,7 +59,7 @@ struct ast_node_compound_list //s_ast_node
     union shell_command_child child;//body
 };
 
-enum {NODE_TYPE_COUNT = 6};
+enum {NODE_TYPE_COUNT = 7};
 
 void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
                     unsigned int *node_id);
@@ -98,4 +101,3 @@ void ast_cmd_destruct(struct ast_node_compound_list *node);
 
 
 # endif /* AST_H */
-

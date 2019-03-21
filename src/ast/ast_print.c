@@ -3,13 +3,13 @@
 #include <assert.h>
 #include "ast.h"
 
-typedef void (*f_ast_print)(struct ast_node_compound_list *, FILE *,
+typedef void (*ast_f_print)(struct ast_node_compound_list *, FILE *,
                             unsigned int *);
 
 struct ast_print_switch
 {
     enum shell_command_child_type type;
-    f_ast_print fct;
+    ast_f_print fct;
 };
 
 struct ast_print_switch print_table[NODE_TYPE_COUNT] =
@@ -34,7 +34,7 @@ static char *newastfilename(void)
     while (stat(buf, *buf2) != -1 && more < 50);
     return buf;
 }
-
+*/
 void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
                     unsigned int *node_id)
 {
@@ -45,7 +45,7 @@ void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
             (print_table[i].fct)(ast, out, node_id);
     }
 }
-
+/*
 void ast_print(struct ast_node_compound_list *ast, const char *filename)
 {
     FILE *out;
