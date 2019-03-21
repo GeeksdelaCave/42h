@@ -42,10 +42,10 @@ struct s_cmd_node
 union shell_command_child
 {
     struct ast_node_if child_if;
-    struct ast_node_case child_case;
-    struct ast_node_for child_for;
+    struct ast_case child_case;
+    struct ast_for child_for;
     struct ast_node_while child_while;
-    struct s_red_node child_red;
+    struct ast_red child_red;
     struct s_cmd_node child_cmd;
 };
 
@@ -97,5 +97,5 @@ void ast_cmd_destruct_node(struct ast_node_compound_list *node);
 void ast_cmd_destruct(struct ast_node_compound_list *node);
 
 
-# endif
+# endif /* AST_H */
 

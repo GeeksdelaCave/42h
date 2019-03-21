@@ -7,5 +7,6 @@ build/
 *.o
 *.a
 *.so
+*.swp
 
 42sh

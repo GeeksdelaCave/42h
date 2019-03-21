@@ -1,7 +1,7 @@
 #ifndef AST_FOR_H
 # define AST_FOR_H
 
-struct ast_node_for
+struct ast_for
 {
     char *varname;
     char **values;

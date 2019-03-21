@@ -1,4 +1,5 @@
-# include "ast.h"
+#include "ast.h"
+#include "ast_case.h"
 
 struct ast_node_compound_list *create_node_case(char *word)
 {
@@ -13,12 +14,12 @@ struct ast_node_compound_list *create_node_case(char *word)
 void ast_case_add_item(struct ast_node_compound_list *node,
                        char **pattern, struct ast_node_compound_list *exec)
 {
-    struct s_case_item *item;
-    struct s_case_item **this;
+    struct ast_case_item *item;
+    struct ast_case_item **this;
 
     if (node->type != T_CASE)
         return;
-    mymalloc(item, sizeof(struct s_case_item));
+    mymalloc(item, sizeof(struct ast_case_item));
     item->pattern = pattern;
     item->exec = exec;
     item->next = NULL;
@@ -32,7 +33,7 @@ void ast_case_print(struct ast_node_compound_list *node, FILE *out,
                     unsigned *node_id)
 {
     unsigned current_node;
-    struct s_case_item *item;
+    struct ast_case_item *item;
     unsigned item_id;
     unsigned item_node;
 
@@ -67,8 +68,8 @@ void ast_case_print(struct ast_node_compound_list *node, FILE *out,
 
 void ast_case_destruct_node(struct ast_node_compound_list *node)
 {
-    struct s_case_item *this;
-    struct s_case_item *buff;
+    struct ast_case_item *this;
+    struct ast_case_item *buff;
     if (node->type != T_CASE)
         return;
     free(node->child.child_case.word);
@@ -85,8 +86,8 @@ void ast_case_destruct_node(struct ast_node_compound_list *node)
 
 void ast_case_destruct(struct ast_node_compound_list *node)
 {
-        struct s_case_item *this;
-    struct s_case_item *buff;
+        struct ast_case_item *this;
+    struct ast_case_item *buff;
     if (node->type != T_CASE)
         return;
     free(node->child.child_case.word);

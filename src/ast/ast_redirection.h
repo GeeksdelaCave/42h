@@ -1,6 +1,9 @@
 #ifndef AST_REDIRECTION_H
 # define AST_REDIRECTION_H
 
+#include <stddef.h>
+#include <stdio.h>
+
 // Enumeration different type of redirection
 enum red_type
 {
@@ -19,7 +22,7 @@ enum red_type
 struct ast_red
 {
     size_t size;
-    enum e_red_type *type;
+    enum red_type *type;
     int *fd;
     char **words;
     struct ast_node_compound_list *mhs;
@@ -30,7 +33,7 @@ struct ast_node_compound_list *create_red_ast(void);
 
 // Add
 void add_red_ast(struct ast_node_compound_list *node,
-                 enum e_red_type type,
+                 enum red_type type,
                  int fd, char *word);
 
 // Print
