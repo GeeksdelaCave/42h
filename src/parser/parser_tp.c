@@ -11,11 +11,6 @@ char *parser_get_capture(struct parser_s *p, const char *tag)
   if (!pcapt){
     return false;
   }
-  if (strcmp(tag, "num"))
-    {
-      printf("BEGIN NUM : %d\n", pcapt->begin);
-      printf("END NUM : %d\n", pcapt->end);
-    }
   eat_list_capt(p);
   return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
 }
@@ -127,8 +122,8 @@ int read_pipe(struct parser_s *p)
       && parser_end_capture(p, "pipe"))
     {
       printf("PIPE : %s \n", parser_get_capture(p, "pipe"));
-      printf("LE CURSOR DANS PIPE : %d\n", p->cursor);
-      printf("CARACTER DANS PIPE : %c\n", p->input[p->cursor]);
+      //printf("LE CURSOR DANS PIPE : %d\n", p->cursor);
+      //printf("CARACTER DANS PIPE : %c\n", p->input[p->cursor]);
       return 1;
     }
   p->cursor = tmp;
@@ -153,8 +148,7 @@ int parser_readtext(struct parser_s *p, char *text)
   
   for(; *text;)
     {
-//printf("read_text: input'%c' text:'%c'\n", cmp[i], text[i]);
-	if(cmp[i] != text[i])
+        if(cmp[i] != text[i])
 	  {
 	    return 0;
 	  }
@@ -219,8 +213,8 @@ int parser_readnum(struct parser_s *p)
   // printf(" PAS BON %d\n", tmp);
   if(parser_readrange(p, '0', '9'))
     {
-      printf("LE NUM QUE JE TEST : %c\n",p->input[p->cursor - 1]);
-      printf("NUM LE CURSOR EST : %d\n", p->cursor - 1);
+      //printf("LE NUM QUE JE TEST : %c\n",p->input[p->cursor - 1]);
+      //printf("NUM LE CURSOR EST : %d\n", p->cursor - 1);
       // p->cursor++;
       return 1;
     }
@@ -283,9 +277,8 @@ int read_Assign(struct parser_s *p)
       && parser_end_capture(p, "num") && ZeroOrMany(read_spaces(p)))
     {
       char *id = parser_get_capture(p, "id");
-      printf("ASSIGN LE CURSOR EST : %d\n", p->cursor- 1 );
       char *num = parser_get_capture(p, "num");
-      printf("id :  %s num : %s\n", id, num);
+      printf("Assign  id :  %s num : %s \n", id, num);
       return 1;
     }
   p->cursor = tmp;
