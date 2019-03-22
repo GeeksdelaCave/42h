@@ -2,7 +2,7 @@
 
 int main()
 {
-  test_PIPELINE();
+  test_ANDOR();
   //test_PIPELINE();
   printf("\033[0;32m");
 

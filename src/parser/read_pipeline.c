@@ -7,7 +7,7 @@ int read_pipeline(struct parser_s *p)
 {
   
   int tmp = p->cursor;
-  if (ZeroOrMany(read_spaces(p)) && ZeroOrOne(read_excla(p)) && ZeroOrMany(read_spaces(p)) &&
+  if (ZeroOrOne(read_excla(p)) && ZeroOrMany(read_spaces(p)) &&
       read_command(p) && ZeroOrMany(read_spaces(p)) &&  
       ZeroOrMany(read_pipe(p) && ZeroOrMany(read_spaces(p)) && ZeroOrMany(parser_readchar(p, '\n')&& ZeroOrMany(read_spaces(p)))
 		 && read_command(p)))

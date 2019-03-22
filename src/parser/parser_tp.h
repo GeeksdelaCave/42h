@@ -71,6 +71,7 @@ int read_Assign(struct parser_s *p);
 struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag);
 void parser_eat_capture(struct parser_s *p);
 int read_excla(struct parser_s *p);
+int read_symbole(struct parser_s *p, char* tag, char* type);
 //bool parser_begin_capture(struct parser_s *p, const char *tag);
 //bool parser_end_capture(struct parser_s *p, const char *tag);
 //char *parser_get_capture(struct parser_s *p, const char *tag);

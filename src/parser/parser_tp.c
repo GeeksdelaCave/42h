@@ -129,14 +129,17 @@ int read_pipe(struct parser_s *p)
   int tmp = p->cursor;
   if (parser_begin_capture(p, "pipe") && parser_readchar(p, '|')
       && parser_end_capture(p, "pipe"))
-    {
-      printf("PIPE : %s \n", parser_get_capture(p, "pipe"));
-      printf("LE CURSOR DANS PIPE : %d\n", p->cursor);
-      printf("CARACTER DANS PIPE : %c\n", p->input[p->cursor]);
-      return 1;
+    {  
+        char *pipe = parser_get_capture(p, "pipe");
+        if(p->input[p->cursor] != '|')
+        {
+            printf("%s\n", pipe);  
+            return 1;   
+        }
     }
-  p->cursor = tmp;
-  return 0;
+    parser_get_capture(p, "pipe");
+    p->cursor = tmp;
+    return 0;
 }
 /* true if the current char = c and move cursor */
 int parser_readchar(struct parser_s *p, char c)
@@ -153,20 +156,35 @@ int parser_readchar(struct parser_s *p, char c)
 int parser_readtext(struct parser_s *p, char *text)
 {
   char *cmp = p->input + p->cursor;
-  int i = 0;
   
-  for(; *text;)
+  for(int i = 0; text[i]; i++)
     {
-//printf("read_text: input'%c' text:'%c'\n", cmp[i], text[i]);
+        //printf("x = %c y = %c \n",cmp[i], text[i] );
 	if(cmp[i] != text[i])
 	  {
 	    return 0;
 	  }
-	text++;
-	cmp++;
+      p->cursor++;
     }
-  return 1;
+    return 1;
 }
+
+/*read ...*/
+int read_symbole(struct parser_s *p, char* tag, char* type)
+{
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, tag) && parser_readtext(p, type)
+      && parser_end_capture(p, tag))
+    {
+        char* res = parser_get_capture(p, "ANDOR");
+        printf("READsymbole : %s\n", res);
+        return 1;
+    }
+  p->cursor = tmp;
+  printf("FAIL DANS READsymbole\n");
+  return 0;
+}
+
 /* True if the char at the current cursor is respectevely inside the range of the char and move */
 int parser_readrange(struct parser_s *p, char begin, char end)
 {
@@ -292,7 +310,7 @@ int read_Assign(struct parser_s *p)
       && parser_end_capture(p, "num") && ZeroOrMany(read_spaces(p)))
     {
       char *id = parser_get_capture(p, "id");
-      printf("ASSIGN LE CURSOR EST : %d\n", p->cursor- 1 );
+      //printf("ASSIGN LE CURSOR EST : %d\n", p->cursor- 1 );
       char *num = parser_get_capture(p, "num");
       printf("id :  %s num : %s\n", id, num);
       return 1;
