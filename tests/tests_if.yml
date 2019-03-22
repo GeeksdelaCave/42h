@@ -1,9 +1,10 @@
+
 TEST-00:
-    desc: Test version
+    desc: Test if 
     ref: bash --posix -c "echo 'Version 0.3'"
     cmd: ./42sh --version
 
 TEST-01:
-    desc: Hello world
+    desc: Test if
     ref: bash --posix -c "if a "
     cmd: ./42sh -c "if a"

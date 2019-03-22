@@ -14,6 +14,7 @@ set(TESTS_DIR_OUT "${CMAKE_CURRENT_BINARY_DIR}/tests/")
 configure_file(${TESTS_DIR_IN}/tests_unit.py ${TESTS_DIR_OUT}/tests_unit.py COPYONLY)
 # TA
 configure_file(${TESTS_DIR_IN}/tests_yaml.yml ${TESTS_DIR_OUT}/tests_yaml.yml COPYONLY)
+configure_file(${TESTS_DIR_IN}/tests_if.yml ${TESTS_DIR_OUT}/tests_if.yml COPYONLY)
 configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  COPYONLY)
 
 # Copy doc

@@ -37,7 +37,7 @@ def main():
     with open("tests/tests_yaml.yml", "r") as f:
         tests = yaml.load(f)  
     with open("tests/tests_if.yml", "r") as f:
-        tests += yaml.load(f)   
+        tests = yaml.load(f)   
 
     ok = 0
     ko = 0
