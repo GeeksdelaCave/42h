@@ -1,6 +1,6 @@
 # include "ast.h"
 
-struct ast_node_compound_list *ast_cmd_create(void)
+struct ast_node_compound_list *create_node_cmd(void)
 {
     struct ast_node_compound_list *node;
     mymalloc(node, sizeof(struct ast_node_compound_list));
