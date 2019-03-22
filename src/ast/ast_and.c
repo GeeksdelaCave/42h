@@ -1,10 +1,9 @@
-# include "ast_and.h"
-# include "ast_bin.h"
 # include "ast.h"
+
 
 struct ast_node_compound_list *create_node_and(struct ast_node_compound_list
                                                *lhs,
-                                                struct ast_node_compound_list
+                                               struct ast_node_compound_list
                                                *rhs)
 {
     struct ast_node_compound_list *node;
@@ -19,20 +18,20 @@ struct ast_node_compound_list *create_node_and(struct ast_node_compound_list
 
 
 void ast_and_print(struct ast_node_compound_list *node, FILE *out,
-                  unsigned int *node_id);
+                  unsigned int *node_id)
 {
     unsigned int currend_id;
     unsigned int lhs_id;
     unsigned int rhs_id;
 
-    if (node->T_AND)
+    if (node->type != T_AND)
         return;
 
     fprintf(out, "%u [label \"&&\";]", currend_id = *node_id);
-    lhs = ++*node_id;
+    lhs_id = ++*node_id;
     ast_print_node(node->child.child_and.lhs, out, node_id);
     fprintf(out, "%u -> %u", currend_id, lhs_id);
-    rhs = ++*node_id;
+    rhs_id = ++*node_id;
     ast_print_node(node->child.child_and.rhs, out, node_id);
     fprintf(out, "%u -> %u", currend_id, rhs_id);
 }

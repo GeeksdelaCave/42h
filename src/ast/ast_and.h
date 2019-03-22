@@ -1,15 +1,22 @@
 #ifndef AST_AND_H
 #define AST_AND_H
 
-
 /*
 **Author souleymane.ba
 **function for ast_and.c
 */
 
+
+struct s_ast_bin
+{
+    struct ast_node_compound_list *lhs;
+    struct ast_xnode_compound_list *rhs;
+}
+
+
 struct ast_node_compound_list *create_node_and(struct ast_node_compound_list
                                                *lhs,
-                                                struct ast_node_compound_list
+                                               struct ast_node_compound_list
                                                *rhs);
 
 

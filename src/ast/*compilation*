@@ -1,0 +1,7 @@
+-*- mode: compilation; default-directory: "~/Documents/Epita/projet/42sh-projet/42h/src/ast/" -*-
+Compilation started at Fri Mar 22 15:12:14
+
+make clean
+rm -f ./ast_cmd.o ./ast_if.o ./ast_destruct.o ./ast_case.o ./main.o ./ast_and.o ./ast_redirection.o ./ast_while.o ./ast_print.o ./ast_for.o  42sh
+
+Compilation finished at Fri Mar 22 15:12:14
