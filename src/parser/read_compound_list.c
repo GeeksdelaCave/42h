@@ -8,10 +8,13 @@ compound_list:
 int read_compound_list(struct parser_s *p)
 {
     int tmp = p->cursor;
-    if ((ZeroOrMany(parser_readchar(p, '\n') || read_spaces(p))) &&
-	(read_and_or(p)) && (ZeroOrMany(parser_readinset(p,";&\n\t ") && 
-    ZeroOrMany(parser_readchar(p, '\n') && read_spaces(p)) && read_and_or(p))) 
-    &&  ZeroOrOne(parser_readinset(p,"&;\n\t "))&& ZeroOrMany(parser_readchar(p, '\n')))
+    if (ZeroOrMany(parser_readchar(p, '\n')) && ZeroOrMany(read_spaces(p)) 
+    && read_and_or(p) && 
+    ZeroOrMany(parser_readinset(p,";&\n\t ") && read_and_or(p) && 
+    ZeroOrMany(parser_readchar(p, '\n'))  && ZeroOrMany(read_spaces(p)) && 
+    read_and_or(p)) &&  
+    ZeroOrOne(parser_readinset(p,"&;\n\t ")) && 
+    ZeroOrMany(parser_readchar(p, '\n')))
       {
         printf("AST read compound list : SUCCES\n");
         return 1;
@@ -20,3 +23,4 @@ int read_compound_list(struct parser_s *p)
     p->cursor = tmp;
     return 0;
 }
+ 

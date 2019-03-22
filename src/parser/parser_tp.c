@@ -134,7 +134,7 @@ int read_and(struct parser_s *p)
         if(p->input[p->cursor] != '&')
         {
             printf("%s\n", and);  
-            return 1;   
+            return 1;
         }
     }
     parser_get_capture(p, "and");
@@ -149,11 +149,8 @@ int read_virgule(struct parser_s *p)
       && parser_end_capture(p, "virgule"))
     {  
         char *virgule = parser_get_capture(p, "virgule");
-        if(p->input[p->cursor] != ';')
-        {
-            printf("%s\n", virgule);  
-            return 1;   
-        }
+        printf("%s\n", virgule);  
+        return 1;
     }
     parser_get_capture(p, "virgule");
     p->cursor = tmp;
@@ -217,6 +214,7 @@ int read_symbole(struct parser_s *p, char* tag, char* type)
         return 1;
     }
   p->cursor = tmp;
+  parser_get_capture(p, "ANDOR");
   printf("FAIL DANS READsymbole\n");
   return 0;
 }
