@@ -113,3 +113,4 @@ void ast_cmd_destruct(struct ast_node_compound_list *node)
     free(node);
 
 }
+

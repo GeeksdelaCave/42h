@@ -1,5 +1,4 @@
-#include "ast_redirection.h"
-#include "ast.h"
+# include "ast.h"
 
 struct  ast_node_compound_list *create_red_ast(void)
 {
@@ -14,14 +13,14 @@ struct  ast_node_compound_list *create_red_ast(void)
 }
 
 void add_red_ast(struct ast_node_compound_list *node,
-                 enum red_type type,
+                 enum e_red_type type,
                  int fd, char *word)
 {
     if (node->type != T_RED)
         return;
-    struct ast_red *reds = (struct ast_red *) &node->child.child_red;
+    struct s_red_node *reds = (struct s_red_node *) &node->child.child_red;
     ++reds->size;
-    myrealloc(reds->type, reds->type, sizeof(enum red_type) *
+    myrealloc(reds->type, reds->type, sizeof(enum e_red_type) *
               reds->size);
     reds->type[reds->size - 1] = type;
     myrealloc(reds->fd, reds->fd, sizeof(int) * reds->size);
@@ -38,7 +37,7 @@ void ast_red_print(struct ast_node_compound_list *node, FILE *out,
 
     if (node->type != T_FOR)
         return;
-    struct ast_red *reds = (struct ast_red *) &node->child.child_red;
+    struct s_red_node *reds = (struct s_red_node *) &node->child.child_red;
     if (reds->size == 0)
         return;
     fprintf(out, "%u [label = \"Redirection\\n", *node_id);
@@ -52,13 +51,13 @@ void ast_red_print(struct ast_node_compound_list *node, FILE *out,
         ast_print_node(reds->mhs, out, node_id);
 }
 
-void ast_red_destruct_node(struct ast_node_compound_list *node)
+    void ast_red_destruct_node(struct ast_node_compound_list *node)
 {
-    struct ast_red *reds;
+    struct s_red_node *reds;
 
     if (node->type != T_RED)
         return;
-    reds = (struct ast_red *) &node->child.child_red;
+    reds = (struct s_red_node *) &node->child.child_red;
     if (reds->size){
         free(reds->type);
         free(reds->fd);
