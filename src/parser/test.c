@@ -2,8 +2,8 @@
 
 int main()
 {
-  //test_REDIRECTION();
-  test_PIPELINE();
+  test_ELEMENT();
+  //test_PIPELINE();
   printf("\033[0;32m");
 
   printf("All tests OK!\n");

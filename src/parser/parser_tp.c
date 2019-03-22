@@ -1,9 +1,12 @@
 #include "ast.h"
 void eat_list_capt(struct parser_s *p)
 {
-  struct list_capt_s *list = p->capture->next;
-  free(p->capture);
-  p->capture = list;
+  if (p->capture->next != NULL)
+    {
+      struct list_capt_s *list = p->capture->next;
+      free(p->capture);
+      p->capture = list;
+    }
 }
 char *parser_get_capture(struct parser_s *p, const char *tag)
 {
@@ -11,6 +14,11 @@ char *parser_get_capture(struct parser_s *p, const char *tag)
   if (!pcapt){
     return false;
   }
+  if (strcmp(tag, "num"))
+    {
+      printf("BEGIN NUM : %d\n", pcapt->begin);
+      printf("END NUM : %d\n", pcapt->end);
+    }
   eat_list_capt(p);
   return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
 }
@@ -122,8 +130,8 @@ int read_pipe(struct parser_s *p)
       && parser_end_capture(p, "pipe"))
     {
       printf("PIPE : %s \n", parser_get_capture(p, "pipe"));
-      //printf("LE CURSOR DANS PIPE : %d\n", p->cursor);
-      //printf("CARACTER DANS PIPE : %c\n", p->input[p->cursor]);
+      printf("LE CURSOR DANS PIPE : %d\n", p->cursor);
+      printf("CARACTER DANS PIPE : %c\n", p->input[p->cursor]);
       return 1;
     }
   p->cursor = tmp;
@@ -148,7 +156,8 @@ int parser_readtext(struct parser_s *p, char *text)
   
   for(; *text;)
     {
-        if(cmp[i] != text[i])
+//printf("read_text: input'%c' text:'%c'\n", cmp[i], text[i]);
+	if(cmp[i] != text[i])
 	  {
 	    return 0;
 	  }
@@ -160,16 +169,19 @@ int parser_readtext(struct parser_s *p, char *text)
 /* True if the char at the current cursor is respectevely inside the range of the char and move */
 int parser_readrange(struct parser_s *p, char begin, char end)
 {
+  int tmp = p->cursor;
     if (p->input[p->cursor] >= begin && p->input[p->cursor] <= end)
       {
 	p->cursor += 1;
         return 1;
       }
+    p->cursor = tmp;
     return 0;
 }
 /* true if the char at the current cursor is inside the set of char and move */
 int parser_readinset(struct parser_s *p, char *set)
 {
+  int tmp = p->cursor;
     for(int i = 0; set[i]; i++)
     {
         if (p->input[p->cursor] == set[i])
@@ -179,6 +191,7 @@ int parser_readinset(struct parser_s *p, char *set)
 	  return 1;
 	}
     }
+    p->cursor = tmp;
     return 0;
 }
 
@@ -194,16 +207,19 @@ int parser_readoutset(struct parser_s *p, char *set)
 	   return 0;
        }
     }
-    p->cursor++;
-    return 1;
+  p->cursor = tmp;
+  //*p->cursor++;
+  return 1;
 }
 /* True if the char at the current cursor is a char */
 int parser_readalpha(struct parser_s *p)
 {
+  int tmp = p->cursor;
   if(parser_readrange(p, 'a', 'z') || parser_readrange(p, 'A', 'Z'))
     {
       return 1;
     }
+  p->cursor = tmp;
   return 0;
 } 
 /* True if the current char is a number */
@@ -213,8 +229,8 @@ int parser_readnum(struct parser_s *p)
   // printf(" PAS BON %d\n", tmp);
   if(parser_readrange(p, '0', '9'))
     {
-      //printf("LE NUM QUE JE TEST : %c\n",p->input[p->cursor - 1]);
-      //printf("NUM LE CURSOR EST : %d\n", p->cursor - 1);
+      printf("LE NUM QUE JE TEST : %c\n",p->input[p->cursor - 1]);
+      printf("NUM LE CURSOR EST : %d\n", p->cursor - 1);
       // p->cursor++;
       return 1;
     }
@@ -250,12 +266,13 @@ int parser_readinteger(struct parser_s *p)
 {
   //int tmp = p->cursor;
   //printf(" PAS BON %d\n", tmp);
+  int tmp = p->cursor;
   if (OneOrMany(parser_readnum(p)))
     {
       return 1;
     }
   //printf(" PAS BON %d\n", tmp);
-  //p->cursor = tmp;
+  p->cursor = tmp;
   return 0;
 }
 /* Store the capt add in the list capt*/
@@ -277,10 +294,13 @@ int read_Assign(struct parser_s *p)
       && parser_end_capture(p, "num") && ZeroOrMany(read_spaces(p)))
     {
       char *id = parser_get_capture(p, "id");
+      printf("ASSIGN LE CURSOR EST : %d\n", p->cursor- 1 );
       char *num = parser_get_capture(p, "num");
-      printf("Assign  id :  %s num : %s \n", id, num);
+      printf("id :  %s num : %s\n", id, num);
       return 1;
     }
+  parser_get_capture(p, "id");
+  parser_get_capture(p, "num");
   p->cursor = tmp;
   return 0;
 }

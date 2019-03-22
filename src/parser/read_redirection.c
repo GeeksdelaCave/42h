@@ -15,6 +15,9 @@ int read_redirection(struct parser_s *p)
       printf("READ_REDIRECTION %s %s  %s\n", num,chevron, word);
       return 1;
     }
+  parser_get_capture(p, "num");
+  parser_get_capture(p, "chevron");
+  parser_get_capture(p, "word");
   p->cursor = tmp;
   return 0;
 }

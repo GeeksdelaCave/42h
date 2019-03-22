@@ -5,7 +5,7 @@ void test_PIPELINE()
   char *str[] = 
     {
       "",
-      "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsdfhvs | toto=25 toto=10",
+      "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 fdhvhkdvhfd=20 15 < zrevjzrjvjerv",
       "a=15",
       " 30 < wfvkfdkvndfkbv",
       "15 < fdjkbhdfbjekbej",

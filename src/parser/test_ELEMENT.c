@@ -2,15 +2,11 @@
 
 void test_ELEMENT()
 {
-  int size = 4;
+  int size = 2;
   char *str[] =
     {
       "WORD",
       "12        <      WORD",
-      "vfdbfdbd<word",
-      "545445454545454 < dgnfjfjnfn",
-      "rvioejjearvijervjzerjvejrvjervjevjejvraajievjirzavjizjvi45454545454/////",
-      "svslkjvnsjnvdjnsdvnsjdvnsdnvjsndjvnsjdvnjmlsDVNSDklvmSKVJv",
     };
   for (int i = 0; i < size; i++)
     {
