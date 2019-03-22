@@ -23,12 +23,11 @@ configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  CO
 add_executable(42sh
         src/core/main.c
 
-        src/ast/ast.c
         src/ast/ast.h
         src/ast/ast_case.c
         src/ast/ast_case.h
         src/ast/ast_cmd.c
-        # src/ast/ast_cmd.h
+        src/ast/ast_cmd.h
         src/ast/ast_destruct.c
         src/ast/ast_for.c
         src/ast/ast_for.h
