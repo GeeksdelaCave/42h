@@ -10,50 +10,44 @@
 #define FALSE 0
 
 #define ZeroOrOne(R)   \
-    __extension__({    \
-            R;         \
-            TRUE;      \
-        })
-
+  __extension__({      \
+      R;       \
+      TRUE;       \
+    })
 #define ZeroOrMany(R)  \
-    __extension__({    \
-            while(R)   \
-                ;      \
-            TRUE;      \
-        })
-
-#define OneOrMany(R)                            \
-    __extension__ ({                            \
-            int res = FALSE;                    \
-            if(R)                               \
-            {                                   \
-                while(R)                        \
-                    ;                           \
-                res = TRUE;                     \
-            }                                   \
-            res;                                \
-        })
-
+  __extension__({      \
+      while(R)       \
+	;       \
+      TRUE;       \
+    })
+#define OneOrMany(R)    \
+  __extension__ ({    \
+      int res = FALSE;      \
+      if(R)      \
+	{      \
+	  while(R)      \
+	    ;                 \
+	  res = TRUE;      \
+	}                 \
+      res;  \
+    })
 struct parser_s
 {
-    int cursor;
-    char *input;
-    struct list_capt_s *capture;
+  int cursor;
+  char *input;
+  struct list_capt_s *capture;
 };
-
 struct capture_s
 {
-    int begin;
-    int end;
+  int begin;
+  int end;
 };
-
 struct list_capt_s
 {
-    char *tag;
-    struct capture_s capt;
-    struct list_capt_s *next;
+  char *tag;
+  struct capture_s capt;
+  struct list_capt_s *next;
 };
-
 struct parser_s *parser_new_from_string(const char *text);
 struct list_capt_s *init_list_capt();
 int read_pipe(struct parser_s *p);
@@ -78,16 +72,53 @@ struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag);
 void parser_eat_capture(struct parser_s *p);
 int read_excla(struct parser_s *p);
 int read_symbole(struct parser_s *p, char* tag, char* type);
-<<<<<<< HEAD
-=======
 int read_virgule(struct parser_s *p);
 int read_and(struct parser_s *p);
 //bool parser_begin_capture(struct parser_s *p, const char *tag);
 //bool parser_end_capture(struct parser_s *p, const char *tag);
 //char *parser_get_capture(struct parser_s *p, const char *tag);
->>>>>>> b26e409eeef2adb9111081d8aa7ee41b798e8078
 bool parser_begin_capture(struct parser_s *p, const char *tag);
+/*
+{
+
+  struct capture_s capt = { p->cursor, 0 };
+
+  list_capt_store(p->capture, tag, &capt);
+
+  return true;
+
+}
+
+*/
+
 char *parser_get_capture(struct parser_s *p, const char *tag);
+/*
+{
+  
+  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
+  if (!pcapt)
+    return false;
+  return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
+
+}
+  */
 bool parser_end_capture(struct parser_s *p, const char *tag);
+/*
+{
+
+  struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
+
+  if (!pcapt)
+
+    return false;
+
+  pcapt->end = p->cursor;
+
+  return true;
+
+}
+*/
+
 struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag);
+
 #endif
