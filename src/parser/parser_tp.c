@@ -124,6 +124,42 @@ int read_excla(struct parser_s *p)
   p->cursor = tmp;
   return 0;
 }
+int read_and(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, "and") && parser_readchar(p, '&')
+      && parser_end_capture(p, "and"))
+    {  
+        char *and = parser_get_capture(p, "and");
+        if(p->input[p->cursor] != '&')
+        {
+            printf("%s\n", and);  
+            return 1;   
+        }
+    }
+    parser_get_capture(p, "and");
+    p->cursor = tmp;
+    return 0;
+}
+/* ; */
+int read_virgule(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, "virgule") && parser_readchar(p, ';')
+      && parser_end_capture(p, "virgule"))
+    {  
+        char *virgule = parser_get_capture(p, "virgule");
+        if(p->input[p->cursor] != ';')
+        {
+            printf("%s\n", virgule);  
+            return 1;   
+        }
+    }
+    parser_get_capture(p, "virgule");
+    p->cursor = tmp;
+    return 0;
+}
+/* PIPE */
 int read_pipe(struct parser_s *p)
 {
   int tmp = p->cursor;

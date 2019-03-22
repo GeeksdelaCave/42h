@@ -2,8 +2,10 @@
 
 int main()
 {
-  test_ANDOR();
+  //test_ANDOR();
   //test_PIPELINE();
+  test_LIST();
+  
   printf("\033[0;32m");
 
   printf("All tests OK!\n");

@@ -12,4 +12,5 @@ void test_COMMAND();
 void test_REDIRECTION();
 void test_PIPELINE();
 void test_ANDOR();
+void test_LIST();
 #endif
