@@ -4,7 +4,7 @@ int check_element(struct parser_s *p)
 {
     char* res = parser_get_capture(p, "word");
     //printf("content element %s \n", res);
-    if( !strcmp("for", res) || !strcmp("if", res) || !strcmp("while", res) )
+    if( !strcmp("for", res) || !strcmp("if", res) || !strcmp("while", res) || !strcmp("do", res) || !strcmp("done", res) )
       {
 	return 0;
       }

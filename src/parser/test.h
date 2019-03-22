@@ -14,4 +14,5 @@ void test_PIPELINE();
 void test_ANDOR();
 void test_LIST();
 void test_COMPOUND();
+void test_DOGROUP();
 #endif
