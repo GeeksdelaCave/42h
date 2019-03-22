@@ -8,6 +8,8 @@ int check_element(struct parser_s *p)
       {
 	return 0;
       }
+    printf("%s\n", res);
+    
     return 1;
 }
 int read_element(struct parser_s *p)
@@ -18,7 +20,6 @@ int read_element(struct parser_s *p)
 	int res = check_element(p);
 	if(res == 1)
 	  {
-	    printf("WORD %s\n", parser_get_capture(p, "word"));
 	    //printf("AST ELEMENT SUCCESS \n");
 	    return 1;
 	  }

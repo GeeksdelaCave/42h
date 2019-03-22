@@ -14,11 +14,12 @@ char *parser_get_capture(struct parser_s *p, const char *tag)
   if (!pcapt){
     return false;
   }
+  /*
   if (strcmp(tag, "num"))
     {
       printf("BEGIN NUM : %d\n", pcapt->begin);
       printf("END NUM : %d\n", pcapt->end);
-    }
+    }*/
   eat_list_capt(p);
   return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
 }
@@ -229,10 +230,7 @@ int parser_readnum(struct parser_s *p)
   // printf(" PAS BON %d\n", tmp);
   if(parser_readrange(p, '0', '9'))
     {
-      printf("LE NUM QUE JE TEST : %c\n",p->input[p->cursor - 1]);
-      printf("NUM LE CURSOR EST : %d\n", p->cursor - 1);
-      // p->cursor++;
-      return 1;
+        return 1;
     }
   p->cursor = tmp;
   //printf(" PAS BON %d\n", tmp);
