@@ -129,7 +129,43 @@ int read_excla(struct parser_s *p)
     p->cursor = tmp;
     return 0;
 }
+<<<<<<< HEAD
 
+=======
+int read_and(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, "and") && parser_readchar(p, '&')
+      && parser_end_capture(p, "and"))
+    {  
+        char *and = parser_get_capture(p, "and");
+        if(p->input[p->cursor] != '&')
+        {
+            printf("%s\n", and);  
+            return 1;
+        }
+    }
+    parser_get_capture(p, "and");
+    p->cursor = tmp;
+    return 0;
+}
+/* ; */
+int read_virgule(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, "virgule") && parser_readchar(p, ';')
+      && parser_end_capture(p, "virgule"))
+    {  
+        char *virgule = parser_get_capture(p, "virgule");
+        printf("%s\n", virgule);  
+        return 1;
+    }
+    parser_get_capture(p, "virgule");
+    p->cursor = tmp;
+    return 0;
+}
+/* PIPE */
+>>>>>>> b26e409eeef2adb9111081d8aa7ee41b798e8078
 int read_pipe(struct parser_s *p)
 {
     int tmp = p->cursor;
@@ -185,9 +221,16 @@ int read_symbole(struct parser_s *p, char* tag, char* type)
         printf("READsymbole : %s\n", res);
         return 1;
     }
+<<<<<<< HEAD
     p->cursor = tmp;
     printf("FAIL DANS READsymbole\n");
     return 0;
+=======
+  p->cursor = tmp;
+  parser_get_capture(p, "ANDOR");
+  printf("FAIL DANS READsymbole\n");
+  return 0;
+>>>>>>> b26e409eeef2adb9111081d8aa7ee41b798e8078
 }
 
 /* True if the char at the current cursor is respectevely inside the range of the char and move */
