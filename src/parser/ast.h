@@ -1,3 +1,8 @@
+/**
+ ** \file ast.h
+ ** \brief AST_H declaration file
+           with all other function used in my 42sh
+ */
 #ifndef AST_H
 #define AST_H
 #include "parser_tp.h"
