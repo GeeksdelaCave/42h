@@ -5,5 +5,5 @@ TEST-00:
 
 TEST-01:
     desc: Hello world
-    ref: bash --posix -c "echo 'Hello World'"
-    cmd: ./42sh -c "echo 'Hello World'"
+    ref: bash --posix -c "if a "
+    cmd: ./42sh -c "if a"
