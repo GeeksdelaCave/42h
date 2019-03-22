@@ -9,12 +9,11 @@ int read_compound_list(struct parser_s *p)
 {
     int tmp = p->cursor;
     if (ZeroOrMany(parser_readchar(p, '\n')) && ZeroOrMany(read_spaces(p)) 
-    && read_and_or(p) && 
-    ZeroOrMany(parser_readinset(p,";&\n\t ") && read_and_or(p) && 
-    ZeroOrMany(parser_readchar(p, '\n'))  && ZeroOrMany(read_spaces(p)) && 
-    read_and_or(p)) &&  
-    ZeroOrOne(parser_readinset(p,"&;\n\t ")) && 
-    ZeroOrMany(parser_readchar(p, '\n')))
+    && read_and_or(p) && ZeroOrMany(read_spaces(p)) && 
+    ZeroOrMany((read_virgule(p) || read_and(p) || parser_readchar(p, '\n')) && 
+    ZeroOrMany(read_spaces(p)) && read_and_or(p) && ZeroOrMany(read_spaces(p)) 
+    && ZeroOrMany(parser_readchar(p, '\n'))  && ZeroOrMany(read_spaces(p)) && 
+    read_and_or(p)))
       {
         printf("AST read compound list : SUCCES\n");
         return 1;
@@ -24,3 +23,12 @@ int read_compound_list(struct parser_s *p)
     return 0;
 }
  
+
+ /*
+
+&&  
+    ((ZeroOrOne(read_virgule(p)) || ZeroOrOne(read_and(p)) || 
+    ZeroOrOne(parser_readchar(p, '\n'))) && ZeroOrMany(read_spaces(p)) && 
+    ZeroOrOne(ZeroOrMany(parser_readchar(p, '\n'))))
+
+ */
