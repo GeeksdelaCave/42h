@@ -199,6 +199,8 @@ int parser_readtext(struct parser_s *p, char *text)
 	  }
       p->cursor++;
     }
+
+    printf("=======================================%s ============\n", text);
     return 1;
 }
 

@@ -16,7 +16,7 @@ int read_command(struct parser_s *p)
     {
       return 1;
     }
-    printf("AST COMMAND FAIL !!!!!!!!!!!!!! %s \n", p->input);
+    printf("AST COMMAND FAIL !!!!!!!!!!!!!!\n");
     
     p->cursor = tmp; 
   return 0;
