@@ -10,7 +10,7 @@ struct ast_node_compound_list *create_node_cmd(void)
     return node;
 }
 
-
+//voir
 void add_cmd_ast_argv(struct ast_node_compound_list *node, char *argv)
 {
     if (node->type != T_CMD)
@@ -113,4 +113,3 @@ void ast_cmd_destruct(struct ast_node_compound_list *node)
     free(node);
 
 }
-
