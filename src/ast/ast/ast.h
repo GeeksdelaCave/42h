@@ -152,6 +152,8 @@ struct ast_node_compound_list *create_node_if(struct ast_node_compound_list
 void ast_if_print(struct ast_node_compound_list *node, FILE *out,
                   unsigned int *node_id);
 
+int ast_if_exec(struct ast_node_compound_list *node);
+
 void ast_if_destruct(struct ast_node_compound_list *node);
 
 
@@ -165,6 +167,8 @@ void ast_case_add_item(struct ast_node_compound_list *node,
 
 void ast_case_print(struct ast_node_compound_list *node, FILE *out,
                     unsigned *node_id);
+
+int ast_case_exec(struct ast_node_compound_list *node);
 
 void ast_case_destruct_node(struct ast_node_compound_list *node);
 
@@ -184,6 +188,8 @@ struct ast_node_compound_list *create_node_while(struct ast_node_compound_list
 void ast_while_print(struct ast_node_compound_list *node, FILE *out,
                      unsigned int *node_id);
 
+int ast_while_exec(struct ast_node_compound_list *node);
+
 void ast_while_destruct_node(struct ast_node_compound_list *node);
 
 void ast_while_destruct(struct ast_node_compound_list *node);
@@ -199,6 +205,7 @@ struct ast_node_compound_list *create_node_for(char *varname, char **values,
 void ast_for_print(struct ast_node_compound_list *node, FILE *out,
                    unsigned *node_id);
 
+int ast_for_exec(struct ast_node_compound_list *node);
 
 void ast_for_destruct_node(struct ast_node_compound_list *node);
 
@@ -217,6 +224,8 @@ void add_red_ast(struct ast_node_compound_list *node,
 
 void ast_red_print(struct ast_node_compound_list *node, FILE *out,
                    unsigned int *node_id);
+
+int ast_red_exec(struct ast_node_compound_list *node);
 
 // destruct node red
 
@@ -237,6 +246,7 @@ void add_cmd_ast_prefix(struct ast_node_compound_list *node,
                         char *assignement_word);
 void ast_cmd_print(struct ast_node_compound_list *node, FILE *out,
                    unsigned int *node_id);
+int ast_cmd_exec(struct ast_node_compound_list *node);
 void ast_cmd_destruct_node(struct ast_node_compound_list *node);
 
 void ast_cmd_destruct(struct ast_node_compound_list *node);
@@ -258,6 +268,7 @@ struct ast_node_compound_list *create_node_and(struct ast_node_compound_list
 
 void ast_and_print(struct ast_node_compound_list *node, FILE *out,
                   unsigned int *node_id);
+int ast_and_exec(struct ast_node_compound_list *node);
 
 /*
 ** Destruct node
@@ -288,6 +299,8 @@ struct ast_node_compound_list *create_node_or(struct ast_node_compound_list
 void ast_or_print(struct ast_node_compound_list *node, FILE *out,
                   unsigned int *node_id);
 
+int ast_or_exec(struct ast_node_compound_list *node);
+
 /*
 ** Destruct node
 */
@@ -317,6 +330,7 @@ struct ast_node_compound_list *create_node_pipe(struct ast_node_compound_list
 
 void ast_pipe_print(struct ast_node_compound_list *node, FILE *out,
                   unsigned int *node_id);
+int ast_pipe_exec(struct ast_node_compound_list *node);
 
 /*
 ** Destruct node
@@ -329,6 +343,13 @@ void ast_pipe_destruct_node(struct ast_node_compound_list *node);
 ** Destruct ast_pipe
 */
 void ast_pipe_destruct(struct ast_node_compound_list *node);
+
+
+/**
+ * @brief Function to call to execute the AST
+ * @param ast The node to execute
+ */
+int ast_exec_node(struct ast_node_compound_list *ast);
 
 
 
