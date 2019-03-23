@@ -1,9 +1,4 @@
 TEST-00:
-    desc: Test version
-    ref: bash --posix -c "echo 'Version 0.3'"
-    cmd: ./42sh --version
-
-TEST-01:
-    desc: Hello world
-    ref: bash --posix -c "echo 'Hello World'"
-    cmd: ./42sh -c "echo 'Hello World'"
+    desc: Test Ast
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""

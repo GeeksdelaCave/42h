@@ -35,11 +35,36 @@ def run(cmd):
 
 def main():
     with open("tests/tests_yaml.yml", "r") as f:
+        tests = yaml.load(f) 
+    with open("tests/tests_list.yml", "r") as f:
+        tests = yaml.load(f)        
+    with open("tests/tests_and_or.yml", "r") as f:
+        tests = yaml.load(f) 
+    with open("tests/tests_pipeline.yml", "r") as f:
+        tests = yaml.load(f)
+    with open("tests/tests_eof.yml", "r") as f:
+        tests = yaml.load(f)        
+    with open("tests/tests_assign.yml", "r") as f:
         tests = yaml.load(f)  
+    with open("tests/tests_element.yml", "r") as f:
+        tests = yaml.load(f)  
+    with open("tests/tests_simple_command.yml", "r") as f:
+        tests = yaml.load(f)  
+    with open("tests/tests_compound.yml", "r") as f:
+        tests = yaml.load(f)    
     with open("tests/tests_if.yml", "r") as f:
+        tests = yaml.load(f)  
+    with open("tests/tests_while.yml", "r") as f:
+        tests = yaml.load(f) 
+    with open("tests/tests_prefix.yml", "r") as f:
+        tests = yaml.load(f) 
+    with open("tests/tests_word.yml", "r") as f:
         tests = yaml.load(f)   
+    with open("tests/tests_redirection.yml", "r") as f:
+        tests = yaml.load(f)
+    with open("tests/tests_dogroup.yml", "r") as f:
+        tests = yaml.load(f)                                                            
 
-    ok = 0
     ko = 0
 
     for test, data in tests.items():

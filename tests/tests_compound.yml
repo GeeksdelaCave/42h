@@ -1,19 +1,19 @@
 TEST-00:
-    desc: Test AND_OR
+    desc: Test COMPOUND
     ref: bash --posix -c ""
     cmd: ./42sh -c ""
 
 TEST-01:
-    desc: TEST AND_OR
+    desc: TEST COMPOUND
     ref: bash --posix -c "! a=15 b=569 15 < kergjkergerklg 16"
     cmd: ./42sh -c "! a=15 b=569 15 < kergjkergerklg 16"
 
 TEST-02:
-    desc: TEST AND_OR
+    desc: TEST COMPOUND
     ref: bash --posix -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
     cmd: ./42sh -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
 
 TEST-03:
-    desc: TEST AND_OR
-    ref: bash --posix -c "! a=1 b=2 || ! a=5 15 < toto"
-    cmd: ./42sh -c "! a=1 b=2 || ! a=5 15 < toto"
+    desc: TEST COMPOUND
+    ref: bash --posix -c " ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada "
+    cmd: ./42sh -c " ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada "

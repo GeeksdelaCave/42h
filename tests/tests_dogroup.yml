@@ -1,0 +1,14 @@
+TEST-00:
+    desc: Test DOGROUP
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: TEST DOGROUP
+    ref: bash --posix -c "do ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
+    cmd: ./42sh -c "do ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
+
+TEST-02:
+    desc: TEST DOGROUP
+    ref: bash --posix -c "do ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+    cmd: ./42sh -c "do ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"

@@ -1,9 +1,14 @@
 TEST-00:
-    desc: Test version
-    ref: bash --posix -c "echo 'Version 0.3'"
-    cmd: ./42sh --version
+    desc: Test While
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
 
 TEST-01:
-    desc: Hello world
-    ref: bash --posix -c "echo 'Hello World'"
-    cmd: ./42sh -c "echo 'Hello World'"
+    desc: Test While
+    ref: bash --posix -c "while ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv do a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
+    cmd: ./42sh -c "while ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv do a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
+
+TEST-02:
+    desc: Test While
+    ref: bash --posix -c "while ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+    cmd: ./42sh -c "while ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"

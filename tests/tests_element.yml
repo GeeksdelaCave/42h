@@ -1,0 +1,14 @@
+TEST-00:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "WORD"
+    cmd: ./42sh -c "WORD"
+
+TEST-01:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "12        <      WORD"
+    cmd: ./42sh -c "12        <      WORD"
+
+TEST-02:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "a=15 b=16 c=17 word word2 word3"
+    cmd: ./42sh -c "a=15 b=16 c=17 word word2 word3"

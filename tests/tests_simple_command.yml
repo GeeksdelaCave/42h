@@ -1,9 +1,14 @@
 TEST-00:
-    desc: Test version
-    ref: bash --posix -c "echo 'Version 0.3'"
-    cmd: ./42sh --version
+    desc: Test Simple_command
+    ref: bash --posix -c "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG "
+    cmd: ./42sh -c "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG "
 
 TEST-01:
-    desc: Hello world
-    ref: bash --posix -c "echo 'Hello World'"
-    cmd: ./42sh -c "echo 'Hello World'"
+    desc: Test Simple_command
+    ref: bash --posix -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfjvnf"
+    cmd: ./42sh -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfjvnf"
+
+TEST-02:
+    desc: Test Simple_command
+    ref: bash --posix -c "20 < word"
+    cmd: ./42sh -c "20 < word"

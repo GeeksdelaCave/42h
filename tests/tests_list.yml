@@ -1,14 +1,9 @@
 TEST-00:
-    desc: Test version
-    ref: bash --posix -c "echo 'Version 0.3'"
-    cmd: ./42sh --version
+    desc: Test List
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
 
 TEST-01:
-    desc: Hello world
-    ref: bash --posix -c "ls;"
-    cmd: ./42sh -c "ls;"
-
-TEST-02:
-    desc: Hello world
-    ref: bash --posix -c "ls;"
-    cmd: ./42sh -c "ls;"
+    desc: Test List
+    ref: bash --posix -c "if a=5 b=6 ss=6 15 < qbddq then b=5 a=5 fi"
+    cmd: ./42sh -c "if a=5 b=6 ss=6 15 < qbddq then b=5 a=5 fi"
