@@ -12,11 +12,15 @@ struct ast_print_switch
     ast_f_print fct;
 };
 
-struct ast_print_switch print_table[NODE_TYPE_COUNT] =
+static struct ast_print_switch print_table[NODE_TYPE_COUNT] =
 {
-    {T_IF, ast_if_print}, {T_CASE, ast_case_print},{T_WHILE, ast_for_print},
-    {T_FOR, ast_for_print},{T_RED, ast_red_print}, {T_CMD, ast_cmd_print},
-    {T_AND, ast_and_print}
+    {T_IF,      ast_if_print},
+    {T_CASE,    ast_case_print},
+    {T_WHILE,   ast_while_print},
+    {T_FOR,     ast_for_print},
+    {T_RED,     ast_red_print},
+    {T_CMD,     ast_cmd_print},
+    {T_AND,     ast_and_print}
 };
 /*
 static char *newastfilename(void)

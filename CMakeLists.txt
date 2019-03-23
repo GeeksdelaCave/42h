@@ -24,22 +24,21 @@ add_executable(42sh
         src/core/main.c
 
         src/ast/ast.h
+        src/ast/ast_and.c
         src/ast/ast_case.c
-        src/ast/ast_case.h
         src/ast/ast_cmd.c
-        src/ast/ast_cmd.h
         src/ast/ast_destruct.c
         src/ast/ast_for.c
-        src/ast/ast_for.h
         src/ast/ast_if.c
-        src/ast/ast_if.h
+        src/ast/ast_or.c
         src/ast/ast_print.c
-        src/ast/ast_redirection.c
-        src/ast/ast_redirection.h
+        src/ast/ast_red.c
         src/ast/ast_while.c
-        src/ast/ast_while.h
         src/ast/error.h
-        src/ast/ast.c)
+
+        src/utils/string.c
+        src/utils/string.h
+        )
 
 add_custom_target(check
                   COMMAND python3 tests/tests_unit.py
