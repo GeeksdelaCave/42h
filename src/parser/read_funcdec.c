@@ -1,4 +1,5 @@
-#include "ast.h"
+#include "grammar.h" 
+
 int read_funcdec(struct parser_s *p)
 {
     int tmp = p->cursor;

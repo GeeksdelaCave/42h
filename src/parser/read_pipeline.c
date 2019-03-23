@@ -1,4 +1,4 @@
-#include "ast.h"
+#include "grammar.h" 
 /*
   pipeline: ['!'] command ('|' ('\n')* command)*
 */

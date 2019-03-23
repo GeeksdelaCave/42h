@@ -1,4 +1,5 @@
-#include "ast.h"
+#include "grammar.h" 
+
 int check_element(struct parser_s *p)
 {
   char* res = parser_get_capture(p, "word");
@@ -11,6 +12,7 @@ int check_element(struct parser_s *p)
 	return 0;
   }
     printf("word : %s\n", res);
+    
     return 1;
 }
 int read_element(struct parser_s *p)

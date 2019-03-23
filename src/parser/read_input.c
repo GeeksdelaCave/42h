@@ -1,4 +1,5 @@
-#include "ast.h" 
+#include "grammar.h" 
+
 /* Check if the text is a input */
 int read_input(struct parser_s *p)
 {

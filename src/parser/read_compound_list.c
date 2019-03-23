@@ -1,5 +1,4 @@
-#include "ast.h"
-
+#include "grammar.h" 
 /*
 compound_list:
     ('\n')* and_or ((';'|'&'|'\n') ('\n')* and_or)* [('&'|';'|'\n') ('\n')*]

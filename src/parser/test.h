@@ -2,7 +2,7 @@
 #define TEST_H
 #include <assert.h>
 #include <unistd.h>
-#include "ast.h"
+#include "grammar.h" 
 void test_WORD();
 void test_PREFIX();
 void test_ELEMENT();

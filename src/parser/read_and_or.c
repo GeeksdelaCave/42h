@@ -1,4 +1,4 @@
-#include "ast.h"
+#include "grammar.h" 
 /*
   and_or: 
     pipeline (('&&'|'||') ('\n')* pipeline)*

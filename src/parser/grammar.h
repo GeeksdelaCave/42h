@@ -1,5 +1,5 @@
-#ifndef AST_H
-#define AST_H
+#ifndef GRAMMAR_H
+#define GRAMMAR_H
 #include "parser_tp.h"
 #include "read_input.h"
 #include "read_list.h"
@@ -14,4 +14,5 @@
 #include "read_element.h"
 #include "rules.h"
 #include "commands.h"
+#include "../ast/ast.h"
 #endif

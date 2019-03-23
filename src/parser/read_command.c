@@ -1,5 +1,4 @@
-#include "ast.h"
-
+#include "grammar.h" 
 /*
 command: 
     simple_command

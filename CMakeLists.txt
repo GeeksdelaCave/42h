@@ -4,7 +4,7 @@ project(42sh)
 # enable_testing()
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "-Wall -Werror -Wextra -std=c99 -pedantic")
+set(CMAKE_C_FLAGS "-I -Wall -Werror -Wextra -std=c99 -pedantic")
 set(CMAKE_CTEST_COMMAND "${CMAKE_CTEST_COMMAND} -V ")
 
 set(TESTS_DIR_IN  "${CMAKE_CURRENT_SOURCE_DIR}/tests/")
@@ -18,10 +18,14 @@ configure_file(${TESTS_DIR_IN}/tests_unit.py ${TESTS_DIR_OUT}/tests_unit.py COPY
 configure_file(${TESTS_DIR_IN}/tests_yaml.yml ${TESTS_DIR_OUT}/tests_yaml.yml COPYONLY)
 configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  COPYONLY)
 
+FILE(GLOB MyCSources src/parser/*.c)
+FILE(GLOB MyCSourcesast src/ast/*.c)
+FILE(GLOB MyHeaderParser src/parser/*.h)
+FILE(GLOB MyHeaderAst src/ast/*.h)
+add_executable(42sh
+                ${MyHeaderParser}
+                ${MyHeaderAst}
+                ${MyCSources}
+                ${MyCSourcesast}
 
-
-add_executable(42sh src/core/main.c
-               src/parser/parser.c)
-add_custom_target(check
-                  COMMAND python3 tests/tests_unit.py
-                  COMMAND python3 tests/tests_yaml.py)
+               )

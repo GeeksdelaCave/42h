@@ -1,5 +1,4 @@
-#include "ast.h"
-
+#include "grammar.h" 
 /*
 rule_if:    
     'if' compound_list 'then' compound_list [else_clause] 'fi'

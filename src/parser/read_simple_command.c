@@ -1,4 +1,4 @@
-#include "ast.h"
+#include "grammar.h" 
 /*
 simple_command: 
     (prefix)+ | (prefix)* (element)+

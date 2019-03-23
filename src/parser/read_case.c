@@ -1,5 +1,4 @@
-#include "ast.h"
-
+#include "grammar.h" 
 /*
 rule_case:  
     'case' WORD ('\n')* 'in' ('\n')* [case_clause] 'esac'

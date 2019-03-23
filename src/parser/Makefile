@@ -4,13 +4,14 @@ EXEC=42sh
 
 SS=./42sh
 SRC= $(wildcard ./*.c)
+SRCAST= $(wildcard ../ast/*.c)
 OBJ= $(SRC:.c=.o)
-
-42sh: $(OBJ)
+OBJAST= $(SRCAST:.c=.o)
+42sh: $(OBJ) $(OBJAST)
 
 all:$(EXEC)
-	$(CC) $(OBJ) -o $(EXEC)
+	$(CC) $(OBJ) -o $(OBJAST) $(EXEC)
 	$(SS)
 PHONY:clean
 clean:
-	$(RM) $(OBJ) $(EXEC)
+	$(RM) $(OBJ) $(OBJAST) $(EXEC)

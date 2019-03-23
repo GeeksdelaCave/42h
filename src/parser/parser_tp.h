@@ -36,6 +36,7 @@ struct parser_s
   int cursor;
   char *input;
   struct list_capt_s *capture;
+  struct list_node_s *nodes;
 };
 struct capture_s
 {

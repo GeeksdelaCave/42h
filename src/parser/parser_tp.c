@@ -1,4 +1,4 @@
-#include "ast.h"
+#include "grammar.h" 
 void eat_list_capt(struct parser_s *p)
 {
   if (p->capture->next != NULL)
@@ -14,12 +14,6 @@ char *parser_get_capture(struct parser_s *p, const char *tag)
   if (!pcapt){
     return false;
   }
-  /*
-  if (strcmp(tag, "num"))
-    {
-      printf("BEGIN NUM : %d\n", pcapt->begin);
-      printf("END NUM : %d\n", pcapt->end);
-    }*/
   eat_list_capt(p);
   return (strndup(&p->input[pcapt->begin], pcapt->end - pcapt->begin));
 }
@@ -39,7 +33,7 @@ bool parser_begin_capture(struct parser_s *p, const char *tag)
   list_capt_store(p->capture, tag, &capt);
   return true;
 }
-/*1 Iniitialisation du parser avec l'input text */
+/* Iniitialisation du parser avec l'input text */
 struct parser_s *parser_new_from_string(const char *text)
 {
   struct parser_s *p = malloc(sizeof(struct parser_s*));
@@ -50,6 +44,7 @@ struct parser_s *parser_new_from_string(const char *text)
   p->cursor = 0;
   p->capture = init_list_capt();
   p->input = malloc(sizeof(char) * strlen(text));
+  p->nodes = init_list_node();
   strcpy(p->input, text);
   return p;
 }
