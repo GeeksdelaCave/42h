@@ -3,7 +3,10 @@ int check_element(struct parser_s *p)
 {
   char* res = parser_get_capture(p, "word");
   //printf("content element %s \n", res);
-  if( !strcmp("for", res) || !strcmp("if", res) || !strcmp("while", res) || !strcmp("do", res) || !strcmp("done", res) )
+  if( !strcmp("for", res) || !strcmp("if", res) || !strcmp("while", res) 
+  || !strcmp("do", res) || !strcmp("done", res) || !strcmp("fi", res) 
+  || !strcmp("then", res) || !strcmp("else", res) || !strcmp("elif", res) 
+  || !strcmp("until", res))
   {
 	return 0;
   }
@@ -29,7 +32,7 @@ int read_element(struct parser_s *p)
 int read_for_word(struct parser_s *p)
 {
   int tmp = p->cursor;
-  if (read_word(p))
+  if (ZeroOrMany(read_spaces(p)) && read_word(p) && ZeroOrMany(read_spaces(p)))
   {
     int res = check_element(p);
     if(res == 1)

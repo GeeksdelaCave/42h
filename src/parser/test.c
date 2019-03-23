@@ -4,7 +4,7 @@ int main()
 {
   //test_ANDOR();
   //test_PIPELINE();
-  test_FOR();
+  test_INPUT();
   //test_DOGROUP();
   printf("\033[0;32m");
   printf("All tests OK!\n");

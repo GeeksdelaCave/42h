@@ -3,7 +3,8 @@
 int read_input(struct parser_s *p)
 {
     int tmp = p->cursor;
-   if ((read_list(p) && parser_eof(p)) ||
+   if ((read_list(p) && parser_readchar(p, '\n')) ||
+      (read_list(p) && parser_eof(p)) ||
       (parser_readchar(p, '\n')) ||
       (parser_eof(p)))
       {

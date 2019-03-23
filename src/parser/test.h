@@ -16,4 +16,8 @@ void test_LIST();
 void test_COMPOUND();
 void test_DOGROUP();
 void test_FOR();
+void test_IF();
+void test_WHILE();
+void test_INPUT();
+void test_UNTIL();
 #endif
