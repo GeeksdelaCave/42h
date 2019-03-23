@@ -19,9 +19,9 @@ struct ast_exec_switch
 
 struct ast_exec_switch exec_table[] =
     {
-        {T_IF,      exec_if_node}
+        {T_IF,      exec_if_node},
         //{T_CASE,    ast_case_exec},
-        //{T_WHILE,   ast_while_exec},
+        {T_WHILE,   exec_while_node}
         //{T_FOR,     ast_for_exec},
         //{T_RED,     ast_red_exec},
         //{T_CMD,     ast_cmd_exec},

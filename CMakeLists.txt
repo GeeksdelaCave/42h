@@ -4,7 +4,7 @@ project(42sh)
 # enable_testing()
 
 set(CMAKE_C_STANDARD 99)
-#set(CMAKE_C_FLAGS "-Wall -Werror -Wextra -std=c99 -pedantic")
+set(CMAKE_C_FLAGS "-Wall -Werror -Wextra -std=c99 -pedantic")
 set(CMAKE_CTEST_COMMAND "${CMAKE_CTEST_COMMAND} -V ")
 
 set(TESTS_DIR_IN  "${CMAKE_CURRENT_SOURCE_DIR}/tests/")
@@ -40,6 +40,7 @@ add_executable(42sh
         src/ast/execution/exec.h
         src/ast/execution/exec_if.c
         src/ast/execution/exec_node.c
+        src/ast/execution/exec_while.c
 
         src/utils/string.c
         src/utils/string.h
