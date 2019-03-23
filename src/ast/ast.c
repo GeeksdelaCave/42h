@@ -2,16 +2,19 @@
 
 struct list_node_s *init_list_node()
 {
-    struct list_node_s *new_list = malloc(sizeof(struct list_node_s*));
+    struct list_node_s *new_list = malloc(sizeof(struct list_node_s));
     if (new_list == NULL)
     {
       return NULL;
     }
-    new_list->data = NULL;
-    new_list->node = 0;
+    new_list->data = malloc(sizeof(char));
+    new_list->type = 0;
+    new_list->next = NULL;
     new_list->nb_child = 0;
+    printf("JFÀÇANF=======\n");
     return new_list;
 }
+
 void free_list_node(struct list_node_s *lnodes)
 {
     struct list_node_s *prev_node = lnodes;
@@ -26,26 +29,30 @@ void free_list_node(struct list_node_s *lnodes)
         free(prev_node);
     }
 }
+
 void list_node_store(struct list_node_s *list_node, char *data, struct list_node_s *node, enum type_node type)
 {
   for(; list_node->next; list_node = list_node->next);
   list_node->next = init_list_node();
-  list_node->data = strdup(data);
+  list_node->data = data;
+  printf("%s\n", data);
   list_node->next= node;
   list_node->nb_child++;
-  list_node->node = type;
+  list_node->type = type;
 }
+
 struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_node type)
 {
-  for (; list_node->next; list_node = list_node->next)
+    for (; list_node->next; list_node = list_node->next)
     {
-      if (list_node->node == type)
-    {
-        return list_node; 
-    }
+        if (list_node->type == type)
+        {
+            return list_node; 
+        }
     }           
-  return NULL;
+    return NULL;
 }
+
 void eat_list_node(struct parser_s *p)
 {
   if (p->nodes->next != NULL)

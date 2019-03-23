@@ -36,7 +36,7 @@ bool parser_begin_capture(struct parser_s *p, const char *tag)
 /* Iniitialisation du parser avec l'input text */
 struct parser_s *parser_new_from_string(const char *text)
 {
-  struct parser_s *p = malloc(sizeof(struct parser_s*));
+  struct parser_s *p = malloc(sizeof(struct parser_s));
   if (p == NULL)
     {
       return NULL;
@@ -79,6 +79,7 @@ void parser_clean(struct parser_s *p)
     {
       free(p->input);
       free_list_capt_s(p->capture);
+      free_list_node(p->nodes);
       free(p);
     }
 }

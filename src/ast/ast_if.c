@@ -1,15 +1,15 @@
 # include "ast.h"
 
 
-struct ast_node_compound_list *create_node_if(struct ast_node_compound_list
+struct ast_node_if *create_node_if(struct ast_node_compound_list
                                               *condition,
                                               struct ast_node_compound_list
                                               *if_body,
                                               struct ast_node_compound_list
                                               *else_body)
 {
-    struct  ast_node_compound_list *node;
-    mymalloc(node,sizeof(struct ast_node_compound_list*));
+    struct  ast_node_if *node;
+    mymalloc(node,sizeof(struct ast_node_if*));
 
     if ( condition == NULL || if_body == NULL || else_body == NULL ||
          node == NULL)
