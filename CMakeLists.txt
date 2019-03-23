@@ -37,6 +37,10 @@ add_executable(42sh
         src/ast/ast/ast_while.c
         src/ast/ast/error.h
 
+        src/ast/execution/exec.h
+        src/ast/execution/exec_if.c
+        src/ast/execution/exec_node.c
+
         src/utils/string.c
         src/utils/string.h
         )

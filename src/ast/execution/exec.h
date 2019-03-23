@@ -1,16 +1,13 @@
-# ifndef EXEC_H
-# define EXEC_H
+#ifndef EXEC_H
+#define EXEC_H
 
-# include "../ast/ast.h"
+#include "../ast/ast.h"
 
-struct s_exec
-{
-    int status;
-};
+int exec_node(struct ast_node_compound_list *ast);
 
-struct s_exec *exec;
-void exec_node(struct ast_node_compound_list *node);
+int exec_if_node(struct ast_node_compound_list *node);
+int exec_while_node(struct ast_node_compound_list *node);
+int exec_for_node(struct ast_node_compound_list *node);
+int exec_cmd_node(struct ast_node_compound_list *node);
 
-void exec_if_node(struct ast_node_if *node);
-
-# endif
+#endif /* EXEC_H */
