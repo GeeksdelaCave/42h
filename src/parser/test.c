@@ -4,11 +4,9 @@ int main()
 {
   //test_ANDOR();
   //test_PIPELINE();
-  test_ANDOR();
-  
+  test_FOR();
+  //test_DOGROUP();
   printf("\033[0;32m");
-
   printf("All tests OK!\n");
-
   printf("\033[0m\n");
 }

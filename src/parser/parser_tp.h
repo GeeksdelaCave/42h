@@ -74,6 +74,7 @@ int read_excla(struct parser_s *p);
 int read_symbole(struct parser_s *p, char* tag, char* type);
 int read_virgule(struct parser_s *p);
 int read_and(struct parser_s *p);
+int read_for_word(struct parser_s *p);
 //bool parser_begin_capture(struct parser_s *p, const char *tag);
 //bool parser_end_capture(struct parser_s *p, const char *tag);
 //char *parser_get_capture(struct parser_s *p, const char *tag);
@@ -94,7 +95,6 @@ bool parser_begin_capture(struct parser_s *p, const char *tag);
 char *parser_get_capture(struct parser_s *p, const char *tag);
 /*
 {
-  
   struct capture_s *pcapt = list_capt_lookup(p->capture, tag);
   if (!pcapt)
     return false;
