@@ -31,6 +31,7 @@ add_executable(42sh
         src/ast/ast_for.c
         src/ast/ast_if.c
         src/ast/ast_or.c
+        src/ast/ast_pipeline.c
         src/ast/ast_print.c
         src/ast/ast_red.c
         src/ast/ast_while.c

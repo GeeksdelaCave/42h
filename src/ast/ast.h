@@ -87,7 +87,8 @@ enum shell_command_child_type
     T_RED,
     T_CMD,
     T_AND,
-    T_OR
+    T_OR,
+    T_PIPE
 };
 
 /*
@@ -120,6 +121,7 @@ union shell_command_child
     struct s_cmd_node child_cmd;
     struct s_ast_bin child_and;
     struct s_ast_bin child_or;
+    struct s_ast_bin child_pipe;
 };
 
 
@@ -302,4 +304,3 @@ void ast_or_destruct(struct ast_node_compound_list *node);
 
 
 # endif
-
