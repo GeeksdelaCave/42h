@@ -23,7 +23,7 @@ configure_file(${TESTS_DIR_IN}/tests_element.yml ${TESTS_DIR_OUT}/tests_element.
 configure_file(${TESTS_DIR_IN}/tests_simple_command.yml ${TESTS_DIR_OUT}/tests_simple_command.yml COPYONLY)
 configure_file(${TESTS_DIR_IN}/tests_compound.yml ${TESTS_DIR_OUT}/tests_compound.yml COPYONLY)
 configure_file(${TESTS_DIR_IN}/tests_if.yml ${TESTS_DIR_OUT}/tests_if.yml COPYONLY)
-configure_file(${TESTS_DIR_IN}/tests_while.yml ${TESTS_DIR_OUT}/tests_while.yml COPYONLY)
+configure_file(${TESTS_DIR_IN}/test_while.yml ${TESTS_DIR_OUT}/test_while.yml COPYONLY)
 configure_file(${TESTS_DIR_IN}/tests_prefix.yml ${TESTS_DIR_OUT}/tests_prefix.yml COPYONLY)
 configure_file(${TESTS_DIR_IN}/tests_word.yml ${TESTS_DIR_OUT}/tests_word.yml COPYONLY)
 configure_file(${TESTS_DIR_IN}/tests_if.yml ${TESTS_DIR_OUT}/tests_redirection.yml COPYONLY)
