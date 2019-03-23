@@ -3,3 +3,10 @@
 .idea/
 cmake-build-debug/
 build/
+
+*.o
+*.a
+*.so
+*.swp
+
+42sh
