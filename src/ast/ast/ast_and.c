@@ -23,7 +23,7 @@ void ast_and_print(struct ast_node_compound_list *node, FILE *out,
     if (node->type != T_AND)
         return;
 
-    fprintf(out, "%u [label \"&&\";]", currend_id = *node_id);
+    fprintf(out, "%u [label \"&&\";\n]", currend_id = *node_id);
     lhs_id = ++*node_id;
     ast_print_node(node->child.child_and.lhs, out, node_id);
     fprintf(out, "%u -> %u", currend_id, lhs_id);
