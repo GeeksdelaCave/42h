@@ -301,6 +301,35 @@ void ast_or_destruct_node(struct ast_node_compound_list *node);
 void ast_or_destruct(struct ast_node_compound_list *node);
 
 
+/*
+**funtion for ast_pipe.c
+*/
+
+struct ast_node_compound_list *create_node_pipe(struct ast_node_compound_list
+                                               *lhs,
+                                               struct ast_node_compound_list
+                                               *rhs);
+
+
+/*
+** print ast node pipe
+*/
+
+void ast_pipe_print(struct ast_node_compound_list *node, FILE *out,
+                  unsigned int *node_id);
+
+/*
+** Destruct node
+*/
+
+void ast_pipe_destruct_node(struct ast_node_compound_list *node);
+
+
+/*
+** Destruct ast_pipe
+*/
+void ast_pipe_destruct(struct ast_node_compound_list *node);
+
 
 
 # endif

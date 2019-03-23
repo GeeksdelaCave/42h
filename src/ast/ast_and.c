@@ -13,7 +13,6 @@ struct ast_node_compound_list *create_node_and(struct ast_node_compound_list
     return node;
 }
 
-
 void ast_and_print(struct ast_node_compound_list *node, FILE *out,
                   unsigned int *node_id)
 {
