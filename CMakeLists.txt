@@ -34,6 +34,9 @@ add_executable(42sh
         src/ast/ast_while.c
         src/ast/ast_while.h
         src/ast/error.h
+
+        src/utils/string.c
+        src/utils/string.h
         )
 
 add_custom_target(check
