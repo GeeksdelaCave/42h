@@ -51,6 +51,11 @@ void ast_for_print(struct ast_node_compound_list *node, FILE *out,
     }
 }
 
+int ast_for_exec(struct ast_node_compound_list *node)
+{
+    // TODO EXECUTION
+    return 0;
+}
 
 void ast_for_destruct_node(struct ast_node_compound_list *node)
 {

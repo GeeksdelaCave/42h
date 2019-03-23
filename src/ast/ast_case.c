@@ -65,6 +65,12 @@ void ast_case_print(struct ast_node_compound_list *node, FILE *out,
     }
 }
 
+int ast_case_exec(struct ast_node_compound_list *node)
+{
+    // TODO EXECUTION
+    return 0;
+}
+
 void ast_case_destruct_node(struct ast_node_compound_list *node)
 {
     struct s_case_item *this;

@@ -3,7 +3,8 @@
 
 enum error
 {
-    ERROR_MEM = 42
+    ERROR_MEM = 42,
+    ERROR_TYPE_NOT_FOUND = 43
 };
 
 

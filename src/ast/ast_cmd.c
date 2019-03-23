@@ -87,6 +87,12 @@ void ast_cmd_print(struct ast_node_compound_list *node, FILE *out,
     fprintf(out, "];\n");
 }
 
+int ast_cmd_exec(struct ast_node_compound_list *node)
+{
+    // TODO EXECUTION
+    return 0;
+}
+
 void ast_cmd_destruct_node(struct ast_node_compound_list *node)
 {
     ast_cmd_destruct(node);

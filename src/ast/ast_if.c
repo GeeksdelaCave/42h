@@ -50,6 +50,12 @@ void ast_if_print(struct ast_node_compound_list *node, FILE *out,
     }
 }
 
+int ast_if_exec(struct ast_node_compound_list *node)
+{
+    // TODO EXECUTION
+    return 0;
+}
+
 void ast_if_destruct_node(struct ast_node_compound_list *node)
 {
     if(node->type != T_IF)
