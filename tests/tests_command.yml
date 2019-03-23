@@ -3,3 +3,8 @@ TEST-00:
     ref: bash --posix -c "" 
     cmd: ./42sh -c ""
 
+TEST-01:
+    desc: Test Simple_command
+    ref: bash --posix -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfjvnf"
+    cmd: ./42sh -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfjvnf"
+

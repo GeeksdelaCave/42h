@@ -54,7 +54,7 @@ def main():
         tests = yaml.load(f)    
     with open("tests/tests_if.yml", "r") as f:
         tests = yaml.load(f)  
-    with open("tests/tests_while.yml", "r") as f:
+    with open("tests/test_while.yml", "r") as f:
         tests = yaml.load(f) 
     with open("tests/tests_prefix.yml", "r") as f:
         tests = yaml.load(f) 
@@ -63,7 +63,11 @@ def main():
     with open("tests/tests_redirection.yml", "r") as f:
         tests = yaml.load(f)
     with open("tests/tests_dogroup.yml", "r") as f:
-        tests = yaml.load(f)                                                            
+        tests = yaml.load(f)  
+    with open("tests/tests_for.yml", "r") as f:
+        tests = yaml.load(f) 
+    with open("tests/tests_command.yml", "r") as f:
+        tests = yaml.load(f)                                                               
 
     ko = 0
 
