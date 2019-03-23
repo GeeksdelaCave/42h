@@ -4,7 +4,7 @@ int main()
 {
   //test_ANDOR();
   //test_PIPELINE();
-  test_LIST();
+  test_ANDOR();
   
   printf("\033[0;32m");
 
