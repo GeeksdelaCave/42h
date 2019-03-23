@@ -23,7 +23,7 @@ struct ast_print_switch print_table[NODE_TYPE_COUNT] =
     {T_AND,     ast_and_print},
     {T_OR,      ast_or_print},
     {T_PIPE,    ast_pipe_print}
-}
+};
 /*
 static char *newastfilename(void)
 {

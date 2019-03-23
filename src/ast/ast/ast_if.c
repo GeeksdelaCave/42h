@@ -50,18 +50,6 @@ void ast_if_print(struct ast_node_compound_list *node, FILE *out,
     }
 }
 
-int ast_if_exec(struct ast_node_compound_list *node)
-{
-    if (!node || (node->type != T_IF))
-        return ERROR_TYPE_NOT_SUPPORTED;
-    if (ast_exec_node(node->child.child_if.condition) == 0)
-        return ast_exec_node(node->child.child_if.if_body);
-    else if (node->child.child_if.else_body)
-        return ast_exec_node(node->child.child_if.else_body);
-    else
-        return 0;
-}
-
 void ast_if_destruct_node(struct ast_node_compound_list *node)
 {
     if(node->type != T_IF)

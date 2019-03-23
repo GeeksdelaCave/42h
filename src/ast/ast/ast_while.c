@@ -28,12 +28,6 @@ void ast_while_print(struct ast_node_compound_list *node, FILE *out,
     fprintf(out, "%u -> %u\n", current_node, rhs_id);
 }
 
-int ast_while_exec(struct ast_node_compound_list *node)
-{
-    // TODO EXECUTION
-    return 0;
-}
-
 void ast_while_destruct_node(struct ast_node_compound_list *node)
 {
     if (node->type != T_WHILE)

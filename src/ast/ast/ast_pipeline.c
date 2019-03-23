@@ -31,12 +31,6 @@ void ast_pipe_print(struct ast_node_compound_list *node, FILE *out,
     fprintf(out, "%u -> %u", currend_id, rhs_id);
 }
 
-int ast_pipe_exec(struct ast_node_compound_list *node)
-{
-    // TODO EXECUTION
-    return 0;
-}
-
 void ast_pipe_destruct_node(struct ast_node_compound_list *node)
 {
     if (node->type != T_PIPE)
