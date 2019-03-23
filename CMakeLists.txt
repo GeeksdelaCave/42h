@@ -24,11 +24,13 @@ add_executable(42sh
         src/core/main.c
 
         src/ast/ast.h
+        src/ast/ast_and.c
         src/ast/ast_case.c
         src/ast/ast_cmd.c
         src/ast/ast_destruct.c
         src/ast/ast_for.c
         src/ast/ast_if.c
+        src/ast/ast_or.c
         src/ast/ast_print.c
         src/ast/ast_red.c
         src/ast/ast_while.c

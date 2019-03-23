@@ -12,7 +12,7 @@ struct ast_print_switch
     ast_f_print fct;
 };
 
-struct ast_print_switch print_table[NODE_TYPE_COUNT] =
+static struct ast_print_switch print_table[NODE_TYPE_COUNT] =
 {
     {T_IF,      ast_if_print},
     {T_CASE,    ast_case_print},
