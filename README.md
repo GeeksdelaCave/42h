@@ -55,9 +55,9 @@ Commit messages must follow this syntax:
 
 * ``[TAG2]`` can be one of those values:
     * [CORE] The main process of 42sh
-    * [LEXER] Lexer stuff
-    * [PARSER] Parser stuff
-    * [FUNCTIONS] Grammar related functions
+    * [PARSER] Lexer & Parser stuff
+    * [AST] Ast relative stuff
+    * [EXEC] Execution code
     * [UTILS] Utilities such as text manipulation, etc.
     * [DOC] Documentation changes
     * [GIT] For Git stuff (.gitignore, etc.)

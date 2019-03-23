@@ -51,7 +51,6 @@ void ast_for_print(struct ast_node_compound_list *node, FILE *out,
     }
 }
 
-
 void ast_for_destruct_node(struct ast_node_compound_list *node)
 {
     if (node->type != T_FOR)

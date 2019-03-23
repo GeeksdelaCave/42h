@@ -23,19 +23,24 @@ configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  CO
 add_executable(42sh
         src/core/main.c
 
-        src/ast/ast.h
-        src/ast/ast_and.c
-        src/ast/ast_case.c
-        src/ast/ast_cmd.c
-        src/ast/ast_destruct.c
-        src/ast/ast_for.c
-        src/ast/ast_if.c
-        src/ast/ast_or.c
-        src/ast/ast_pipeline.c
-        src/ast/ast_print.c
-        src/ast/ast_red.c
-        src/ast/ast_while.c
-        src/ast/error.h
+        src/ast/ast/ast.h
+        src/ast/ast/ast_and.c
+        src/ast/ast/ast_case.c
+        src/ast/ast/ast_cmd.c
+        src/ast/ast/ast_destruct.c
+        src/ast/ast/ast_for.c
+        src/ast/ast/ast_if.c
+        src/ast/ast/ast_or.c
+        src/ast/ast/ast_pipeline.c
+        src/ast/ast/ast_print.c
+        src/ast/ast/ast_red.c
+        src/ast/ast/ast_while.c
+        src/ast/ast/error.h
+
+        src/ast/execution/exec.h
+        src/ast/execution/exec_if.c
+        src/ast/execution/exec_node.c
+        src/ast/execution/exec_while.c
 
         src/utils/string.c
         src/utils/string.h
