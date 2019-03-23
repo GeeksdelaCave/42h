@@ -44,7 +44,7 @@ struct parser_s *parser_new_from_string(const char *text)
   p->cursor = 0;
   p->capture = init_list_capt();
   p->input = malloc(sizeof(char) * strlen(text));
-  p->nodes = init_list_node();
+  //p->nodes = init_list_node();
   strcpy(p->input, text);
   return p;
 }
@@ -79,7 +79,6 @@ void parser_clean(struct parser_s *p)
     {
       free(p->input);
       free_list_capt_s(p->capture);
-      free_list_node(p->nodes);
       free(p);
     }
 }

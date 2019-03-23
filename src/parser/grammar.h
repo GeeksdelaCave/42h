@@ -14,5 +14,5 @@
 #include "read_element.h"
 #include "rules.h"
 #include "commands.h"
-#include "../ast/ast.h"
+//#include "../ast/ast.h"
 #endif
