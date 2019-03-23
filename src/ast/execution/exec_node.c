@@ -3,7 +3,7 @@
 void exec_node(struct ast_node_compound_list *node)
 {
     //assert(node);
-    mymalloc(node, sizeof(struct ast_node_compound_list));
+    //mymalloc(node, sizeof(struct ast_node_compound_list));
     switch (node->type)
     {
     case T_IF:
