@@ -32,7 +32,6 @@ add_executable(42sh
         src/ast/ast_print.c
         src/ast/ast_red.c
         src/ast/ast_while.c
-        src/ast/ast_while.h
         src/ast/error.h
 
         src/utils/string.c
