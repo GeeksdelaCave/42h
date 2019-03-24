@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < argc; ++i)
     {
         if (!my_strcmp(argv[i], "--version"))
-            printf("Version 0.3\n");
+            printf("Version 0.5\n");
     }
     return 0;
 }
