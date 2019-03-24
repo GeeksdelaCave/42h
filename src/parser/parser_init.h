@@ -4,8 +4,8 @@
 #define FALSE 0
 #define ZeroOrOne(R)   \
   __extension__({      \
-      R;       \
-      TRUE;       \
+      R;	       \
+      TRUE;	       \
     })
 #define ZeroOrMany(R)  \
   __extension__({      \

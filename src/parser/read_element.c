@@ -11,19 +11,17 @@
  */
 int check_element(struct parser_s *p)
 {
-  //char* res = 
-    parser_get_capture(p, "word");
+  char* res =  parser_get_capture(p, "word");
   //printf("content element %s \n", res);
   if( !strcmp("for", res) || !strcmp("if", res) || !strcmp("while", res) 
-  || !strcmp("do", res) || !strcmp("done", res) || !strcmp("fi", res) 
-  || !strcmp("then", res) || !strcmp("else", res) || !strcmp("elif", res) 
-  || !strcmp("until", res))
+      || !strcmp("do", res) || !strcmp("done", res) || !strcmp("fi", res) 
+      || !strcmp("then", res) || !strcmp("else", res) || !strcmp("elif", res) 
+      || !strcmp("until", res))
   {
-	return 0;
+    return 0;
   }
-    //printf("word : %s\n", res);
-    
-    return 1;
+  //printf("word : %s\n", res); 
+  return 1;
 }
 /**
  ** \brief return true if read a element
