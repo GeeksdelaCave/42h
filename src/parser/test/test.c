@@ -7,7 +7,7 @@
  */
 int main()
 {
-  //test_ANDOR();
+  test_ANDOR();
   //test_PIPELINE();
   //test_INPUT();
   //test_INPUT();
