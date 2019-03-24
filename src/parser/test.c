@@ -2,9 +2,6 @@
 
 int main()
 {
-  //test_ANDOR();
-  //test_PIPELINE();
-  //test_INPUT();
   test_INPUT();
   printf("\033[0;32m");
   printf("All tests OK!\n");

@@ -26,8 +26,6 @@ int read_for(struct parser_s *p)
 
 int read_word_in_for(struct parser_s *p)
 {
-    
-
     if(read_virgule(p))
     {
         printf("IL Y A UN VIRGULE===================");

@@ -1,9 +1,15 @@
+/**
+ ** \file  read_command.c
+ */
 #include "grammar.h" 
-/*
-command: 
-    simple_command
-    | shell_command (redirection)*
-    | funcdec (redirection)*
+/**
+ ** \brief return true if read a command :
+ ** simple command || shell command
+ ** || funcdec
+**
+** \param p structure of parser
+**
+** \return true of false
 */
 
 int read_command(struct parser_s *p)
@@ -15,8 +21,7 @@ int read_command(struct parser_s *p)
     {
       return 1;
     }
-    printf("AST COMMAND FAIL !!!!!!!!!!!!!!\n");
-    
+    //printf("AST COMMAND FAIL !!!!!!!!!!!!!!\n");
     p->cursor = tmp; 
   return 0;
 }

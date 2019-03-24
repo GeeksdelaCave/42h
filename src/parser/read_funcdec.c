@@ -14,5 +14,3 @@ int read_funcdec(struct parser_s *p)
     p->cursor = tmp;
   return 0;
 }
-
-

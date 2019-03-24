@@ -18,4 +18,3 @@ int read_else(struct parser_s *p)
     p->cursor = tmp;
     return 0;
 }
-
