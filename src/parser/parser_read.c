@@ -105,16 +105,17 @@ int parser_readinset(struct parser_s *p, char *set)
 int parser_readoutset(struct parser_s *p, char *set)
 {
   int tmp = p->cursor;
-  for(int i = 0; set[i]; i++)
+  for (int i = 0; set[i]; i++)
+  {
+    if (p->input[p->cursor] == set[i])
     {
-      if (p->input[p->cursor] == set[i])
-    {
-        p->cursor = tmp;
-       return 0;
-       }
+      p->cursor = tmp;
+      return 0;
     }
+  }
   p->cursor = tmp;
   return 1;
+}
 /**
  ** \brief true if the char at the
  **  current cursor is a char
