@@ -1,9 +1,14 @@
+/**
+ ** \file  read_compound_list.c
+ */
 #include "grammar.h" 
-/*
-compound_list:
-    ('\n')* and_or ((';'|'&'|'\n') ('\n')* and_or)* [('&'|';'|'\n') ('\n')*]
-*/
-
+/**
+ ** \brief return true if read compound list
+ **
+ ** \param p structure of parser
+ **
+ ** \return true of false
+ */
 int read_compound_list(struct parser_s *p)
 {
     int tmp = p->cursor;
@@ -17,10 +22,10 @@ int read_compound_list(struct parser_s *p)
     ZeroOrOne(parser_readchar(p, '\n'))) && ZeroOrMany(read_spaces(p)) && 
     ZeroOrOne(ZeroOrMany(parser_readchar(p, '\n')))))
       {
-        printf("AST read compound list : SUCCES\n");
+        //printf("AST read compound list : SUCCES\n");
         return 1;
       }
-    printf("AST read compound list : FAIL\n");
+    //printf("AST read compound list : FAIL\n");
     p->cursor = tmp;
     return 0;
 }

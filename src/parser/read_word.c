@@ -1,9 +1,14 @@
-#include "grammar.h" 
-/*
-  if true store the word in the list capture
-  WORD:'
-  'id'
-*/
+/**
+ ** \file  read_word.c
+ */
+ #include "grammar.h" 
+/**
+ ** \brief Check if the text is word
+ **
+ ** \param p structure of parser
+ **
+ ** \return true of false
+ */
 int read_word(struct parser_s *p)
 {
   int tmp = p->cursor;

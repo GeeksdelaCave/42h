@@ -1,7 +1,14 @@
+/**
+ ** \file  read_simple_command.c
+ */
 #include "grammar.h" 
-/*
-simple_command: 
-    (prefix)+ | (prefix)* (element)+
+/**
+ ** \brief Check if it  is a simple
+ **  command
+ **
+ ** \param p structure of parser
+ **
+ ** \return true of false
 */
 int read_simple_command(struct parser_s *p)
 {
@@ -9,10 +16,10 @@ int read_simple_command(struct parser_s *p)
     if (OneOrMany(read_prefix(p))  ||
 	(ZeroOrMany(read_prefix(p)) && OneOrMany(read_element(p))))
       {
-	printf("AST SIMPLE COMMAND SUCCESS\n");
+	//printf("AST SIMPLE COMMAND SUCCESS\n");
 	return 1;
     }
-    printf("AST SIMPLE COMMAND FAIL !!!!!!!!!!!!!!!\n");
+    //printf("AST SIMPLE COMMAND FAIL !!!!!!!!!!!!!!!\n");
     p->cursor = tmp;  
     return 0;
 }
