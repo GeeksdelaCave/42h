@@ -1,5 +1,10 @@
+/**
+ ** \file test_PREFIX.c
+ */
 #include "test.h"
-
+/**
+ ** \Test Unit for Prefix Grammar
+ */
 void test_PREFIX()
 {
   int size = 8;
@@ -15,16 +20,16 @@ void test_PREFIX()
       " sjvghskjvsdfvb  < Word",
     };
   for (int i = 0; i < size; i++)
-    {
-      if ((i % 2) == 0)
-	{
-	  struct parser_s *p = parser_new_from_string(str[i]);
-	  assert(read_prefix(p) == 1);
-	}
+  {
+    if ((i % 2) == 0)
+      {
+	struct parser_s *p = parser_new_from_string(str[i]);
+	assert(read_prefix(p) == 1);
+      }
       else
-	{
-	  struct parser_s *p = parser_new_from_string(str[i]);
-	  assert(read_prefix(p) == 0);
-	}
-    }
+      {
+	struct parser_s *p = parser_new_from_string(str[i]);
+	assert(read_prefix(p) == 0);
+      }
+  }
 }

@@ -2,7 +2,8 @@
 #define TEST_H
 #include <assert.h>
 #include <unistd.h>
-#include "grammar.h" 
+#include "../grammar.h"
+#include "test_shell_command.h"
 void test_WORD();
 void test_PREFIX();
 void test_ELEMENT();
@@ -14,10 +15,4 @@ void test_PIPELINE();
 void test_ANDOR();
 void test_LIST();
 void test_COMPOUND();
-void test_DOGROUP();
-void test_FOR();
-void test_IF();
-void test_WHILE();
-void test_INPUT();
-void test_UNTIL();
 #endif

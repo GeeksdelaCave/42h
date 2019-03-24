@@ -1,7 +1,12 @@
+/**
+ ** \file test_COMMAND.c
+ */
 #include "test.h"
+/**
+ ** \brief Test Unit for Command Grammar
+ */
 void test_COMMAND()
 {
-  
   char *str[] =
     {
       "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG ",
@@ -14,6 +19,4 @@ void test_COMMAND()
   struct parser_s *p = NULL;
   p = parser_new_from_string(str[0]);
   assert(read_command(p) == 1);
-  //struct pa
-  //assert(read_simple_command(p) == 1);
 }

@@ -1,8 +1,13 @@
+/**
+ ** \file test_LIST.C
+ */
 #include "test.h"
-
+/**
+ ** \brief test Unit for List Grammar
+ */
 void test_LIST()
 {
-  char *str[] = 
+  char *str[] =
     {
       "",
       "if a=5 b=6 ss=6 15 < qbddq then b=5 a=5 fi",
@@ -18,4 +23,3 @@ void test_LIST()
 while ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv do a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD && ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done 
 
 */
-

@@ -1,7 +1,12 @@
+/**
+ ** \file test_SIMPLECOMMAND.c
+ */
 #include "test.h"
+/**
+ ** \brief test unit for Simple Command
+ */
 void test_SIMPLECOMMAND()
 {
-  
   char *str[] =
     {
       "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG ",
