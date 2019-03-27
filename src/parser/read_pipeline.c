@@ -1,15 +1,8 @@
-/**
- ** \file  read_pipeline.c
- */
 #include "grammar.h" 
-/**
- ** \brief return true if read
- **  a pipeline
- **
- ** \param p structure of parser
- **
- ** \return true of false
- */
+/*
+  pipeline: ['!'] command ('|' ('\n')* command)*
+*/
+
 int read_pipeline(struct parser_s *p)
 {
   
@@ -22,6 +15,6 @@ int read_pipeline(struct parser_s *p)
       return 1;
     }
   p->cursor = tmp;
-  //printf("AST PIPELINE FAIL \n");
+  printf("AST PIPELINE FAIL \n");
   return 0;
 }

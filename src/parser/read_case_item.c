@@ -1,14 +1,8 @@
-/**
- ** \file  read_case_item.c
- */
 #include "grammar.h" 
-/**
- ** \brief return true if read case item
- **
- ** \param p structure of parser
- **
- ** \return true of false
- */
+/*
+case_item:
+      ['('] WORD ('|' WORD)* ')' ('\n')*  [ compound_list ]
+*/
 
 int read_case_item(struct parser_s *p)
 {
@@ -27,3 +21,4 @@ int read_case_item(struct parser_s *p)
     p->cursor = tmp;
     return 0;
 }
+

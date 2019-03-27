@@ -9,4 +9,5 @@ int read_spacing(struct parser_s *p);
 int read_EndOfLine(struct parser_s *p);
 int read_spaces(struct parser_s *p);
 int read_word_in_for(struct parser_s *p);
+
 #endif

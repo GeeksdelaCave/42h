@@ -1,14 +1,11 @@
-/**
- ** \file  read_for.c
- */
 #include "grammar.h" 
-/**
- ** \brief return true if read a for
- **  boucle
- **
- ** \param p structure of parser
- **
-** \return true of false
+/*
+rule_for:'
+    for' WORD 
+    ([';']|[('\n')* 'in' (WORD)* (';'|'\n')]) 
+
+
+    ('\n')* do_group
 */
 int read_for(struct parser_s *p)
 {
@@ -19,19 +16,21 @@ int read_for(struct parser_s *p)
       && ZeroOrMany(read_spaces(p)) && ZeroOrMany(parser_readchar(p, '\n'))
       && ZeroOrMany(read_spaces(p)) && read_do_group(p))
   {
-    //printf("AST read FOR : SUCCES\n");
+    printf("AST read FOR : SUCCES\n");
     return 1;
   }
-  //printf("AST read FOR : FAIL\n");
+  printf("AST read FOR : FAIL\n");
   p->cursor = tmp;
   return 0;
 }
 
 int read_word_in_for(struct parser_s *p)
 {
+    
+
     if(read_virgule(p))
     {
-        //printf("IL Y A UN VIRGULE===================");
+        printf("IL Y A UN VIRGULE===================");
         return 1;
     }
     else if(ZeroOrMany(parser_readchar(p, '\n')) && 
@@ -40,9 +39,9 @@ int read_word_in_for(struct parser_s *p)
     ZeroOrMany(read_for_word(p)) && ZeroOrMany(read_spaces(p)) && 
     ((parser_readchar(p, ';') && ZeroOrMany(read_spaces(p))) || (parser_readchar(p, '\n') && ZeroOrMany(read_spaces(p)) )))
     {
-        //printf("SUCCES ===========================================");
+        printf("SUCCES ===========================================");
         return 1;
     }
-    //printf("FAIL IN WORD IN FOR\n");
+    printf("FAIL IN WORD IN FOR\n");
     return 0;
 }

@@ -1,16 +1,11 @@
-/**
- ** \file test_PIPELINE.c
- */
 #include "test.h"
-/**
- ** \brief tes Unit for Pipeline Grammar
- */
+
 void test_PIPELINE()
 {
-  char *str[] =
+  char *str[] = 
     {
       "",
-      "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsd",
+      "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 fdhvhkdvhfd=20 15 < zrevjzrjvjerv a=15 | JE=45 15 < 8561ddada&e&",
       " 30 < wfvkfdkvndfkbv",
       "15 < fdjkbhdfbjekbej",
       "10< WORD",
@@ -21,3 +16,5 @@ void test_PIPELINE()
   assert(read_pipeline(p1) == 1);
   printf("%s \n", p1->input);
 }
+
+

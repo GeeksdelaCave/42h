@@ -1,14 +1,10 @@
-/**
- ** \file  read_while.c
- */
 #include "grammar.h" 
-/**
- ** \brief Check if the text is while
- **
- ** \param p structure of parser
- **
- ** \return true of false
- */
+
+/*
+rule_while: 
+    'while' compound_list do_group
+*/
+
 int read_while(struct parser_s *p)
 {
     int tmp = p->cursor;
@@ -17,10 +13,10 @@ int read_while(struct parser_s *p)
 	OneOrMany(read_spaces(p)) && read_compound_list(p) &&
 	ZeroOrMany(read_spaces(p)) && read_do_group(p))
     {
-        //printf("AST read while : SUCCES\n");
+        printf("AST read while : SUCCES\n");
         return 1;
     }
-    //printf("AST read while : FAIL\n");
+    printf("AST read while : FAIL\n");
     p->cursor = tmp;
     return 0;
 }

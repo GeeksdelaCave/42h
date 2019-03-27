@@ -1,10 +1,5 @@
-/**
- ** \file test_REDIRECTION.c
- */
 #include "test.h"
-/**
- ** \brief test unit for redirection Grammar
- */
+
 void test_REDIRECTION()
 {
   int size = 6;
@@ -18,8 +13,9 @@ void test_REDIRECTION()
       "10< WORD",
     };
   for (int i = 0; i < size; i++)
-  {
-    struct parser_s *p = parser_new_from_string(str[i]);
-    assert(read_redirection(p) == 1);
-  }
+    {
+      struct parser_s *p = parser_new_from_string(str[i]);
+      assert(read_redirection(p) == 1);
+    }  
 }
+

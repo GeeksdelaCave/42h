@@ -1,15 +1,9 @@
-/**
- ** \file  read_if.c
- */
 #include "grammar.h" 
-/**
- ** \brief return true if read a if
- **  condition
- **
- ** \param p structure of parser
- **
- ** \return true of false
- */
+/*
+rule_if:    
+    'if' compound_list 'then' compound_list [else_clause] 'fi'
+*/
+
 int read_if(struct parser_s *p)
 {
     int tmp = p->cursor;
@@ -21,10 +15,10 @@ int read_if(struct parser_s *p)
         ZeroOrMany(read_spaces(p)) && ZeroOrOne(read_else(p)) && 
         ZeroOrMany(read_spaces(p)) && parser_readtext(p, "fi"))
     {
-       //printf("AST read if : SUCCES\n");
+        printf("AST read if : SUCCES\n");
     	return 1;
     }
-    //printf("AST read if : FAIL\n");
+    printf("AST read if : FAIL\n");
     p->cursor = tmp;
     return 0;
 }
