@@ -345,4 +345,5 @@ struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum
 type_grammar type);
 void eat_list_node(struct parser_s *p);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
+void print_node(struct list_node_s *node);
 #endif

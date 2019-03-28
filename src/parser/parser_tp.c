@@ -1,11 +1,4 @@
 #include "grammar.h" 
-void print_node(struct list_node_s *node)
-{
-    for(; node; node = node->next)
-    {
-        printf("TYPE : %d ", node->type);
-    }
-}
 void eat_list_capt(struct parser_s *p)
 {
   if (p->capture->next != NULL)
@@ -195,15 +188,12 @@ int parser_readtext(struct parser_s *p, char *text)
   
   for(int i = 0; text[i]; i++)
     {
-        //printf("x = %c y = %c \n",cmp[i], text[i] );
 	if(cmp[i] != text[i])
 	  {
 	    return 0;
 	  }
       p->cursor++;
     }
-
-    printf("=======================================%s ============\n", text);
     return 1;
 }
 
@@ -350,6 +340,7 @@ int read_Assign(struct parser_s *p)
     {
       char *id = parser_get_capture(p, "id");
       char *num = parser_get_capture(p, "num");
+
       struct s_node_assign *assign = malloc(sizeof(struct s_node_assign));
       assign->id = id;
       assign->num = num;
