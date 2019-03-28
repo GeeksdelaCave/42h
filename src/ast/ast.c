@@ -24,13 +24,13 @@ void free_list_node(struct list_node_s *lnodes)
     }
 }
 
-void list_node_store(struct list_node_s *list_node, union all_grammar s_node, enum type_grammar type)
+void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, enum type_grammar type)
 {
   for(; list_node->next; list_node = list_node->next);
   list_node->next = init_list_node();
   list_node = list_node->next;
   list_node->type = type;
-  list_node->node = &s_node;
+  list_node->node = s_node;
 }
 
 /*

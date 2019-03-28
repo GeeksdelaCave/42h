@@ -67,6 +67,7 @@ union all_grammar
 struct list_node_s
 {
   enum type_grammar type;
+  void *data;
   union all_grammar *node;
   struct list_node_s *next;
 };
@@ -339,7 +340,7 @@ struct s_node_bin
 */
 struct list_node_s *init_list_node();
 void free_list_node(struct list_node_s *lnodes);
-void list_node_store(struct list_node_s *list_node, union all_grammar s_node, 
+void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, 
 enum type_grammar type);
 struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum 
 type_grammar type);

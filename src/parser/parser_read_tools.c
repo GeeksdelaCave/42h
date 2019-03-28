@@ -162,8 +162,8 @@ int read_Assign(struct parser_s *p)
       assign->id = id;
       assign->num = num;
 
-      union all_grammar grammar;
-      grammar.assign = assign;
+      union all_grammar *grammar = malloc(sizeof(union all_grammar));
+      grammar->assign = assign;
       list_node_store(p->nodes, grammar, ASSIGN);
       return 1;
     }
