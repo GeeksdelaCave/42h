@@ -17,7 +17,7 @@ void free_list_node(struct list_node_s *lnodes)
 {
     struct list_node_s *prev_node = lnodes;
     while (lnodes)
-    { 
+    {
       prev_node = lnodes;
       lnodes = lnodes->next;
       free(prev_node);
@@ -45,7 +45,7 @@ struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_gr
 
             return list_node; 
         }
-    }           
+    }
     return NULL;
 }
 
@@ -60,7 +60,7 @@ void eat_list_node(struct parser_s *p)
 }
 
 /*
-** get node and eat 
+** get node and eat
 */
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type)
 {
