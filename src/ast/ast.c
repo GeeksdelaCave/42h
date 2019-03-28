@@ -24,18 +24,16 @@ void free_list_node(struct list_node_s *lnodes)
     }
 }
 
-void list_node_store(struct list_node_s *list_node, char *data, struct list_node_s *node, enum type_node type)
+void list_node_store(struct list_node_s *list_node, union all_grammar s_node, enum type_grammar type)
 {
   for(; list_node->next; list_node = list_node->next);
   list_node->next = init_list_node();
-  list_node->data = data;
-  printf("%s\n", data);
-  list_node->next= node;
-  list_node->nb_child++;
+  list_node = list_node->next;
   list_node->type = type;
+  list_node->node = &s_node;
 }
 
-struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_node type)
+struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_grammar type)
 {
     for (; list_node->next; list_node = list_node->next)
     {
@@ -56,7 +54,7 @@ void eat_list_node(struct parser_s *p)
       p->nodes = list;
     }
 }
-struct list_node_s *ast_get_node(struct parser_s *p, enum type_node type)
+struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type)
 {
   struct list_node_s *pnode = list_node_lookup(p->nodes, type);
   if (!pnode){

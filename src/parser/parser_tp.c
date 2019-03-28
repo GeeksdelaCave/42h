@@ -1,4 +1,11 @@
 #include "grammar.h" 
+void print_node(struct list_node_s *node)
+{
+    for(; node; node = node->next)
+    {
+        printf("TYPE : %d ", node->type);
+    }
+}
 void eat_list_capt(struct parser_s *p)
 {
   if (p->capture->next != NULL)
@@ -346,6 +353,10 @@ int read_Assign(struct parser_s *p)
       struct s_node_assign *assign = malloc(sizeof(struct s_node_assign));
       assign->id = id;
       assign->num = num;
+
+      union all_grammar grammar;
+      grammar.assign = assign;
+      list_node_store(p->nodes, grammar, ASSIGN);
       return 1;
     }
   parser_get_capture(p, "id");

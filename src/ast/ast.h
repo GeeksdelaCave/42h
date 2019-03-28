@@ -41,7 +41,7 @@ enum type_grammar
   ELEMENT,
   ASSIGN,
   REDIRECTION,
-  WORD,
+  WORD1,
   COUMPOUND,
   RULEFOR,
   RULEIF,
@@ -151,13 +151,14 @@ enum shell_command_child_type
 /*
 ** type shell command
 */
+
 union shell_command_child
 {
   struct s_node_cpd *child_cpd;
   struct s_node_for *child_for;
   struct s_node_while *child_while;
   struct s_node_until *child_until;
-  struct s_node_case *child_case;
+  struct s_node_case *child_case;   
   struct s_node_if *child_if;
 };
 
@@ -331,4 +332,17 @@ struct s_node_bin
 **------------------------------------------------------------------
 */
 
+/*
+**
+** init and free list_node
+**
+*/
+struct list_node_s *init_list_node();
+void free_list_node(struct list_node_s *lnodes);
+void list_node_store(struct list_node_s *list_node, union all_grammar s_node, 
+enum type_grammar type);
+struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum 
+type_grammar type);
+void eat_list_node(struct parser_s *p);
+struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 #endif

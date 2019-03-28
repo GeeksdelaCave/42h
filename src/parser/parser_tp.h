@@ -121,5 +121,5 @@ bool parser_end_capture(struct parser_s *p, const char *tag);
 */
 
 struct capture_s *list_capt_lookup(struct list_capt_s *capt, const char *tag);
-
+void print_node(struct list_node_s *node);
 #endif
