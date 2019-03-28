@@ -14,5 +14,6 @@
 #include "read_element.h"
 #include "rules.h"
 #include "commands.h"
+#include "repetition_tools.h"
 #include "../ast/ast.h"
 #endif

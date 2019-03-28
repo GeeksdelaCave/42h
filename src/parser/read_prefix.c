@@ -1,11 +1,10 @@
 #include "grammar.h" 
 int read_prefix(struct parser_s *p)
 {
-  int tmp = p->cursor;
-  if (read_Assign(p) || read_redirection(p))
+    int tmp = p->cursor;
+    if (read_Assign(p) || read_redirection(p))
     {
-    
-              struct list_node_s *assign_node = ast_get_node(p, ASSIGN);
+        struct list_node_s *assign_node = ast_get_node(p, ASSIGN);
         struct list_node_s *redirection_node = ast_get_node(p, REDIRECTION);
         struct s_node_prefix *prefix = malloc(sizeof(struct s_node_prefix));
 
@@ -23,5 +22,5 @@ int read_prefix(struct parser_s *p)
       return 1;
     }
     p->cursor = tmp;
-  return 0;
+    return 0;
 }

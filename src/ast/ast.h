@@ -56,9 +56,23 @@ enum type_grammar
 
 union all_grammar
 {
-  struct s_node_prefix *prefix;
-  struct s_node_assign *assign;
-  struct s_node_redirection *redirection;
+    struct s_node_list *list;
+    struct s_node_and_or *andor;
+    struct s_node_pipeline *pipeline;
+    struct s_node_command *command;
+    struct s_node_simple_command *simple_c;
+    struct s_node_shell_command *shell_c;
+    struct s_node_funcdec_command *funcdec_c;
+    struct s_node_prefix *prefix;
+    struct s_node_assign *assign;
+    struct s_node_redirection *redirection;
+    struct s_node_element *element;
+    struct s_node_if *node_if;
+    struct s_node_for *node_for;
+    struct s_node_while *node_while;
+    struct s_node_case_item *case_item;
+    struct s_node_compound_list *compoundlist;
+    struct s_do_group *dogroup;
 };
 
 /*
