@@ -19,10 +19,3 @@ int read_input(struct parser_s *p)
     p->cursor = tmp;
   return 0;
 }
-/* 
-   if ((read_list(p) && parser_readchar(p, '\n')) ||
-      (read_list(p) && parser_eof(p)) ||
-      (parser_readchar(p, '\n')) ||
-      (parser_eof(p)))
-      {
- */

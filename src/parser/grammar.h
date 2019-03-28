@@ -1,6 +1,6 @@
 #ifndef GRAMMAR_H
 #define GRAMMAR_H
-#include "parser_tp.h"
+#include "parser.h"
 #include "read_input.h"
 #include "read_list.h"
 #include "read_and_or.h"

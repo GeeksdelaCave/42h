@@ -24,9 +24,3 @@ int read_compound_list(struct parser_s *p)
     p->cursor = tmp;
     return 0;
 }
- 
-
- /*
-
-
- */
