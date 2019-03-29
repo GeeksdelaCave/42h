@@ -48,6 +48,7 @@ int read_excla(struct parser_s *p)
       printf("EXCLAMATION : %s \n", parser_get_capture(p, "excla"));
       return 1;
     }
+    parser_get_capture(p,"excla");
   p->cursor = tmp;
   return 0;
 }
@@ -62,14 +63,15 @@ int read_excla(struct parser_s *p)
 int read_and(struct parser_s *p)
 {
   int tmp = p->cursor;
+  
   if (parser_begin_capture(p, "and") && parser_readchar(p, '&')
       && parser_end_capture(p, "and"))
     {  
-        //char *and = 
-        parser_get_capture(p, "and");
+        printf("%c\n", p->input[p->cursor]);
         if(p->input[p->cursor] != '&')
         {
-            //printf("%s\n", and);  
+            char *and = parser_get_capture(p, "and");
+            printf("%s\n", and);  
             return 1;
         }
     }
@@ -90,9 +92,8 @@ int read_virgule(struct parser_s *p)
   if (parser_begin_capture(p, "virgule") && parser_readchar(p, ';')
       && parser_end_capture(p, "virgule"))
     {  
-        //char *virgule = 
-        parser_get_capture(p, "virgule");
-        //printf("%s\n", virgule);  
+        char *virgule = parser_get_capture(p, "virgule");
+        printf("%s\n", virgule);  
         return 1;
     }
     parser_get_capture(p, "virgule");
@@ -189,9 +190,8 @@ int read_symbole(struct parser_s *p, char* tag, char* type)
   if (parser_begin_capture(p, tag) && parser_readtext(p, type)
       && parser_end_capture(p, tag))
   {
-    //char* res = 
-    parser_get_capture(p, "ANDOR");
-      //printf("READsymbole : %s\n", res);
+    char* res = parser_get_capture(p, "ANDOR");
+    printf("READsymbole : %s\n", res);
       return 1;
     }
   p->cursor = tmp;

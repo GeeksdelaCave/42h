@@ -15,6 +15,7 @@ int read_word(struct parser_s *p)
     {
       return 1;
     }
-  p->cursor = tmp;
-  return 0;
+    parser_get_capture(p, "word");
+    p->cursor = tmp;
+    return 0;
 }

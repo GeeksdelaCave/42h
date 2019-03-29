@@ -18,7 +18,8 @@ int read_redirection(struct parser_s *p)
     }
   parser_get_capture(p, "num");
   parser_get_capture(p, "chevron");
-  parser_get_capture(p, "word");
+  // déja fait dans word
+  //parser_get_capture(p, "word");
   p->cursor = tmp;
   return 0;
 }

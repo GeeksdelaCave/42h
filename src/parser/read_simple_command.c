@@ -6,7 +6,7 @@ simple_command:
 int read_simple_command(struct parser_s *p)
 {
   int tmp = p->cursor;
-  if (OneOrMany(read_prefix(p)) || (ZeroOrMany(read_prefix(p)) && OneOrMany(read_element(p))))
+  if ((OneOrMany(read_prefix(p)) && ZeroOrMany(read_element(p))) || (ZeroOrMany(read_prefix(p)) && OneOrMany(read_element(p))))
   {
     get_zero_or_many(p);
     printf("AST SIMPLE COMMAND SUCCESS\n");

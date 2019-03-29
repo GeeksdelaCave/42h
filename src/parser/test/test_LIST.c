@@ -5,6 +5,8 @@ void test_LIST()
   char *str[] = 
     {
       "",
+      "! a=15 b=20 c=30 d=15 JE FAIS DES TESTES | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD && ! a=1 b=2 je teste mon code || ! a=5 15 < toto teste & JE TESTE MON CODE & TEST TEST TEST N;",
+
       "if a=5 b=6 ss=6 15 < qbddq then b=5 a=5 fi",
     };
   /* struct parser_s *p = parser_new_from_string(str[0]);

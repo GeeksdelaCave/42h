@@ -16,7 +16,7 @@ int read_for(struct parser_s *p)
       && ZeroOrMany(read_spaces(p)) && ZeroOrMany(parser_readchar(p, '\n'))
       && ZeroOrMany(read_spaces(p)) && read_do_group(p))
   {
-    printf("AST read FOR : SUCCES\n");
+    //printf("AST read FOR : SUCCES\n");
     return 1;
   }
   printf("AST read FOR : FAIL\n");
