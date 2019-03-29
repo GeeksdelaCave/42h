@@ -26,11 +26,11 @@ char parser_getchar(struct parser_s *p)
  */
 int parser_peekchar(struct parser_s *p, char c)
 {
-    if (p->input[p->cursor] == c)
-      {
+  if (p->input[p->cursor] == c)
+  {
     return 1;
-      }
-    return 0;
+  }
+  return 0;
 }
 /**
  ** \brief retrieve a caract exclamation
@@ -45,7 +45,7 @@ int read_excla(struct parser_s *p)
   if (parser_begin_capture(p, "excla") && parser_readchar(p, '!')
       && parser_end_capture(p, "excla"))
     {
-      //printf("EXCLAMATION : %s \n", parser_get_capture(p, "excla"));
+      printf("EXCLAMATION : %s \n", parser_get_capture(p, "excla"));
       return 1;
     }
   p->cursor = tmp;
@@ -112,12 +112,13 @@ int read_pipe(struct parser_s *p)
   if (parser_begin_capture(p, "pipe") && parser_readchar(p, '|')
       && parser_end_capture(p, "pipe"))
     {  
-        //char *pipe = 
-        parser_get_capture(p, "pipe");
-        if(p->input[p->cursor] != '|')
-        {
-            //printf("%s\n", pipe);  
-            return 1;   
+      //char *pipe = 
+      
+      if(p->input[p->cursor] != '|')
+      {
+	parser_get_capture(p, "pipe");
+	  //printf("%s\n", pipe);  
+	  return 1;   
         }
     }
     parser_get_capture(p, "pipe");
@@ -157,7 +158,8 @@ int read_Assign(struct parser_s *p)
     {
       char *id = parser_get_capture(p, "id");
       char *num = parser_get_capture(p, "num");
-
+      printf("ID %s \n", id);
+      printf("NUM %s \n", num);
       struct s_node_assign *assign = malloc(sizeof(struct s_node_assign));
       assign->id = id;
       assign->num = num;
@@ -186,11 +188,11 @@ int read_symbole(struct parser_s *p, char* tag, char* type)
   int tmp = p->cursor;
   if (parser_begin_capture(p, tag) && parser_readtext(p, type)
       && parser_end_capture(p, tag))
-    {
-        //char* res = 
-        parser_get_capture(p, "ANDOR");
-        //printf("READsymbole : %s\n", res);
-        return 1;
+  {
+    //char* res = 
+    parser_get_capture(p, "ANDOR");
+      //printf("READsymbole : %s\n", res);
+      return 1;
     }
   p->cursor = tmp;
   parser_get_capture(p, "ANDOR");

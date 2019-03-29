@@ -5,19 +5,17 @@ simple_command:
 */
 int read_simple_command(struct parser_s *p)
 {
-    int tmp = p->cursor;
-    if (OneOrMany(read_prefix(p))  ||
-	(ZeroOrMany(read_prefix(p)) && OneOrMany(read_element(p))))
-       {
-        get_zero_or_many(p);    
-	    printf("AST SIMPLE COMMAND SUCCESS\n");
-	    return 1;
-    }
-    printf("AST SIMPLE COMMAND FAIL !!!!!!!!!!!!!!!\n");
-    p->cursor = tmp;  
-    return 0;
+  int tmp = p->cursor;
+  if (OneOrMany(read_prefix(p)) || (ZeroOrMany(read_prefix(p)) && OneOrMany(read_element(p))))
+  {
+    get_zero_or_many(p);
+    printf("AST SIMPLE COMMAND SUCCESS\n");
+    return 1;
+  }
+  printf("AST SIMPLE COMMAND FAIL !!!!!!!!!!!!!!!\n");
+  p->cursor = tmp;
+  return 0;
 }
-    
 void get_zero_or_many(struct parser_s *p)
 {
     struct list_node_s *prefix_node;
