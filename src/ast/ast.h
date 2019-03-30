@@ -1,12 +1,12 @@
 #ifndef AST_H
-# define AST_H
-
+#define AST_H
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
 # include "error.h"
 #include "../parser/grammar.h"
+#include "ast_simple_command.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
         exit(ERROR_MEM)                                                 \
@@ -249,4 +249,5 @@ void eat_list_node(struct parser_s *p);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
 struct s_node_command *init_command_node();
+struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
 #endif

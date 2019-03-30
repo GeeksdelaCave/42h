@@ -70,6 +70,21 @@ struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type)
   return pnode;
 }
 
+/*
+** check node and get if true
+*/
+struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type)
+{
+  struct list_node_s *pnode = p->nodes;
+  if (!(pnode->type == type))
+  {
+    return false;
+  }
+  eat_list_node(p);
+  return pnode;
+}
+
+
 void print_node(struct list_node_s *node)
 {
     for(; node; node = node->next)
@@ -87,6 +102,7 @@ struct s_node_command *init_command_node()
     struct s_node_command *new_node = malloc(sizeof(struct s_node_command));
     if (new_node == NULL)
     {
+        printf("fail init command\n");
       return NULL;
     }
     new_node->type = -1;
