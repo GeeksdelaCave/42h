@@ -6,7 +6,7 @@ int main()
   //test_PIPELINE();
   //test_INPUT();
   //test_INPUT();
-  test_SIMPLECOMMAND();
+  test_COMMAND();
   printf("\033[0;32m");
   printf("All tests OK!\n");
   printf("\033[0m\n");

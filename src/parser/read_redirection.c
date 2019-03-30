@@ -14,6 +14,19 @@ int read_redirection(struct parser_s *p)
       char *chevron = parser_get_capture(p, "chevron");
       char *word = parser_get_capture(p, "word");
       printf("READ_REDIRECTION %s %s  %s\n", num,chevron, word);
+      
+      // il faut réfléchir à le symbole redirection sinon le reste marche
+      /*
+      struct s_node_redirection *redirection = malloc(sizeof
+      (struct s_node_redirection));
+      redirection->number = num;
+      redirection->redirection = chevron;
+      redirection->word = word;
+
+      union all_grammar *grammar = malloc(sizeof(union all_grammar));
+      grammar->redirection = redirection;
+      list_node_store(p->nodes, grammar, REDIRECTION);
+      */
       return 1;
     }
   parser_get_capture(p, "num");

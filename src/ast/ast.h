@@ -34,6 +34,8 @@ enum type_grammar
   ANDOR,
   PIPELINE,
   COMMAND,
+  SIMPLECOMMAND,
+  FUNDEC,
   ASSIGN,
   REDIRECTION,
   WORD1,
