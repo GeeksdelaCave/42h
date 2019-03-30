@@ -1,0 +1,7 @@
+#include "grammar.h"
+
+void print_dot(struct parser_s *p, FILE *stream)
+{
+  fprintf(stream, "AST {\n");
+  fprintf(stream, "    node [fontname=\"Arial\"];\n");
+}

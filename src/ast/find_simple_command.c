@@ -1,5 +1,4 @@
 #include "ast.h"
-
 struct s_node_command *init_simple_command(struct parser_s *p)
 {
     struct s_node_command *simple_command = find_assign(p);
@@ -51,16 +50,16 @@ struct s_node_command *new_command)
 
 struct s_node_command *find_assign(struct parser_s *p)
 {
-    struct list_node_s *assign_node = ast_check_node(p, ASSIGN);
-    struct s_node_command *simple_command;
-    if(!assign_node)
-    {
-        return NULL;
-    }
-    simple_command = init_command_node();
-    simple_command->type = ASSIGN;
-    simple_command->struct_type->assign = assign_node->node->assign;
-    return simple_command;
+  struct list_node_s *assign_node = ast_check_node(p, ASSIGN);
+  struct s_node_command *simple_command;
+  if(!assign_node)
+  {
+      return NULL;
+  }
+  simple_command = init_command_node();
+  simple_command->type = ASSIGN;
+  simple_command->struct_type->assign = assign_node->node->assign;
+  return simple_command;
 }
 
 struct s_node_command *find_redir(struct parser_s *p)

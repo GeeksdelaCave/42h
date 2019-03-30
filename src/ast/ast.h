@@ -6,11 +6,10 @@
 # include <stddef.h>
 # include "error.h"
 #include "../parser/grammar.h"
-#include "ast_simple_command.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
-        exit(ERROR_MEM)                                                 \
-/*-----------------------------------------------------------------------
+    exit(ERROR_MEM)							\
+      /*-----------------------------------------------------------------------
 -------------------------------------------------------------------------
 ----------------------- VERSION NEED TO DEV -----------------------------
 -------------------------------------------------------------------------
@@ -22,7 +21,7 @@
 */
 struct s_node_input
 {
-   struct s_node_list *list;
+  struct s_node_list *list;
 };
 
 /*
@@ -244,12 +243,13 @@ struct s_do_group
 struct list_node_s *init_list_node();
 void free_list_node(struct list_node_s *lnodes);
 void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, 
-enum type_grammar type);
+		     enum type_grammar type);
 struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum 
-type_grammar type);
+				     type_grammar type);
 void eat_list_node(struct parser_s *p);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
 struct s_node_command *init_command_node();
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
+struct s_node_command *init_simple_command(struct parser_s *p);
 #endif
