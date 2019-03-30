@@ -5,7 +5,7 @@ int read_prefix(struct parser_s *p)
   int tmp = p->cursor;
   if (read_Assign(p) || read_redirection(p))
   {
-    struct list_node_s *assign = list_node_lookup(p->nodes, ASSIGN);
+    /*struct list_node_s *assign = list_node_lookup(p->nodes, ASSIGN);
     printf("11111111111111111111111111 ID %s NUM %s TYPE %d \n", assign->node->assign->id, assign->node->assign->num, assign->type);
     struct list_node_s *assign_node = ast_get_node(p, ASSIGN);
     struct list_node_s *assign2 = list_node_lookup(p->nodes, ASSIGN);
@@ -25,9 +25,10 @@ int read_prefix(struct parser_s *p)
     
     union all_grammar *grammar = malloc(sizeof(union all_grammar));
     grammar->prefix = prefix;
+    */
     //printf("++TROUVER id %s : %s\n", grammar->prefix->assign->id, grammar->prefix->assign->num);
     //list_node_store(p->nodes, grammar, PREFIX);
- print_node(p->nodes);
+    // print_node(p->nodes);
     return 1;
   }
   p->cursor = tmp;

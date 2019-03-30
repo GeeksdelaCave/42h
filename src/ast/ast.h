@@ -135,7 +135,7 @@ struct s_node_assign
 struct s_node_word
 {
     char *word;
-}
+};
 
 // Enumeration different type of redirection
 enum e_red_type
@@ -193,7 +193,7 @@ struct s_node_until
 {
   struct s_node_compound_list *condition;
   struct s_node_compound_list *dogroup;
-}
+};
 
 //Case ast node
 
@@ -223,38 +223,6 @@ struct s_node_compound_list
 struct s_do_group
 {
     struct ast_node_compound_list *cpd;
-};
-
-/*-----------------------------------------------------------------------
-  -------------------------------------------------------------------------
-  ----------------------- VERSION BEFORE ----------------------------------
--------------------------------------------------------------------------
--------------------------------------------------------------------------
-*/
-
-//Redirection ast node
-struct s_red_node
-{
-  size_t size;
-  enum e_red_type *type;
-  int *fd;
-  char **words;
-  struct ast_node_compound_list *mhs;
-};
-
-struct ast_node_compound_list //s_node_node
-{
-  enum shell_command_child_type type;
-  union shell_command_child child;//body
-};
-
-/*
-** struct for ast pipe ...
-*/
-struct s_node_bin
-{
-  struct ast_node_compound_list *lhs;
-  struct ast_node_compound_list *rhs;
 };
 
 /*
