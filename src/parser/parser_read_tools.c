@@ -159,15 +159,16 @@ int read_Assign(struct parser_s *p)
     {
       char *id = parser_get_capture(p, "id");
       char *num = parser_get_capture(p, "num");
-      printf("ID %s \n", id);
-      printf("NUM %s \n", num);
+      printf("ID %s : %s \n", id, num);
       struct s_node_assign *assign = malloc(sizeof(struct s_node_assign));
       assign->id = id;
       assign->num = num;
 
       union all_grammar *grammar = malloc(sizeof(union all_grammar));
       grammar->assign = assign;
+      printf("**ASSIGN -> ID : %s : %s\n", grammar->assign->id, grammar->assign->num);
       list_node_store(p->nodes, grammar, ASSIGN);
+      //printf("DANS STORE -> %s : %s\n", s->assign->id, s->assign->num);
       return 1;
     }
   parser_get_capture(p, "id");

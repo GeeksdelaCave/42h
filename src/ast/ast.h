@@ -34,11 +34,6 @@ enum type_grammar
   ANDOR,
   PIPELINE,
   COMMAND,
-  SIMPLECOMMAND,
-  SHELLCOMMAND,
-  FUNDEC,
-  PREFIX,
-  ELEMENT,
   ASSIGN,
   REDIRECTION,
   WORD1,
@@ -60,19 +55,20 @@ union all_grammar
     struct s_node_and_or *andor;
     struct s_node_pipeline *pipeline;
     struct s_node_command *command;
-    struct s_node_simple_command *simple_c;
-    struct s_node_shell_command *shell_c;
-    struct s_node_funcdec_command *funcdec_c;
-    struct s_node_prefix *prefix;
+    //struct s_node_simple_command *simple_c;
+    //struct s_node_shell_command *shell_c;
+    //struct s_node_funcdec_command *funcdec_c;
+    //struct s_node_prefix *prefix;
     struct s_node_assign *assign;
     struct s_node_redirection *redirection;
-    struct s_node_element *element;
+    //struct s_node_element *element;
     struct s_node_if *node_if;
     struct s_node_for *node_for;
     struct s_node_while *node_while;
     struct s_node_case_item *case_item;
     struct s_node_compound_list *compoundlist;
     struct s_do_group *dogroup;
+    struct s_node_until *until;
 };
 
 /*
@@ -81,14 +77,14 @@ union all_grammar
 struct list_node_s
 {
   enum type_grammar type;
-  void *data;
   union all_grammar *node;
   struct list_node_s *next;
 };
 struct s_node_list
 {
-  struct s_node_and_or **and_or;
-  char **mode_exec;
+  struct s_node_and_or *and_or;
+  char *mode_exec;
+  struct s_node_list *next;
 };
 
 /*
@@ -96,117 +92,31 @@ struct s_node_list
 */
 struct s_node_and_or
 {
-  struct s_node_pipeline **pipeline;
-  char **and_or;
+  struct s_node_pipeline *pipeline;
+  char *and_or;
+  struct s_node_and_or *next;
 };
 
 /*
 ** node pipeline
 */
-
 struct s_node_pipeline
 {
   int exlamation;
-  struct s_node_command **commands;
-  char **pipes;
+  struct s_node_command *commands;
+  char *pipes;
+  struct s_node_pipeline *next;
 };
 
-/*
-** command type
-*/
-enum command_type
-{
-    SIMPLE_COMMAND,
-    SHELL_COMMAND,
-    FUNCDEC,
-};
-
-/*
-** struct command
-*/
-union struct_command
-{
-  struct s_node_simple_command *simple_c;
-  struct s_node_shell_command *shell_c;
-  struct s_node_funcdec_command *funcdec_c;
-};
 
 /*
 ** node commands
 */
 struct s_node_command
 {
-  enum command_type type;
-  union struct_command struct_type; 
-  struct s_node_redirection **redirection;
-};
-
-/*
-**Simple command ast node
-*/
-struct s_node_simple_command
-{
-  struct s_node_prefix **prefix;
-  struct s_node_element **element;
-};
-
-/*
-** type shell command
-*/
-enum shell_command_child_type
-{
-  T_CPD,
-  T_FOR,
-  T_WHILE,
-  T_UNTIL,
-  T_CASE,
-  T_IF
-};
-
-/*
-** type shell command
-*/
-
-union shell_command_child
-{
-  struct s_node_cpd *child_cpd;
-  struct s_node_for *child_for;
-  struct s_node_while *child_while;
-  struct s_node_until *child_until;
-  struct s_node_case *child_case;   
-  struct s_node_if *child_if;
-};
-
-/*
-** Shell command
-*/
-struct s_node_shell_command
-{
-  enum shell_command_child_type type_command;
-  union shell_command_child struct_shell_commands;
-};
-struct s_node_funcdec
-{
-  struct s_node_word *word;
-  struct s_node_shell_command *shell_command;
-};
-
-/*
-** Element
-*/
-struct s_node_element
-{
-    char *word;
-    struct s_node_redirection *redirection;
-};
-
-/*
-** Prefix
-*/
-struct s_node_prefix
-{
-  struct s_node_assign *assign;
-  struct s_node_redirection *redirection;
+  enum type_grammar type;
+  union all_grammar struct_type;
+  struct s_node_command *next;
 };
 
 /*
@@ -217,6 +127,15 @@ struct s_node_assign
   char *id;
   char *num;
 };
+
+/*
+** WORD
+*/
+
+struct s_node_word
+{
+    char *word;
+}
 
 // Enumeration different type of redirection
 enum e_red_type
@@ -237,9 +156,9 @@ enum e_red_type
 */
 struct s_node_redirection
 {
-  int ionumber;
+  char *number;
   enum e_red_type redirection;
-  char* word;
+  char *word;
 };
 
 //if ast node
@@ -255,7 +174,7 @@ struct s_node_for
 {
   char *varname;
   char **values;
-  struct s_node_compound_list *exec;
+  struct s_node_compound_list *dogroup;
 };
 
 //while ast node
@@ -263,8 +182,18 @@ struct s_node_for
 struct s_node_while
 {
   struct s_node_compound_list *condition;
-  struct s_node_compound_list *exec;
+  struct s_node_compound_list *dogroup;
 };
+
+/*
+** until ast node
+*/
+
+struct s_node_until
+{
+  struct s_node_compound_list *condition;
+  struct s_node_compound_list *dogroup;
+}
 
 //Case ast node
 
@@ -285,8 +214,9 @@ struct s_node_case
 
 struct s_node_compound_list
 {
-    struct s_node_and_or **and_or;
-  char **mode_exec;
+    struct s_node_and_or *and_or;
+    char *mode_exec;
+    struct s_node_compound_list *next;
 };
 
 
@@ -295,18 +225,6 @@ struct s_do_group
     struct ast_node_compound_list *cpd;
 };
 
-/*
-**list nodes
-*/
-/*
-struct list_node_s
-{
-  int nb_child;
-  enum shell_command_child_type type;
-  char* data;
-  struct list_node_s *next;
-};
-*/ 
 /*-----------------------------------------------------------------------
   -------------------------------------------------------------------------
   ----------------------- VERSION BEFORE ----------------------------------

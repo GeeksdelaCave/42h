@@ -5,6 +5,7 @@ void test_INPUT()
   char *str[] = 
     {
       "",
+      "a=5 b=15 c=20 d=15",
       "for WORD in WORD space A B C D E F G E F H ; do b=6 15 < ABC JE TESTE MON CODE  done",
       "if ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 then a=5 || b=10 5 < abcad && a=5 JE TESTE MON TRUC fi",
       "while ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 ; 15 < WORDfadde 30 < wfvkfdkvndfkbv & 15 < fdjkbhdfbjekbej 10< WORD && ! a=1 b=2 JE TEST MON CODE || ! a=5 do 15 < toto JE TESTE MON CODE && ! WORD=10 b=50 ; JE TESTE MON CODE && a=5 15 < dada je test done",

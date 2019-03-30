@@ -7,8 +7,8 @@ struct list_node_s *init_list_node()
     {
       return NULL;
     }
-    new_list->type = 0;
-    new_list->node = NULL;
+    new_list->type = -1;
+    new_list->node = malloc(sizeof(union all_grammar));
     new_list->next = NULL;
     return new_list;
 }
@@ -28,7 +28,6 @@ void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, e
 {
   for(; list_node->next; list_node = list_node->next);
   list_node->next = init_list_node();
-  list_node = list_node->next;
   list_node->type = type;
   list_node->node = s_node;
 }
@@ -42,7 +41,6 @@ struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_gr
     {
         if (list_node->type == type)
         {
-
             return list_node; 
         }
     }
@@ -78,4 +76,5 @@ void print_node(struct list_node_s *node)
     {
         printf("TYPE : %d ", node->type);
     }
+    printf("\n");
 }
