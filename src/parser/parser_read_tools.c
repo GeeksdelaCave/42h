@@ -151,7 +151,6 @@ int parser_eof(struct parser_s *p)
 int read_Assign(struct parser_s *p)
 {
   int tmp = p->cursor;
-////printf(" ASSIGN %d %c cursor \n", tmp, p->input[tmp]);
   if (ZeroOrMany(read_spaces(p)) && parser_begin_capture(p, "id") && parser_readidentifier(p) && 
       parser_end_capture(p, "id") && parser_readchar(p, '=')
       && parser_begin_capture(p, "num") && parser_readinteger(p) 
@@ -166,9 +165,9 @@ int read_Assign(struct parser_s *p)
 
       union all_grammar *grammar = malloc(sizeof(union all_grammar));
       grammar->assign = assign;
-      printf("**ASSIGN -> ID : %s : %s\n", grammar->assign->id, grammar->assign->num);
       list_node_store(p->nodes, grammar, ASSIGN);
-      //printf("DANS STORE -> %s : %s\n", s->assign->id, s->assign->num);
+      //struct list_node_s *s = list_node_lookup(p->nodes, ASSIGN);
+      //printf("DANS STORE -> %s : %s\n", s->node->assign->id, s->node->assign->num);
       return 1;
     }
   parser_get_capture(p, "id");

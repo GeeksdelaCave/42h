@@ -69,6 +69,7 @@ union all_grammar
     struct s_node_compound_list *compoundlist;
     struct s_do_group *dogroup;
     struct s_node_until *until;
+    struct s_node_word *word;
 };
 
 /*
@@ -115,7 +116,7 @@ struct s_node_pipeline
 struct s_node_command
 {
   enum type_grammar type;
-  union all_grammar struct_type;
+  union all_grammar *struct_type;
   struct s_node_command *next;
 };
 
@@ -247,4 +248,5 @@ type_grammar type);
 void eat_list_node(struct parser_s *p);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
+struct s_node_command *init_command_node();
 #endif

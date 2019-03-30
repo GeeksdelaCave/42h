@@ -14,6 +14,6 @@ void test_SIMPLECOMMAND()
   struct parser_s *p = NULL;
   p = parser_new_from_string(str[0]);
   assert(read_simple_command(p) == 1);
-  //struct pa
+  print_node(p->nodes);
   //assert(read_simple_command(p) == 1);
 }
