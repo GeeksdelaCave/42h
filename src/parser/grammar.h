@@ -16,5 +16,4 @@
 #include "commands.h"
 #include "repetition_tools.h"
 #include "../ast/ast.h"
-#include "../ast/ast_simple_command.h"
 #endif

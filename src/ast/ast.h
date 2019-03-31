@@ -5,7 +5,9 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include "error.h"
+#include "ast_simple_command.h"
 #include "../parser/grammar.h"
+
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
     exit(ERROR_MEM)							\
@@ -56,7 +58,7 @@ union all_grammar
     struct s_node_and_or *andor;
     struct s_node_pipeline *pipeline;
     struct s_node_command *command;
-    //struct s_node_simple_command *simple_c;
+    struct s_simple_cmd *simple_c;
     //struct s_node_shell_command *shell_c;
     //struct s_node_funcdec_command *funcdec_c;
     //struct s_node_prefix *prefix;
@@ -118,7 +120,17 @@ struct s_node_command
 {
   enum type_grammar type;
   union all_grammar *struct_type;
-  struct s_node_command *next;
+};
+
+
+/*
+** node simple commands
+*/
+struct s_simple_cmd
+{
+  enum type_grammar type;
+  struct s_node_command *child_node;
+  int child;
 };
 
 /*
@@ -249,7 +261,6 @@ struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum
 void eat_list_node(struct parser_s *p);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
-struct s_node_command *init_command_node();
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
-struct s_node_command *init_simple_command(struct parser_s *p);
+
 #endif

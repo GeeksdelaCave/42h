@@ -1,13 +1,9 @@
 #ifndef AST_SIMPLE_COMMAND_H
 # define AST_SIMPLE_COMMAND_H
-# include "../parser/grammar.h"
-struct s_node_command *find_assign(struct parser_s *p);
-struct s_node_command *find_redir(struct parser_s *p);
-struct s_node_command *find_word(struct parser_s *p);
-void simple_command_store(struct s_node_command *command, struct s_node_command *new_command);
-struct list_node_s *merge_command(struct parser_s *p);
-struct s_node_command *init_simple_command(struct parser_s *p);
-int check_redir(struct parser_s *p, struct s_node_command *command);
-int check_word(struct parser_s *p, struct s_node_command *command);
-int check_assign(struct parser_s *p, struct s_node_command *command);
+# include "ast.h"
+struct s_simple_cmd *init_simple_command(struct parser_s *p);
+void simple_command_store(struct s_simple_cmd *command, struct s_node_command *new_command);
+int find_assign(struct parser_s *p, struct s_simple_cmd *s_command);
+int find_redir(struct parser_s *p, struct s_simple_cmd *s_command);
+int find_word(struct parser_s *p, struct s_simple_cmd *s_command);
 #endif
