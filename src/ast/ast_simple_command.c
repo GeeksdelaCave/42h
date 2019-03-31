@@ -1,36 +1,31 @@
 #include "ast.h"
-#include "ast_simple_command.h"
-struct s_simple_cmd *init_simple_command(struct parser_s *p)
-{
-    struct s_simple_cmd *s_command = malloc(sizeof(struct s_simple_cmd));
-    int nb_child = check_simple_command(p);
-    s_command->child = nb_child;
-    s_command->type = SIMPLECOMMAND;
-    s_command->child_node = malloc(sizeof(struct s_node_command) * nb_child);
-    return s_command;
-}
 
 int check_simple_command(struct parser_s *p)
 {
     int nb_child = 0;
     struct list_node_s *pnode = p->nodes;
-    for(;pnode->next; pnode = pnode->next)
+    for(;pnode; pnode = pnode->next)
     {
         nb_child++;
     }
+    printf("NUMBER OF CHILD %d \n", nb_child);
     return nb_child;
 }
 
-void simple_command_store(struct s_simple_command *command, 
-struct s_node_command *new_command)
+struct s_simple_cmd *init_simple_command(struct parser_s *p)
 {
-    for(int i = 0; i < command->child; i++)
-    {
-        if(!command->child_node[i])
-        {
-            command->child_node[i] = new_command;   
-        }
-    }
+    struct s_simple_cmd *s_command = malloc(sizeof(struct s_simple_cmd));
+    s_command->child = 0;
+    s_command->type = SIMPLECOMMAND;
+    s_command->child_node = malloc(sizeof(struct s_node_command) * check_simple_command(p));
+    return s_command;
+}
+
+void simple_command_store(struct s_simple_cmd *command, struct s_node_command *new_command, int nb_child)
+{
+    printf("NEW COMMAND TYPE %d \n", new_command->type);
+    command->child_node[nb_child] = *new_command;   
+    printf("NEW COMMAND TYPE %d ||| %d \n", command->child_node[nb_child].type, nb_child);
 }
 
 int find_assign(struct parser_s *p, struct s_simple_cmd *s_command)
@@ -44,7 +39,8 @@ int find_assign(struct parser_s *p, struct s_simple_cmd *s_command)
   simple_command = init_command_node();
   simple_command->type = ASSIGN;
   simple_command->struct_type->assign = assign_node->node->assign;
-  simple_command_store(s_command, simple_command);
+  simple_command_store(s_command, simple_command,s_command->child);
+  s_command->child++;
   return 1;
 }
 
@@ -60,7 +56,8 @@ int find_redir(struct parser_s *p, struct s_simple_cmd *s_command)
     simple_command->type = REDIRECTION;
     simple_command->struct_type->redirection = redirection_node->
     node->redirection;
-    simple_command_store(s_command, simple_command);
+  simple_command_store(s_command, simple_command,s_command->child);
+  s_command->child++;
     return 1;
 }
 
@@ -75,6 +72,7 @@ int find_word(struct parser_s *p, struct s_simple_cmd *s_command)
     simple_command = init_command_node();
     simple_command->type = WORD1;
     simple_command->struct_type->word = word_node->node->word;
-    simple_command_store(s_command, simple_command);
+  simple_command_store(s_command, simple_command,s_command->child);
+  s_command->child++;
     return 1;
 }

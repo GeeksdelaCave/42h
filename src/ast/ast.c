@@ -93,20 +93,3 @@ void print_node(struct list_node_s *node)
     }
     printf("\n");
 }
-
-/*
-** init commande node
-*/
-struct s_node_command *init_command_node()
-{
-    struct s_node_command *new_node = malloc(sizeof(struct s_node_command));
-    if (new_node == NULL)
-    {
-        printf("fail init command\n");
-      return NULL;
-    }
-    new_node->type = -1;
-    new_node->struct_type = malloc(sizeof(union all_grammar));
-    new_node->next = NULL;
-    return new_node;
-}

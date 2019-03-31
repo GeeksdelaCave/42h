@@ -5,8 +5,8 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include "error.h"
-#include "ast_simple_command.h"
 #include "../parser/grammar.h"
+#include "ast_simple_command.h"
 
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
@@ -263,4 +263,11 @@ struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
 
+
+struct s_node_command *init_command_node();
+struct s_simple_cmd *init_simple_command(struct parser_s *p);
+void simple_command_store(struct s_simple_cmd *command, struct s_node_command *new_command,  int nb_child);
+int find_assign(struct parser_s *p, struct s_simple_cmd *s_command);
+int find_redir(struct parser_s *p, struct s_simple_cmd *s_command);
+int find_word(struct parser_s *p, struct s_simple_cmd *s_command);
 #endif
