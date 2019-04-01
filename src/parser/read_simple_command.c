@@ -8,7 +8,7 @@ int read_simple_command(struct parser_s *p)
   int tmp = p->cursor;
   if ((OneOrMany(read_prefix(p)) && ZeroOrMany(read_element(p))) || (ZeroOrMany(read_prefix(p)) && OneOrMany(read_element(p))))
   {
-    FILE *file = fopen("ast.txt", "w+");
+    FILE *file = fopen("ast.dot", "w+");
     struct s_simple_cmd *s_cmd = init_simple_command(p);
     fprintf(file, "AST {\n");
     fprintf(file, "    node [fontname=\"Arial\"];\n");
