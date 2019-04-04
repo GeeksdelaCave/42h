@@ -6,7 +6,11 @@ int check_simple_command(struct parser_s *p)
     struct list_node_s *pnode = p->nodes;
     for(;pnode; pnode = pnode->next)
     {
+        if((pnode->type == ASSIGN) || (pnode->type == WORD1) || 
+        (pnode->type == REDIRECTION))
+        {
         nb_child++;
+        }
     }
     printf("NUMBER OF CHILD %d \n", nb_child);
     return nb_child;
@@ -36,6 +40,7 @@ int find_assign(struct parser_s *p, struct s_simple_cmd *s_command)
   {
       return 0;
   }
+  printf("%s :::::::%s\n", assign_node->node->assign->id , assign_node->node->assign->num);
   simple_command = init_command_node();
   simple_command->type = ASSIGN;
   simple_command->struct_type->assign = assign_node->node->assign;

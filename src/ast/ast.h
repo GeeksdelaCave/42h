@@ -7,7 +7,8 @@
 # include "error.h"
 #include "../parser/grammar.h"
 #include "ast_simple_command.h"
-
+#include "ast_command.h"
+#include "ast_pipeline.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
     exit(ERROR_MEM)							\
@@ -15,16 +16,7 @@
 -------------------------------------------------------------------------
 ----------------------- VERSION NEED TO DEV -----------------------------
 -------------------------------------------------------------------------
--------------------------------------------------------------------------
-*/
-
-/*
-** node input
-*/
-struct s_node_input
-{
-  struct s_node_list *list;
-};
+-------------------------------------------------------------------------*/
 
 /*
 ** Enum type for all grammar
@@ -49,7 +41,12 @@ enum type_grammar
   ELSECLAUSE,
   DOGROUP,
   CASECLAUSE,
-  CASEITEM
+  CASEITEM,
+  PIPE,
+  EXCLA,
+  AND,
+  OR,
+  S_AND
 };
 
 union all_grammar
@@ -60,7 +57,7 @@ union all_grammar
     struct s_node_command *command;
     struct s_simple_cmd *simple_c;
     //struct s_node_shell_command *shell_c;
-    //struct s_node_funcdec_command *funcdec_c;
+    //struct s_node_funcdec_command *funcdec;
     //struct s_node_prefix *prefix;
     struct s_node_assign *assign;
     struct s_node_redirection *redirection;
@@ -73,6 +70,14 @@ union all_grammar
     struct s_do_group *dogroup;
     struct s_node_until *until;
     struct s_node_word *word;
+    struct s_symbole *symbole;
+};
+
+
+struct s_symbole
+{
+    enum type_grammar type;
+    char *symbole;
 };
 
 /*
@@ -83,6 +88,7 @@ struct list_node_s
   enum type_grammar type;
   union all_grammar *node;
   struct list_node_s *next;
+  struct list_node_s *prev;
 };
 struct s_node_list
 {
@@ -106,10 +112,8 @@ struct s_node_and_or
 */
 struct s_node_pipeline
 {
-  int exlamation;
   struct s_node_command *commands;
-  char *pipes;
-  struct s_node_pipeline *next;
+  int child;
 };
 
 
@@ -118,8 +122,10 @@ struct s_node_pipeline
 */
 struct s_node_command
 {
-  enum type_grammar type;
-  union all_grammar *struct_type;
+    int excla;
+    enum type_grammar type;
+    union all_grammar *struct_type;
+    int pipe;
 };
 
 
@@ -132,6 +138,16 @@ struct s_simple_cmd
   struct s_node_command *child_node;
   int child;
 };
+
+/*
+**
+*/
+/*
+struct s_node_funcdec_command
+{
+
+}*/
+
 
 /*
 ** Assign Struct
@@ -258,16 +274,17 @@ void list_node_store(struct list_node_s *list_node, union all_grammar *s_node,
 		     enum type_grammar type);
 struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum 
 				     type_grammar type);
-void eat_list_node(struct parser_s *p);
+void eat_list_node(struct parser_s *p, enum type_grammar type);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
 
+int check_pipeline(struct parser_s *p);
+struct s_node_pipeline *init_pipeline(struct parser_s *p);
+int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline);
+void pipeline_store(struct s_node_pipeline *pipeline, struct s_node_command *new_command, int nb_child);
+struct s_node_pipeline *init_pipeline(struct parser_s *p);
+int check_pipeline(struct parser_s *p);
 
-struct s_node_command *init_command_node();
-struct s_simple_cmd *init_simple_command(struct parser_s *p);
-void simple_command_store(struct s_simple_cmd *command, struct s_node_command *new_command,  int nb_child);
-int find_assign(struct parser_s *p, struct s_simple_cmd *s_command);
-int find_redir(struct parser_s *p, struct s_simple_cmd *s_command);
-int find_word(struct parser_s *p, struct s_simple_cmd *s_command);
+
 #endif

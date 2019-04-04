@@ -1,4 +1,4 @@
-AST {
+digraph AST {
     node [fontname="Arial"];
     4 -> 6;
     4 -> 6;

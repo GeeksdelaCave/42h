@@ -10,11 +10,11 @@ int read_simple_command(struct parser_s *p)
   {
     FILE *file = fopen("ast.dot", "w+");
     struct s_simple_cmd *s_cmd = init_simple_command(p);
-    fprintf(file, "AST {\n");
+    fprintf(file, "digraph AST {\n");
     fprintf(file, "    node [fontname=\"Arial\"];\n");
-    
+    print_node(p->nodes);
     while(find_assign(p, s_cmd)|| find_redir(p, s_cmd) || find_word(p, s_cmd));
-
+    
     /*dot*/
     for (int i = 0; i < s_cmd->child; i++)
     {
@@ -22,6 +22,9 @@ int read_simple_command(struct parser_s *p)
     }
     fprintf(file, "}\n");
     printf("AST SIMPLE COMMAND SUCCESS\n");
+    union all_grammar *grammar = malloc(sizeof(union all_grammar));
+    grammar->simple_c = s_cmd;
+    list_node_store(p->nodes, grammar, SIMPLECOMMAND);
     return 1;
   }
   printf("AST SIMPLE COMMAND FAIL !!!!!!!!!!!!!!!\n");
