@@ -32,18 +32,18 @@ int parser_readchar(struct parser_s *p, char c)
 int parser_readtext(struct parser_s *p, char *text)
 {
   char *cmp = p->input + p->cursor;
-  
+  int tmp = p->cursor;
   for(int i = 0; text[i]; i++)
-    {
-        ////printf("x = %c y = %c \n",cmp[i], text[i] );
+  {
     if(cmp[i] != text[i])
-      {
-        return 0;
-      }
-      p->cursor++;
+    {
+      p->cursor = tmp;
+      return 0;
     }
-    //printf("=======================================%s ============\n", text);
-    return 1;
+    p->cursor++;
+  }
+  //printf("=======================================%s ============\n", text);
+  return 1;
 }
 /**
  ** \brief True if the char
