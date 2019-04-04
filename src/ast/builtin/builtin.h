@@ -8,7 +8,7 @@
 ** Func pointeur i use everywere
 */
 
-typedef int (*fct_builtin)(char *arg[]);
+typedef int (*func_builtin)(char *arg[]);
 
 struct shell
 {

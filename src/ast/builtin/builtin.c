@@ -12,22 +12,22 @@ enum { NB_BUILTIN = 1 };
 struct s_builtin_tab
 {
     const char *name;
-    fct_builtin func;
+    func_builtin func;
 };
 
-static struct s_builtin_tab builtin_tab[NB_BUILTIN]
+static struct s_builtin_tab s_builtin_tab[NB_BUILTIN] =
 {
-    {"exit", builtin_exit};
+    {"exit", builtin_exit}
 };
 
-int is_a_builtin(const char *name)
+func_builtin is_a_builtin(const char *name)
 {
-    for (int i = 0; i < NB_BUILTIN; ++)
+    for (int i = 0; i < NB_BUILTIN; ++i)
     {
-        if (!strcmp(name, builtin_tab[i].name))
+        if (!strcmp(name, s_builtin_tab[i].name))
         {
-            assert(builtin_tab[i].func);
-            return builtin_tab[i].func;
+            assert(s_builtin_tab[i].func);
+            return s_builtin_tab[i].func;
         }
     }
     assert(0);
