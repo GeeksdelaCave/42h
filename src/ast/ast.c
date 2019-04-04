@@ -73,23 +73,8 @@ void eat_list_node(struct parser_s *p, enum type_grammar type)
     else
     {
         free(pnode);
-    }
-    
+    }   
 }
-
-/*
-** check symbole node and get if true
-*/
-/*
-struct list_node_s *ast_check_symbole(struct parser_s *p, enum type_grammar type)
-{
-  
-  if (!pnode){
-    return false;
-  }
-  eat_list_node(p, type);
-  return pnode;
-}*/
 
 /*
 ** check node and get if true
@@ -98,12 +83,32 @@ struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
     if (!pnode){
-      return false;
+      return NULL;
     }
     eat_list_node(p, type);
     return pnode;
 }
 
+/*
+** check sym and get if true
+*/
+int ast_check_sym(struct parser_s *p, enum type_grammar type)
+{
+    if(p->nodes->type != type)
+    {
+        printf("LOL *********************\n");
+        return 0;
+    }
+
+    if(p->nodes->next)
+    {
+        struct list_node_s *sym = p->nodes;
+        p->nodes->next->prev = NULL;
+        free(p->nodes);
+        p->nodes = sym;   
+    } 
+    return 1;
+}
 
 void print_node(struct list_node_s *node)
 {
@@ -116,10 +121,4 @@ void print_node(struct list_node_s *node)
             printf("\n");    
     }
     printf("\n");
-    
-    /*for(; node; node = node->prev)
-    {
-        printf("INVERSE %d\n", node->type);
-    }*/
 }
-

@@ -23,30 +23,31 @@
 */
 enum type_grammar
 {
-  LIST,
-  ANDOR,
-  PIPELINE,
-  COMMAND,
-  SIMPLECOMMAND,
-  FUNDEC,
-  ASSIGN,
-  REDIRECTION,
-  WORD1,
-  COUMPOUND,
-  RULEFOR,
-  RULEIF,
-  RULEWHILE,
-  RULEUNTIL,
-  RULECASE,
-  ELSECLAUSE,
-  DOGROUP,
-  CASECLAUSE,
-  CASEITEM,
-  PIPE,
-  EXCLA,
-  AND,
-  OR,
-  S_AND
+  LIST,         //0
+  ANDOR,        //1
+  PIPELINE,     //2
+  COMMAND,      //3
+  SIMPLECOMMAND,//4
+  FUNDEC,       //5
+  ASSIGN,       //6
+  REDIRECTION,  //7
+  WORD1,        //8
+  COUMPOUND,    //9
+  RULEFOR,      //10
+  RULEIF,       //11
+  RULEWHILE,    //12
+  RULEUNTIL,    //13
+  RULECASE,     //14
+  ELSECLAUSE,   //15
+  DOGROUP,      //16
+  CASECLAUSE,   //17
+  CASEITEM,     //18
+  PIPE,         //19
+  EXCLA,        //20
+  AND,          //21
+  OR,           //22
+  S_AND,        //23
+  VIRGULE       //24
 };
 
 union all_grammar
@@ -56,12 +57,9 @@ union all_grammar
     struct s_node_pipeline *pipeline;
     struct s_node_command *command;
     struct s_simple_cmd *simple_c;
-    //struct s_node_shell_command *shell_c;
     //struct s_node_funcdec_command *funcdec;
-    //struct s_node_prefix *prefix;
     struct s_node_assign *assign;
     struct s_node_redirection *redirection;
-    //struct s_node_element *element;
     struct s_node_if *node_if;
     struct s_node_for *node_for;
     struct s_node_while *node_while;
@@ -76,7 +74,6 @@ union all_grammar
 
 struct s_symbole
 {
-    enum type_grammar type;
     char *symbole;
 };
 
@@ -282,9 +279,10 @@ struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
 int check_pipeline(struct parser_s *p);
 struct s_node_pipeline *init_pipeline(struct parser_s *p);
 int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline);
-void pipeline_store(struct s_node_pipeline *pipeline, struct s_node_command *new_command, int nb_child);
+void pipeline_store(struct s_node_pipeline *pipeline, struct s_node_command 
+    *new_command, int nb_child);
 struct s_node_pipeline *init_pipeline(struct parser_s *p);
 int check_pipeline(struct parser_s *p);
-
+int ast_check_sym(struct parser_s *p, enum type_grammar type);
 
 #endif

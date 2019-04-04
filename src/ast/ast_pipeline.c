@@ -8,7 +8,7 @@ int check_pipeline(struct parser_s *p)
         if((pnode->type == COMMAND))
             nb_child++;
     }
-    printf("NUMBER OF CHILD %d \n", nb_child);
+    printf("NUMBER OF CHILD ---- %d \n", nb_child);
     return nb_child;
 }
 
@@ -23,23 +23,26 @@ struct s_node_pipeline *init_pipeline(struct parser_s *p)
 void pipeline_store(struct s_node_pipeline *pipeline, struct s_node_command *new_command, int nb_child)
 {
     printf("NEW COMMAND TYPE %d \n", new_command->type);
-    pipeline->commands[nb_child] = *new_command;   
+    pipeline->commands[nb_child] = *new_command;
     printf("NEW COMMAND TYPE %d ||| %d \n", pipeline->commands[nb_child].type, nb_child);
 }
 
 int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline)
 {
-  
-  struct list_node_s *command_node = ast_check_node(p, COMMAND);
-  struct s_node_pipeline *pipeline;
-  if(!command_node)
-  {
-      return 0;
-  }
-  pipeline = init_pipeline(p);
-  pipeline->commands[s_pipeline->child] = *command_node->node->command;
-  pipeline_store(s_pipeline, command_node->node->command ,s_pipeline->child);
-  s_pipeline->child++;
-  return 1;
+    int excla = ast_check_sym(p, EXCLA);
+    printf("JE REGARDE %d\n", excla);
+    struct list_node_s *command_node = ast_check_node(p, COMMAND);
+    int pipe = ast_check_sym(p, PIPE);
+    struct s_node_pipeline *pipeline;
+    if(!command_node)
+    {
+        return 0;
+    }
+    pipeline = init_pipeline(p);
+    pipeline->commands[s_pipeline->child] = *command_node->node->command;
+    pipeline->commands[s_pipeline->child].excla = excla;
+    pipeline->commands[s_pipeline->child].pipe = pipe;
+    pipeline_store(s_pipeline, &pipeline->commands[s_pipeline->child], s_pipeline->child);
+    s_pipeline->child++;
+    return 1;
 }
-
