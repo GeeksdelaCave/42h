@@ -24,6 +24,6 @@ struct shell
 
 */
 
-int exit_builtin(char *argv[]);
+int builtin_exit(char *argv[]);
 
 # endif

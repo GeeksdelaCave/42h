@@ -17,7 +17,7 @@ struct s_builtin_tab
 
 static struct s_builtin_tab builtin_tab[NB_BUILTIN]
 {
-    {"exit", exit_builtin};
+    {"exit", builtin_exit};
 };
 
 int is_a_builtin(const char *name)
