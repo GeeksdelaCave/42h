@@ -1,6 +1,11 @@
 # include <string.h>
 # include <assert.h>
 # include "builtin.h"
+/*
+**@author BA Souleymane
+**
+**builtin the function c
+*/
 
 enum { NB_BUILTIN = 1 };
 
