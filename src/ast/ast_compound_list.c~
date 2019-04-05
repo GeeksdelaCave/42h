@@ -1,0 +1,8 @@
+#include "ast.h"
+struct s_node_compound_list *init_compound(struct parser_s *p)
+{
+    struct s_node_pipeline *s_pipline = malloc(sizeof(struct s_node_pipeline));
+    s_pipline->commands = malloc(sizeof(struct s_node_command) * check_pipeline(p));
+    s_pipline->child = 0;
+    return s_pipline;
+}

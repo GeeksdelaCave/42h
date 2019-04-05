@@ -38,7 +38,7 @@ int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline)
     {
         return 0;
     }
-    pipeline = init_pipeline(p);
+    pipeline = malloc(sizeof(struct s_node_pipeline));
     pipeline->commands[s_pipeline->child] = *command_node->node->command;
     pipeline->commands[s_pipeline->child].excla = excla;
     pipeline->commands[s_pipeline->child].pipe = pipe;

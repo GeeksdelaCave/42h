@@ -9,6 +9,7 @@
 #include "ast_simple_command.h"
 #include "ast_command.h"
 #include "ast_pipeline.h"
+#include "ast_compound_list.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
     exit(ERROR_MEM)							\
@@ -47,7 +48,7 @@ enum type_grammar
   AND,          //21
   OR,           //22
   S_AND,        //23
-  VIRGULE       //24
+  VIRGULE,       //24
 };
 
 union all_grammar
@@ -100,8 +101,10 @@ struct s_node_list
 struct s_node_and_or
 {
   struct s_node_pipeline *pipeline;
-  char *and_or;
-  struct s_node_and_or *next;
+  //char *and_or;
+  //struct s_node_and_or *next;
+  int simple_and;
+  int virgule;
 };
 
 /*
@@ -175,7 +178,7 @@ enum e_red_type
   R_LESSGREAT,            /* <> */
   R_CLOBBER,              /* >| */
   R_DLESS,                /* << */
-  R_DLESSDASH             /* <<-*/
+  R_DLESSDASH,             /* <<-*/
 };
 
 /*
@@ -242,8 +245,7 @@ struct s_node_case
 struct s_node_compound_list
 {
     struct s_node_and_or *and_or;
-    char *mode_exec;
-    struct s_node_compound_list *next;
+  int child;
 };
 
 
@@ -285,4 +287,8 @@ struct s_node_pipeline *init_pipeline(struct parser_s *p);
 int check_pipeline(struct parser_s *p);
 int ast_check_sym(struct parser_s *p, enum type_grammar type);
 
+struct s_node_compound_list *init_compound(struct parser_s *p);
+int check_compound_list(struct parser_s *p);
+void compound_list_store(struct s_node_compound_list *cpd, struct s_node_and_or *new_and_or, int nb_child);
+int find_and_or(struct parser_s *p, struct s_node_compound_list *s_cpd);
 #endif
