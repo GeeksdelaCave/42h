@@ -1,7 +1,8 @@
 /**
  ** \file  read_and_or.c
  */
-#include "grammar.h" 
+#include "grammar.h"
+#include "../dot/generate_dot_file_ast.h"
 /**
  ** \brief return true if read and
  **  or
@@ -34,7 +35,8 @@ int read_and_or(struct parser_s *p)
         grammar->andor = andor;
         list_node_store(p->nodes, grammar, ANDOR);
         printf("*****REUSSI ANDOR *******\n");
-        return 1;
+	print_and_or_to_pipeline(andor, fopen("ast.dot", "w+"));
+	return 1;
     }
     p->cursor = tmp;
     return 0;

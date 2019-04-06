@@ -93,6 +93,8 @@ struct s_node_list
 {
   struct s_node_and_or *and_or;
   char *mode_exec;
+  int child;
+  enum type_grammar type;
   struct s_node_list *next;
 };
 
@@ -113,10 +115,11 @@ struct s_node_and_or
 */
 struct s_node_pipeline
 {
-    int b_and;
-    int b_or;
-    struct s_node_command *commands;
-    int child;
+  int b_and;
+  int b_or;
+  enum type_grammar type;
+  struct s_node_command *commands;
+  int child;
 };
 
 
