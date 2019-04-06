@@ -1,0 +1,12 @@
+AST
+
+1)Utilisation de fifo pour enregistrer les commandes(on garde l'idée de list_node)
+
+2)Récupérer les commandes grâce à fifo, on récupère tjs le 1e s'il respecte le grammaire. CHECK->GET->EAT->RETURN_GET
+
+3)On utilise la structure fifo pour les grammars de haut-niveau.
+    exp: andor, pipeline, compound_list
+
+4)les structures de grammars de bas-niveau, on reprends celui qui sont dans le parseur.
+
+5) surpprimer les noeuds intermédierres.

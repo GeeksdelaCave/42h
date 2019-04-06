@@ -1,9 +1,14 @@
-#include "ast.h"
-
-/*
-case_item:
-      ['('] WORD ('|' WORD)* ')' ('\n')*  [ compound_list ]
-*/
+/**
+ ** \file  read_case_item.c
+ */
+#include "grammar.h" 
+/**
+ ** \brief return true if read case item
+ **
+ ** \param p structure of parser
+ **
+ ** \return true of false
+ */
 
 int read_case_item(struct parser_s *p)
 {
@@ -15,11 +20,10 @@ int read_case_item(struct parser_s *p)
        && ZeroOrOne(read_compound_list(p))) 
       )
     {
-      printf("AST read CASE ITEM : SUCCES\n");
+      //printf("AST read CASE ITEM : SUCCES\n");
       return 1;
     }
-    printf("AST read CASE ITEM : FAIL\n");
+    //printf("AST read CASE ITEM : FAIL\n");
     p->cursor = tmp;
     return 0;
 }
-

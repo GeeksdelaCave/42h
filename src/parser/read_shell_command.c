@@ -1,4 +1,5 @@
-#include "ast.h"
+#include "grammar.h" 
+
 int read_shell_command(struct parser_s *p)
 {
     int tmp = p->cursor;
@@ -10,10 +11,10 @@ int read_shell_command(struct parser_s *p)
       || read_case(p)
       || read_if(p))
     {
-      printf("AST READ_SHELL_COMMAND Success \n");
+      //printf("AST READ_SHELL_COMMAND Success \n");
       return  1;
     }
-    printf("AST READ SHELL COMMANDE FAIL \n" );    
+    //printf("AST READ SHELL COMMANDE FAIL \n" );    
     p->cursor = tmp;
   return 0;
 }
