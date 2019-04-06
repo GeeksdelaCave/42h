@@ -38,10 +38,10 @@ int find_and_or(struct parser_s *p, struct s_node_compound_list *s_cpd)
     return 0;
   }
   cpd = malloc(sizeof(struct s_node_compound_list));
-  cpd->and_or[s_cpd->child] = *and_or->node->andor;
-  cpd->and_or[s_cpd->child].simple_and = simple_and;
-  cpd->and_or[s_cpd->child].virgule = virgule;
-  compound_list_store(s_cpd, &cpd->and_or[s_cpd->child], s_cpd->child);
+  cpd->and_or = and_or->node->andor;
+  cpd->and_or->simple_and = simple_and;
+  cpd->and_or->virgule = virgule;
+  compound_list_store(s_cpd, cpd->and_or, s_cpd->child);
   s_cpd->child++;
   return 1;
 }

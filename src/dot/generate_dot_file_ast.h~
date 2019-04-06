@@ -1,0 +1,11 @@
+#define GENERATE_DOT_FILE_AST_H
+#ifndef GENERATE_DOT_FILE_AST_H
+#include "../parser/grammar.h"
+void my_print_ast(struct parser_s *p);
+void print_simple_command(struct s_simple_cmd *simple_cmd);
+void print_command(struct s_node_command *cmd);
+void print_pipeline_to_command(struct s_node_pipeline *pipeline);
+void print_and_or_to_pipeline(struct s_node_and_or *and_or);
+void print_list_to_and_or(struct s_node_list *list);
+void my_print_ast(struct parser_s *p);
+#endif

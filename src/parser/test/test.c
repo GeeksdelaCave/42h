@@ -3,10 +3,10 @@
 int main()
 {
   //test_ANDOR();
-  //test_PIPELINE();
+  test_PIPELINE();
   //test_INPUT();
   //test_INPUT();
-  test_COMMAND();
+  //test_SIMPLECOMMAND();
   printf("\033[0;32m");
   printf("All tests OK!\n");
   printf("\033[0m\n");

@@ -1,4 +1,5 @@
-#include "grammar.h" 
+#include "grammar.h"
+#include "../dot/generate_dot_file_ast.h"
 /*
   pipeline: ['!'] command ('|' ('\n')* command)*
 */
@@ -23,8 +24,9 @@ int read_pipeline(struct parser_s *p)
         struct s_node_pipeline *pipeline = init_pipeline(p);
         print_node(p->nodes);
         while(find_command(p, pipeline));
-        print_pipeline(pipeline);
-        return 1;
+	print_pipeline(pipeline);
+	//print_pipeline_to_command_ast(pipeline, fopen("ast.dot", "w+"));
+	return 1;
     }
     p->cursor = tmp;
     printf("AST PIPELINE FAIL \n");
