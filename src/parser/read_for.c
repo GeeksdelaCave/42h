@@ -28,7 +28,7 @@ int read_word_in_for(struct parser_s *p)
 {
     if(read_virgule(p))
     {
-        printf("IL Y A UN VIRGULE===================");
+        //printf("IL Y A UN VIRGULE===================");
         return 1;
     }
     else if(ZeroOrMany(parser_readchar(p, '\n')) && 
@@ -37,9 +37,9 @@ int read_word_in_for(struct parser_s *p)
     ZeroOrMany(read_for_word(p)) && ZeroOrMany(read_spaces(p)) && 
     ((parser_readchar(p, ';') && ZeroOrMany(read_spaces(p))) || (parser_readchar(p, '\n') && ZeroOrMany(read_spaces(p)) )))
     {
-        printf("SUCCES ===========================================");
+        //printf("SUCCES ===========================================");
         return 1;
     }
-    printf("FAIL IN WORD IN FOR\n");
+    //printf("FAIL IN WORD IN FOR\n");
     return 0;
 }

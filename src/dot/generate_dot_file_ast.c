@@ -21,7 +21,7 @@ void print_pipeline_to_command_ast(struct s_node_pipeline *pipeline, FILE *file)
 {
   for (int i = 0; i < pipeline->child; i++)
   {
-    fprintf(file,  "    %s -> %d%d;\n", "P", pipeline->commands[i].type,i);
+    fprintf(file,  "    %s -> %d%d;\n", "P", pipeline->commands[i].type, i);
     print_command_ast(&pipeline->commands[i], file, i);
    }
 }

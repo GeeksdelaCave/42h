@@ -17,20 +17,20 @@ int check_compound_list(struct parser_s *p)
       if((pnode->type == ANDOR))
     nb_child++;
     }
-    printf("NUMBER OF CHILD ---- %d \n", nb_child);
+    //printf("NUMBER OF CHILD ---- %d \n", nb_child);
     return nb_child;
 }
 void compound_list_store(struct s_node_compound_list *cpd, struct s_node_and_or *new_and_or, int nb_child)
 {
   cpd->and_or[nb_child] = *new_and_or;
-  printf("NEW AND_OR %d \n", cpd->and_or[nb_child].virgule);
+  //printf("NEW AND_OR %d \n", cpd->and_or[nb_child].virgule);
 }
 
 int find_and_or(struct parser_s *p, struct s_node_compound_list *s_cpd)
 {
   struct list_node_s *and_or = ast_check_node(p, ANDOR);
   int simple_and = ast_check_sym(p, S_AND);
-  printf("JE REGARDE %d\n", simple_and);
+  //printf("JE REGARDE %d\n", simple_and);
   int virgule = ast_check_sym(p, VIRGULE);
   struct s_node_compound_list *cpd;
   if(!and_or)

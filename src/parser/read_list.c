@@ -12,10 +12,10 @@ int read_list(struct parser_s *p)
       ZeroOrMany(read_spaces(p)) && 
       (ZeroOrOne(read_virgule(p)) || ZeroOrOne(read_and(p))))
    {
-     printf("AST LIST Success \n");
+     //printf("AST LIST Success \n");
      return 1;
    }
   p->cursor = tmp;
-  printf("AST LIst FAil \n");
+  //printf("AST LIst FAil \n");
   return 0;
 }

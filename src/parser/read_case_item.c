@@ -20,10 +20,10 @@ int read_case_item(struct parser_s *p)
        && ZeroOrOne(read_compound_list(p))) 
       )
     {
-      printf("AST read CASE ITEM : SUCCES\n");
+      //printf("AST read CASE ITEM : SUCCES\n");
       return 1;
     }
-    printf("AST read CASE ITEM : FAIL\n");
+    //printf("AST read CASE ITEM : FAIL\n");
     p->cursor = tmp;
     return 0;
 }

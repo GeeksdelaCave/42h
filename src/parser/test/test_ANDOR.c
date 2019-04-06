@@ -11,6 +11,6 @@ void test_ANDOR()
      assert(read_pipeline(p) == 1); */
   struct parser_s *p1= parser_new_from_string(str[1]);
   assert(read_and_or(p1) == 1);
-  printf("%s \n", p1->input);
-  print_node(p1->nodes);
+  //printf("%s \n", p1->input);
+  // print_node(p1->nodes);
 }

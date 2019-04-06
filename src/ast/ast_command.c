@@ -8,7 +8,7 @@ struct s_node_command *init_command_node()
     struct s_node_command *new_node = malloc(sizeof(struct s_node_command));
     if (new_node == NULL)
     {
-        printf("fail init command\n");
+        //printf("fail init command\n");
       return NULL;
     }
     new_node->type = -1;

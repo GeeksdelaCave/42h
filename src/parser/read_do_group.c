@@ -10,10 +10,10 @@ int read_do_group(struct parser_s *p)
   if (parser_readtext(p, "do") && read_compound_list(p) && 
        parser_readtext(p, "done"))
     {
-      printf("AST read DOGROUP : SUCCES\n");
+      //printf("AST read DOGROUP : SUCCES\n");
       return 1;
     }
-  printf("AST read DOGROUP : FAIL\n");
+  //printf("AST read DOGROUP : FAIL\n");
   p->cursor = tmp;
   return 0;
 }

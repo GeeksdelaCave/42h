@@ -17,13 +17,13 @@ int read_compound_list(struct parser_s *p)
     ZeroOrOne(parser_readchar(p, '\n'))) && ZeroOrMany(read_spaces(p)) && 
     ZeroOrOne(ZeroOrMany(parser_readchar(p, '\n')))))
       {
-        printf("AST read compound list : SUCCES\n");
+        //printf("AST read compound list : SUCCES\n");
         struct s_node_compound_list *cpd = init_compound(p);
         print_node(p->nodes);
         while(find_and_or(p, cpd));
         return 1;
       }
-    printf("AST read compound list : FAIL\n");
+    //printf("AST read compound list : FAIL\n");
     p->cursor = tmp;
     return 0;
 }

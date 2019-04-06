@@ -8,7 +8,7 @@ int check_andor(struct parser_s *p)
         if((pnode->type == PIPELINE))
             nb_child++;
     }
-    printf("---------------------------------------------------------------------------------------------------------------NUMBER OF CHILD +++ %d \n", nb_child);
+    //printf("---------------------------------------------------------------------------------------------------------------NUMBER OF CHILD +++ %d \n", nb_child);
     return nb_child;
 }
 

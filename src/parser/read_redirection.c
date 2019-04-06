@@ -76,7 +76,7 @@ int read_redirection(struct parser_s *p)
       char *num = parser_get_capture(p, "num");
       char *chevron = parser_get_capture(p, "chevron");
       char *word = parser_get_capture(p, "word");
-      printf("READ_REDIRECTION %s %s  %s\n", num,chevron, word);
+      //printf("READ_REDIRECTION %s %s  %s\n", num,chevron, word);
       
       // il faut réfléchir à le symbole redirection sinon le reste marche
      

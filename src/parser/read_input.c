@@ -11,10 +11,10 @@ int read_input(struct parser_s *p)
       {
         /* on initialise AST ICI*/
 
-      printf("AST INPUT Success\n");
+      //printf("AST INPUT Success\n");
       return 1;
     }
-  printf("AST INPUT Fail\n");
+  //printf("AST INPUT Fail\n");
 
     p->cursor = tmp;
   return 0;

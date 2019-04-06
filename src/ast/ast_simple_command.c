@@ -12,7 +12,7 @@ int check_simple_command(struct parser_s *p)
         nb_child++;
         }
     }
-    printf("NUMBER OF CHILD %d \n", nb_child);
+    //printf("NUMBER OF CHILD %d \n", nb_child);
     return nb_child;
 }
 
@@ -27,9 +27,9 @@ struct s_simple_cmd *init_simple_command(struct parser_s *p)
 
 void simple_command_store(struct s_simple_cmd *command, struct s_node_command *new_command, int nb_child)
 {
-    printf("NEW COMMAND TYPE %d \n", new_command->type);
+    //printf("NEW COMMAND TYPE %d \n", new_command->type);
     command->child_node[nb_child] = *new_command;   
-    printf("NEW COMMAND TYPE %d ||| %d \n", command->child_node[nb_child].type, nb_child);
+    //printf("NEW COMMAND TYPE %d ||| %d \n", command->child_node[nb_child].type, nb_child);
 }
 
 int find_assign(struct parser_s *p, struct s_simple_cmd *s_command)
@@ -40,7 +40,7 @@ int find_assign(struct parser_s *p, struct s_simple_cmd *s_command)
   {
       return 0;
   }
-  printf("%s :::::::%s\n", assign_node->node->assign->id , assign_node->node->assign->num);
+  //printf("%s :::::::%s\n", assign_node->node->assign->id , assign_node->node->assign->num);
   simple_command = init_command_node();
   simple_command->type = ASSIGN;
   simple_command->struct_type->assign = assign_node->node->assign;

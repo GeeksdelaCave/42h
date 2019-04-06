@@ -105,11 +105,11 @@ void print_node(struct list_node_s *node)
 {
     for(; node; node = node->next)
     {
-        printf("TYPE : %d ", node->type);
-        if(node->prev)
-            printf("LE PREV : %d\n", node->prev->type);
-        else
-            printf("\n");    
+        //printf("TYPE : %d ", node->type);
+        //if(node->prev)
+            //printf("LE PREV : %d\n", node->prev->type);
+        //else
+            //printf("\n");    
     }
-    printf("\n");
+    //printf("\n");
 }
