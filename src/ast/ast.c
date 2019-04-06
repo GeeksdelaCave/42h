@@ -32,7 +32,6 @@ void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, e
   list_node->type = type;
   list_node->node = s_node;
   list_node->next->prev = list_node;
-  printf("----%d\n", list_node->type);
 }
 
 /*
@@ -94,19 +93,11 @@ struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type)
 */
 int ast_check_sym(struct parser_s *p, enum type_grammar type)
 {
-    if(p->nodes->type != type)
-    {
-        printf("LOL *********************\n");
-        return 0;
+    struct list_node_s *pnode = list_node_lookup(p->nodes, type);
+    if (!pnode){
+      return 0;
     }
-
-    if(p->nodes->next)
-    {
-        struct list_node_s *sym = p->nodes;
-        p->nodes->next->prev = NULL;
-        free(p->nodes);
-        p->nodes = sym;   
-    } 
+    eat_list_node(p, type); 
     return 1;
 }
 

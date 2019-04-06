@@ -9,6 +9,7 @@
 #include "ast_simple_command.h"
 #include "ast_command.h"
 #include "ast_pipeline.h"
+#include "ast_andor.h"
 #include "ast_compound_list.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
@@ -48,7 +49,7 @@ enum type_grammar
   AND,          //21
   OR,           //22
   S_AND,        //23
-  VIRGULE,       //24
+  VIRGULE       //24
 };
 
 union all_grammar
@@ -92,9 +93,7 @@ struct s_node_list
 {
   struct s_node_and_or *and_or;
   char *mode_exec;
-  int child;
   struct s_node_list *next;
-  int type;
 };
 
 /*
@@ -102,13 +101,11 @@ struct s_node_list
 */
 struct s_node_and_or
 {
-  struct s_node_pipeline *pipeline;
-  //char *and_or;
-  //struct s_node_and_or *next;
-  int child;
-  int simple_and;
-  int virgule;
-  int type;
+    struct s_node_pipeline *pipelines;
+    int simple_and;
+    int virgule;
+    int type;
+    int child;  
 };
 
 /*
@@ -116,9 +113,10 @@ struct s_node_and_or
 */
 struct s_node_pipeline
 {
-  struct s_node_command *commands;
-  int child;
-  int type;
+    int b_and;
+    int b_or;
+    struct s_node_command *commands;
+    int child;
 };
 
 
@@ -132,6 +130,8 @@ struct s_node_command
     union all_grammar *struct_type;
     int pipe;
 };
+
+
 /*
 ** node simple commands
 */
@@ -181,7 +181,7 @@ enum e_red_type
   R_LESSGREAT,            /* <> */
   R_CLOBBER,              /* >| */
   R_DLESS,                /* << */
-  R_DLESSDASH,             /* <<-*/
+  R_DLESSDASH             /* <<-*/
 };
 
 /*
@@ -248,7 +248,7 @@ struct s_node_case
 struct s_node_compound_list
 {
     struct s_node_and_or *and_or;
-  int child;
+    int child;
 };
 
 
@@ -280,18 +280,6 @@ void eat_list_node(struct parser_s *p, enum type_grammar type);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
-
-int check_pipeline(struct parser_s *p);
-struct s_node_pipeline *init_pipeline(struct parser_s *p);
-int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline);
-void pipeline_store(struct s_node_pipeline *pipeline, struct s_node_command 
-    *new_command, int nb_child);
-struct s_node_pipeline *init_pipeline(struct parser_s *p);
-int check_pipeline(struct parser_s *p);
 int ast_check_sym(struct parser_s *p, enum type_grammar type);
 
-struct s_node_compound_list *init_compound(struct parser_s *p);
-int check_compound_list(struct parser_s *p);
-void compound_list_store(struct s_node_compound_list *cpd, struct s_node_and_or *new_and_or, int nb_child);
-int find_and_or(struct parser_s *p, struct s_node_compound_list *s_cpd);
 #endif

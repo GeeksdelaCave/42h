@@ -18,6 +18,8 @@ struct s_node_command *init_command_node()
 
 int find_s_command(struct parser_s *p)
 {
+    int excla = ast_check_sym(p, EXCLA);
+    int pipe = ast_check_sym(p, PIPE);
     struct list_node_s *command_node = ast_check_node(p, SIMPLECOMMAND);
     struct s_node_command *command;
     if(!command_node)
@@ -27,6 +29,8 @@ int find_s_command(struct parser_s *p)
     command = init_command_node();
     command->type = SIMPLECOMMAND;
     command->struct_type->command = command_node->node->command;
+    command->excla = excla;
+    command->pipe = pipe;
     union all_grammar *grammar = malloc(sizeof(union all_grammar));
     grammar->command = command;
     list_node_store(p->nodes, grammar, COMMAND);

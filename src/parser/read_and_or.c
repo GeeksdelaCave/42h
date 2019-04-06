@@ -10,16 +10,32 @@
  **
  ** \return true of false
  */
+
+void print_andor(struct s_node_and_or *andor)
+{
+    for(int i = 0; i < andor->child; i++)
+    {
+        printf("%d -- AND : %d\n", i+1,andor->pipelines[i].b_and);
+        printf("%d -- OR : %d\n", i+1,andor->pipelines[i].b_or);
+    }
+}
+
 int read_and_or(struct parser_s *p)
 {
-  int tmp = p->cursor;
-  if (ZeroOrMany(read_spaces(p)) && read_pipeline(p) && ZeroOrMany(read_spaces(p)) && (ZeroOrMany((read_symbole(p, "ANDOR", "&&") || read_symbole(p, "ANDOR", "||")) && ZeroOrMany(read_spaces(p)) && ZeroOrMany(parser_readchar(p, '\n')) && ZeroOrMany(read_spaces(p)) && read_pipeline(p))))
-  {
-
-    printf("*****REUSSI ANDOR *******\n");
-    return 1;
-  }
-  p->cursor = tmp;
-  //printf("READ ANDOR FAil !!!!!!!!!!!!!!!!!!!!\n");
-  return 0;
+    int tmp = p->cursor;
+    if (ZeroOrMany(read_spaces(p)) && read_pipeline(p) && ZeroOrMany(read_spaces(p)) && (ZeroOrMany((read_symbole(p, "ANDOR", "&&") || read_symbole(p, "ANDOR", "||")) && ZeroOrMany(read_spaces(p)) && ZeroOrMany(parser_readchar(p, '\n')) && ZeroOrMany(read_spaces(p)) && read_pipeline(p))))
+    {
+        struct s_node_and_or *andor = init_andor(p);
+        print_node(p->nodes);
+        printf("enfant %d\n", andor->child);
+        while(find_pipeline(p, andor));
+        print_andor(andor);
+        union all_grammar *grammar = malloc(sizeof(union all_grammar));
+        grammar->andor = andor;
+        list_node_store(p->nodes, grammar, ANDOR);
+        printf("*****REUSSI ANDOR *******\n");
+        return 1;
+    }
+    p->cursor = tmp;
+    return 0;
 }

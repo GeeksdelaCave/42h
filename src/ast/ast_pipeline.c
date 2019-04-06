@@ -20,19 +20,18 @@ struct s_node_pipeline *init_pipeline(struct parser_s *p)
     return s_pipline;
 }
 
-void pipeline_store(struct s_node_pipeline *pipeline, struct s_node_command *new_command, int nb_child)
+void pipeline_store(struct s_node_pipeline *pipeline, struct s_node_pipeline *new_command, int nb_child)
 {
-    printf("NEW COMMAND TYPE %d \n", new_command->type);
-    pipeline->commands[nb_child] = *new_command;
-    printf("NEW COMMAND TYPE %d ||| %d \n", pipeline->commands[nb_child].type, nb_child);
+    pipeline->commands[nb_child] = *new_command->commands;
+    pipeline->b_and = new_command->b_and;
+    pipeline->b_or = new_command->b_or;
 }
 
 int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline)
 {
-    int excla = ast_check_sym(p, EXCLA);
-    printf("JE REGARDE %d\n", excla);
     struct list_node_s *command_node = ast_check_node(p, COMMAND);
-    int pipe = ast_check_sym(p, PIPE);
+    int b_and = ast_check_sym(p, AND);
+    int b_or = ast_check_sym(p, OR);
     struct s_node_pipeline *pipeline;
     if(!command_node)
     {
@@ -40,9 +39,9 @@ int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline)
     }
     pipeline = malloc(sizeof(struct s_node_pipeline));
     pipeline->commands= command_node->node->command;
-    pipeline->commands->excla = excla;
-    pipeline->commands->pipe = pipe;
-    pipeline_store(s_pipeline, pipeline->commands, s_pipeline->child);
+    pipeline->b_and = b_and;
+    pipeline->b_or = b_or;
+    pipeline_store(s_pipeline, pipeline, s_pipeline->child);
     s_pipeline->child++;
     return 1;
 }

@@ -142,7 +142,7 @@ int read_pipe(struct parser_s *p)
             union all_grammar *grammar = malloc(sizeof(union all_grammar));
             grammar->symbole = node_sym;
             list_node_store(p->nodes, grammar, PIPE);
-            return 1;   
+            return 1;
         }
     }
     parser_get_capture(p, "pipe");
@@ -210,15 +210,23 @@ int read_Assign(struct parser_s *p)
  */
 int read_symbole(struct parser_s *p, char* tag, char* type)
 {
-  int tmp = p->cursor;
-  if (parser_begin_capture(p, tag) && parser_readtext(p, type)
+    int tmp = p->cursor;
+    if (parser_begin_capture(p, tag) && parser_readtext(p, type)
       && parser_end_capture(p, tag))
-  {
-    char* res = parser_get_capture(p, "ANDOR");
-    printf("READsymbole : %s\n", res);
-      return 1;
+    {
+        char* andor = parser_get_capture(p, "ANDOR");
+        struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
+        node_sym->symbole = andor;
+
+        union all_grammar *grammar = malloc(sizeof(union all_grammar));
+        grammar->symbole = node_sym;
+        if(strcmp(andor, "||") == 1)
+            list_node_store(p->nodes, grammar, OR);
+        else
+            list_node_store(p->nodes, grammar, AND);
+        return 1;
     }
-  p->cursor = tmp;
-  parser_get_capture(p, "ANDOR");
-  return 0;
+    p->cursor = tmp;
+    parser_get_capture(p, "ANDOR");
+    return 0;
 }

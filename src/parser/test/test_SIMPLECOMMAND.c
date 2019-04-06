@@ -4,7 +4,7 @@ void test_SIMPLECOMMAND()
   
   char *str[] =
     {
-      "a=5 b=10 c=15 d=20 e=25 f=30 12 < WORD",
+      "a=5 b=10 c=15 d=20 e=25 f=30",
       "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfjvnf",
       "20 < word",
       " 30 < wfvkfdkvndfkbv",

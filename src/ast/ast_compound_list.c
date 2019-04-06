@@ -15,7 +15,7 @@ int check_compound_list(struct parser_s *p)
     for(;pnode; pnode = pnode->next)
     {
       if((pnode->type == ANDOR))
-	nb_child++;
+    nb_child++;
     }
     printf("NUMBER OF CHILD ---- %d \n", nb_child);
     return nb_child;
