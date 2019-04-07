@@ -1,5 +1,4 @@
-#include "ast.h"
-
+#include "grammar.h" 
 /*
 compound_list:
     ('\n')* and_or ((';'|'&'|'\n') ('\n')* and_or)* [('&'|';'|'\n') ('\n')*]
@@ -8,15 +7,23 @@ compound_list:
 int read_compound_list(struct parser_s *p)
 {
     int tmp = p->cursor;
-    if ((ZeroOrMany(parser_readchar(p, '\n') || read_spaces(p))) &&
-	(read_and_or(p)) && (ZeroOrMany(parser_readinset(p,";&\n\t ") && 
-    ZeroOrMany(parser_readchar(p, '\n') && read_spaces(p)) && read_and_or(p))) 
-    &&  ZeroOrOne(parser_readinset(p,"&;\n\t "))&& ZeroOrMany(parser_readchar(p, '\n')))
+    if (ZeroOrMany(parser_readchar(p, '\n')) && ZeroOrMany(read_spaces(p)) 
+    && read_and_or(p) && ZeroOrMany(read_spaces(p)) && 
+    ZeroOrMany((read_virgule(p) || read_and(p) || parser_readchar(p, '\n')) && 
+    ZeroOrMany(read_spaces(p)) 
+    && ZeroOrMany(parser_readchar(p, '\n'))  && ZeroOrMany(read_spaces(p)) && 
+    read_and_or(p)) &&  
+    ((ZeroOrOne(read_virgule(p)) || ZeroOrOne(read_and(p)) || 
+    ZeroOrOne(parser_readchar(p, '\n'))) && ZeroOrMany(read_spaces(p)) && 
+    ZeroOrOne(ZeroOrMany(parser_readchar(p, '\n')))))
       {
-        printf("AST read compound list : SUCCES\n");
+        //printf("AST read compound list : SUCCES\n");
+        struct s_node_compound_list *cpd = init_compound(p);
+        print_node(p->nodes);
+        while(find_and_or(p, cpd));
         return 1;
       }
-    printf("AST read compound list : FAIL\n");
+    //printf("AST read compound list : FAIL\n");
     p->cursor = tmp;
     return 0;
 }
