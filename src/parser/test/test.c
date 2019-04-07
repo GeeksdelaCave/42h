@@ -7,7 +7,7 @@ int main()
   //test_INPUT();
   //test_INPUT();
   test_ANDOR();
-  printf("\033[0;32m");
-  printf("All tests OK!\n");
-  printf("\033[0m\n");
+  //printf("\033[0;32m");
+  // printf("All tests OK!\n");
+  //printf("\033[0m\n");
 }
