@@ -32,10 +32,10 @@ add_executable(42sh
         src/ast/execution/exec_node.c
         src/ast/execution/exec_while.c
 
-        src/ast/builtin/builtin.h
-        src/ast/builtin/builtin.c
-        src/ast/builtin/builtin_exit.c
-        src/ast/builtin/builtin_cd.c
+        src/builtin/builtin.h
+        src/builtin/builtin.c
+        src/builtin/builtin_exit.c
+        src/builtin/builtin_cd.c
         src/utils/string.c
         src/utils/string.h
         )
