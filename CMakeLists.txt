@@ -24,7 +24,6 @@ add_executable(42sh
         src/core/main.c
 
         src/ast/ast/ast.h
-        src/ast/ast/ast_print.c
         src/ast/ast/error.h
 
         src/ast/execution/exec.h
@@ -35,7 +34,6 @@ add_executable(42sh
         src/builtin/builtin.h
         src/builtin/builtin.c
         src/builtin/builtin_exit.c
-        src/builtin/builtin_cd.c
         src/utils/string.c
         src/utils/string.h
         )
