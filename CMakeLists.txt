@@ -104,18 +104,6 @@ add_executable(42sh
   src/parser/test/test_WORD.c
   
   src/ast/ast/ast.h
-  src/ast/ast/ast_and.c
-  src/ast/ast/ast_case.c
-  src/ast/ast/ast_cmd.c
-  src/ast/ast/ast_destruct.c
-  src/ast/ast/ast_for.c
-  src/ast/ast/ast_if.c
-  src/ast/ast/ast_or.c
-  src/ast/ast/ast_pipeline.c
-  src/ast/ast/ast_print.c
-  src/ast/ast/ast_red.c
-  src/ast/ast/ast_while.c
-  src/ast/ast/error.h
   
   src/ast/execution/exec.h
   src/ast/execution/exec_if.c
