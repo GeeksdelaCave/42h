@@ -1,0 +1,28 @@
+#include "parser.h"
+
+/* Iniitialisation du parser avec l'input text */
+struct parser_s *parser_new_from_string(const char *text)
+{
+    struct parser_s *p = malloc(sizeof(struct parser_s*));
+    if (p == NULL)
+    {
+      return NULL;
+    }
+    p->cursor = 0;
+    p->capture = NULL;
+    p->input = malloc(sizeof(char) * strlen(text));
+    strcpy(p->input, text);
+    return p;
+}
+
+int count_caracter(char *str[])
+{
+    int count = 0;
+    for (int i = 1; str[i] != NULL; i++)
+    {
+        count = count + strlen(str[i]);
+        count ++;
+    }
+    return count;
+}
+

@@ -1,20 +1,43 @@
-#include "ast.h"
+/**
+ ** \file  read_and_or.c
+ */
+#include "grammar.h"
+#include "../dot/generate_dot_file_ast.h"
+/**
+ ** \brief return true if read and
+ **  or
+ **
+ ** \param p structure of parser
+ **
+ ** \return true of false
+ */
 
-/*
-    and_or: 
-        pipeline (('&&'|'||') ('\n')* pipeline)*
-*/
+void print_andor(struct s_node_and_or *andor)
+{
+    for(int i = 0; i < andor->child; i++)
+    {
+        //printf("%d -- AND : %d\n", i+1,andor->pipelines[i].b_and);
+        //printf("%d -- OR : %d\n", i+1,andor->pipelines[i].b_or);
+    }
+}
+
 int read_and_or(struct parser_s *p)
 {
-    // utilisation d un || dans un zero or many
     int tmp = p->cursor;
-
-  if (read_pipeline(p) && (ZeroOrMany((parser_readtext(p, "&&") || parser_readtext(p, "||")) &&  ZeroOrMany(parser_readchar(p, '\n')) && read_pipeline(p))))
+    if (ZeroOrMany(read_spaces(p)) && read_pipeline(p) && ZeroOrMany(read_spaces(p)) && (ZeroOrMany((read_symbole(p, "ANDOR", "&&") || read_symbole(p, "ANDOR", "||")) && ZeroOrMany(read_spaces(p)) && ZeroOrMany(parser_readchar(p, '\n')) && ZeroOrMany(read_spaces(p)) && read_pipeline(p))))
     {
-      printf("AST READANDOR Success \n");
-      return 1;
+        struct s_node_and_or *andor = init_andor(p);
+        //print_node(p->nodes);
+        //printf("enfant %d\n", andor->child);
+        while(find_pipeline(p, andor));
+        //print_andor(andor);
+        union all_grammar *grammar = malloc(sizeof(union all_grammar));
+        grammar->andor = andor;
+        list_node_store(p->nodes, grammar, ANDOR);
+        //printf("*****REUSSI ANDOR *******\n");
+	print_and_or_to_pipeline(andor, fopen("ast.dot", "w+"));
+	return 1;
     }
     p->cursor = tmp;
-  printf("READ ANDOR FAil !!!!!!!!!!!!!!!!!!!!\n");
-  return 0;
+    return 0;
 }
