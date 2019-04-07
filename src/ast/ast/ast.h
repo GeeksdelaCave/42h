@@ -133,10 +133,10 @@ struct ast_node_compound_list //s_ast_node
 
 enum {NODE_TYPE_COUNT = 9};
 
-void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
-                    unsigned int *node_id);
+//void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
+                  //  unsigned int *node_id);
 
-void ast_destruct(struct ast_node_compound_list *ast);
+//void ast_destruct(struct ast_node_compound_list *ast);
 
 
 /*
