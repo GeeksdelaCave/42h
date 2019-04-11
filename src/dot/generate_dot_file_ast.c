@@ -38,6 +38,8 @@ void print_compound_list(struct s_do_group *dogroup, FILE *file)
 {
   fprintf(file, "digraph AST {\n");
   fprintf(file, "    node [fontname=\"Arial\"];\n");
+  fprintf(file,"JE REGARDE\n");
+  printf("nb fils : %d \n", dogroup->cpd->child);
   for (int i = 0; i < dogroup->cpd->child; i++)
   {
     fprintf(file,  "    %s -> %s;\n", "ComPoundLIst", "AND_OR");
@@ -56,8 +58,10 @@ void print_list_to_and_or(struct s_node_list *list, FILE *file)
 void my_print_ast(struct parser_s *p)
 {
   FILE *file = fopen("../ast.dot", "w+");
+  
   fprintf(file, "digraph AST {\n");
   fprintf(file, "    node [fontname=\"Arial\"];\n");
+  fprintf(file,"JE REGARDE\n");
   if (!p->nodes)
   {
     // return 1;

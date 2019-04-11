@@ -14,5 +14,3 @@ void test_COMPOUND()
   //assert(read_and_or(p1) == 1);
   printf("%s \n", p1->input);
 }
-
-

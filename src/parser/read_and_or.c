@@ -30,12 +30,11 @@ int read_and_or(struct parser_s *p)
         //print_node(p->nodes);
         //printf("enfant %d\n", andor->child);
         while(find_pipeline(p, andor));
-        //print_andor(andor);
         union all_grammar *grammar = malloc(sizeof(union all_grammar));
         grammar->andor = andor;
         list_node_store(p->nodes, grammar, ANDOR);
         //printf("*****REUSSI ANDOR *******\n");
-	print_and_or_to_pipeline(andor, fopen("ast.dot", "w+"));
+	//print_and_or_to_pipeline(andor, fopen("ast.dot", "w+"));
 	return 1;
     }
     p->cursor = tmp;
