@@ -6,8 +6,6 @@ struct s_node_compound_list *init_compound(struct parser_s *p)
     s_compound->child = 0;
     return s_compound;
 }
-
-
 int check_compound_list(struct parser_s *p)
 {
   int nb_child = 0;

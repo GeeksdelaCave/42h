@@ -27,12 +27,21 @@ void print_pipeline_to_command_ast(struct s_node_pipeline *pipeline, FILE *file)
 }
 void print_and_or_to_pipeline(struct s_node_and_or *and_or, FILE *file)
 {
-  fprintf(file, "digraph AST {\n");
-  fprintf(file, "    node [fontname=\"Arial\"];\n");
   for (int i = 0; i < and_or->child; i++)
   {
     fprintf(file,  "    %s -> %s;\n", "AND_OR", "P");
     print_pipeline_to_command_ast(&and_or->pipelines[i], file);
+  }
+  //fprintf(file, "}\n");
+}
+void print_compound_list(struct s_do_group *dogroup, FILE *file)
+{
+  fprintf(file, "digraph AST {\n");
+  fprintf(file, "    node [fontname=\"Arial\"];\n");
+  for (int i = 0; i < dogroup->cpd->child; i++)
+  {
+    fprintf(file,  "    %s -> %s;\n", "ComPoundLIst", "AND_OR");
+    print_and_or_to_pipeline(&dogroup->cpd->and_or[i], file);
   }
   fprintf(file, "}\n");
 }

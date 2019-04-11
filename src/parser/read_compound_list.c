@@ -21,7 +21,10 @@ int read_compound_list(struct parser_s *p)
         struct s_node_compound_list *cpd = init_compound(p);
         print_node(p->nodes);
         while(find_and_or(p, cpd));
-        return 1;
+	union all_grammar *grammar = malloc(sizeof(union all_grammar)); //
+	grammar->compoundlist = cpd;
+	list_node_store(p->nodes, grammar, COUMPOUND);                   //
+	return 1;
       }
     //printf("AST read compound list : FAIL\n");
     p->cursor = tmp;

@@ -4,6 +4,7 @@
 #include "read_input.h"
 #include "read_list.h"
 #include "read_and_or.h"
+#include "read_do_group.h"
 #include "read_pipeline.h"
 #include "read_command.h"
 #include "read_simple_command.h"

@@ -11,6 +11,7 @@
 #include "ast_pipeline.h"
 #include "ast_andor.h"
 #include "ast_compound_list.h"
+#include "ast_dogroup.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
     exit(ERROR_MEM)							\
@@ -257,7 +258,7 @@ struct s_node_compound_list
 
 struct s_do_group
 {
-    struct ast_node_compound_list *cpd;
+    struct s_node_compound_list *cpd;
 };
 
 /*
