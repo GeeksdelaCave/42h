@@ -17,8 +17,8 @@ struct s_builtin_tab
 
 static struct s_builtin_tab s_builtin_tab[NB_BUILTIN] =
 {
-    {"exit", builtin_exit},
-    {"cd", builtin_cd}
+    {"exit", builtin_exit}
+    //{"cd", builtin_cd}
 };
 
 func_builtin is_a_builtin(const char *name)
