@@ -13,10 +13,15 @@ int read_while(struct parser_s *p)
 	OneOrMany(read_spaces(p)) && read_compound_list(p) &&
 	ZeroOrMany(read_spaces(p)) && read_do_group(p))
     {
-        //printf("AST read while : SUCCES\n");
+        printf("AST read while : SUCCES\n");
+        struct s_node_while *node_while = init_while();
+        find_while(p, node_while);
+        union all_grammar *grammar = malloc(sizeof(union all_grammar));
+        grammar->node_while = node_while;
+        list_node_store(p->nodes, grammar, WHILE);
         return 1;
     }
-    //printf("AST read while : FAIL\n");
+    printf("AST read while : FAIL\n");
     p->cursor = tmp;
     return 0;
 }

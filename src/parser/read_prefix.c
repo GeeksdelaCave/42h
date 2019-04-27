@@ -5,7 +5,7 @@ int read_prefix(struct parser_s *p)
   int tmp = p->cursor;
   if (read_Assign(p) || read_redirection(p))
   {
-    //printf("TROUVER \n");
+    printf("TROUVER \n");
     return 1;
   }
   p->cursor = tmp;

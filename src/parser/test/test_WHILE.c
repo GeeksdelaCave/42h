@@ -10,4 +10,5 @@ void test_WHILE()
     struct parser_s *p1= parser_new_from_string(str[1]);
     read_while(p1);
     printf("%s \n", p1->input);
+    print_node(p1->nodes);
 }

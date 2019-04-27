@@ -12,6 +12,9 @@
 #include "ast_andor.h"
 #include "ast_compound_list.h"
 #include "ast_dogroup.h"
+#include "ast_while.h"
+#include "ast_until.h"
+#include "ast_if.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
     exit(ERROR_MEM)							\
@@ -36,11 +39,11 @@ enum type_grammar
   REDIRECTION,  //7
   WORD1,        //8
   COUMPOUND,    //9
-  RULEFOR,      //10
-  RULEIF,       //11
-  RULEWHILE,    //12
-  RULEUNTIL,    //13
-  RULECASE,     //14
+  FOR,      //10
+  IF,       //11
+  WHILE,    //12
+  UNTIL,    //13
+  CASE,     //14
   ELSECLAUSE,   //15
   DOGROUP,      //16
   CASECLAUSE,   //17
@@ -66,11 +69,11 @@ union all_grammar
     struct s_node_if *node_if;
     struct s_node_for *node_for;
     struct s_node_while *node_while;
-  struct s_node_case_item *case_item;
-  struct s_node_compound_list *compoundlist;
-  struct s_do_group *dogroup;
-  struct s_node_until *until;
-  struct s_node_word *word;
+    struct s_node_case_item *case_item;
+    struct s_node_compound_list *compoundlist;
+    struct s_do_group *dogroup;
+    struct s_node_until *node_until;
+    struct s_node_word *word;
     struct s_symbole *symbole;
 };
 
@@ -90,12 +93,11 @@ struct list_node_s
   struct list_node_s *next;
   struct list_node_s *prev;
 };
+
 struct s_node_list
 {
   struct s_node_and_or *and_or;
   char *mode_exec;
-  int child;
-  enum type_grammar type;
   struct s_node_list *next;
 };
 
@@ -116,11 +118,10 @@ struct s_node_and_or
 */
 struct s_node_pipeline
 {
-  int b_and;
-  int b_or;
-  enum type_grammar type;
-  struct s_node_command *commands;
-  int child;
+    int b_and;
+    int b_or;
+    struct s_node_command *commands;
+    int child;
 };
 
 
@@ -147,14 +148,14 @@ struct s_simple_cmd
 };
 
 /*
-**
+** node shell commands
 */
-/*
-struct s_node_funcdec_command
+
+struct s_node_shell_command
 {
-
-}*/
-
+    enum type_grammar type;
+    union all_grammar *struct_type;
+};
 
 /*
 ** Assign Struct
@@ -222,14 +223,6 @@ struct s_node_while
   struct s_node_compound_list *dogroup;
 };
 
-//else clause node
-struct s_node_else
-{
-  struct s_node_compound_list *else_body;
-  //struct s_node_compound_list *elif_body;
-  //struct s_node_compound_list *then_body;
-};
-
 /*
 ** until ast node
 */
@@ -293,5 +286,5 @@ struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
 int ast_check_sym(struct parser_s *p, enum type_grammar type);
-
+enum type_grammar list_type_lookup(struct list_node_s *list_node, enum type_grammar type);
 #endif

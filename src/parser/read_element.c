@@ -2,7 +2,7 @@
 int check_element(struct parser_s *p)
 {
     char* word = parser_get_capture(p, "word");
-    //printf("WORD : %s \n", word);
+    printf("WORD : %s \n", word);
     if (!strcmp("for", word) || !strcmp("if", word) || !strcmp("while", word) 
       || !strcmp("do", word) || !strcmp("done", word) || !strcmp("fi", word) 
       || !strcmp("then", word) || !strcmp("else", word) || 
@@ -32,7 +32,7 @@ int read_element(struct parser_s *p)
     }
     parser_get_capture(p, "word");
     p->cursor = tmp;
-    //printf("=== AST ELEMENT FAIL \n");
+    printf("=== AST ELEMENT FAIL \n");
    return 0;
 }
 

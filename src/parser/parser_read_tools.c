@@ -46,7 +46,7 @@ int read_excla(struct parser_s *p)
       && parser_end_capture(p, "excla"))
     {
         char *excla = parser_get_capture(p, "excla");
-        //printf("EXCLAMATION : %s \n", excla);
+        printf("EXCLAMATION : %s \n", excla);
         struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
         node_sym->symbole = excla;
 
@@ -74,11 +74,11 @@ int read_and(struct parser_s *p)
   if (parser_begin_capture(p, "and") && parser_readchar(p, '&')
       && parser_end_capture(p, "and"))
     {  
-        //printf("%c\n", p->input[p->cursor]);
+        printf("%c\n", p->input[p->cursor]);
         if(p->input[p->cursor] != '&')
         {
             char *and = parser_get_capture(p, "and");
-            //printf("%s\n", and);
+            printf("%s\n", and);
             struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
             node_sym->symbole = and;
 
@@ -106,7 +106,7 @@ int read_virgule(struct parser_s *p)
       && parser_end_capture(p, "virgule"))
     {  
         char *virgule = parser_get_capture(p, "virgule");
-        //printf("%s\n", virgule);  
+        printf("%s\n", virgule);  
         struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
         node_sym->symbole = virgule;
 
@@ -135,7 +135,7 @@ int read_pipe(struct parser_s *p)
         if(p->input[p->cursor] != '|')
         {
 	        char *pipe = parser_get_capture(p, "pipe");
-	        //printf("%s\n", pipe);  
+	        printf("%s\n", pipe);  
 	        struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
             node_sym->symbole = pipe;
 
@@ -183,7 +183,7 @@ int read_Assign(struct parser_s *p)
     {
       char *id = parser_get_capture(p, "id");
       char *num = parser_get_capture(p, "num");
-      //printf("ID %s : %s \n", id, num);
+      printf("ID %s : %s \n", id, num);
       struct s_node_assign *assign = malloc(sizeof(struct s_node_assign));
       assign->id = id;
       assign->num = num;
@@ -220,10 +220,13 @@ int read_symbole(struct parser_s *p, char* tag, char* type)
 
         union all_grammar *grammar = malloc(sizeof(union all_grammar));
         grammar->symbole = node_sym;
-        if(strcmp(andor, "||") == 1)
+        if(strcmp(andor, "||") == 0){
             list_node_store(p->nodes, grammar, OR);
-        else
+        }
+        else{
             list_node_store(p->nodes, grammar, AND);
+        }
+        printf("VERIFICATION AND OR ------------- %s\n", andor);
         return 1;
     }
     p->cursor = tmp;

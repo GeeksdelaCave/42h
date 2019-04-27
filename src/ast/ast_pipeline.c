@@ -8,7 +8,7 @@ int check_pipeline(struct parser_s *p)
         if((pnode->type == COMMAND))
             nb_child++;
     }
-    //printf("NUMBER OF CHILD ---- %d \n", nb_child);
+    printf("NUMBER OF CHILD ---- %d \n", nb_child);
     return nb_child;
 }
 

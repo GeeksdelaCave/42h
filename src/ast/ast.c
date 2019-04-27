@@ -49,6 +49,18 @@ struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_gr
     return NULL;
 }
 
+enum type_grammar list_type_lookup(struct list_node_s *list_node, enum type_grammar type)
+{
+    for (; list_node->next; list_node = list_node->next)
+    {
+        if (list_node->type == type)
+        {
+            return type; 
+        }
+    }
+    return -1;
+}
+
 void eat_list_node(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
@@ -105,11 +117,11 @@ void print_node(struct list_node_s *node)
 {
     for(; node; node = node->next)
     {
-        //printf("TYPE : %d ", node->type);
-        //if(node->prev)
-            //printf("LE PREV : %d\n", node->prev->type);
-        //else
-            //printf("\n");    
+        printf("TYPE : %d ", node->type);
+        if(node->prev)
+            printf("LE PREV : %d\n", node->prev->type);
+        else
+            printf("\n");    
     }
-    //printf("\n");
+    printf("\n");
 }
