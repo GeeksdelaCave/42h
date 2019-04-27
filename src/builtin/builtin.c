@@ -18,7 +18,7 @@ struct s_builtin_tab
 static struct s_builtin_tab s_builtin_tab[NB_BUILTIN] =
 {
     {"exit", builtin_exit},
-    {"cmd", builtin_cmd}
+    //{"cmd", builtin_cmd}
     //{"cd", builtin_cd}
 
 };
