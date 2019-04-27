@@ -1,7 +1,20 @@
-Warning (initialization): An error occurred while loading `/home/safa/.emacs':
+#include "grammar.h"
 
-File error: Cannot open load file, no such file or directory, auto-complete-config
-
-To ensure normal operation, you should investigate and remove the
-cause of the error in your initialization file.  Start Emacs with
-the `--debug-init' option to view a complete error backtrace.
+int read_shell_command(struct parser_s *p)
+{
+  int tmp = p->cursor;
+  if ((parser_readchar(p, '{') && ZeroOrMany(read_spaces(p)) && read_compound_list(p) && ZeroOrMany(read_spaces(p)) && parser_readchar(p, '}'))
+      || (parser_readchar(p, '(') && ZeroOrMany(read_spaces(p)) && read_compound_list(p) && ZeroOrMany(read_spaces(p)) && parser_readchar(p, ')'))
+      || read_for(p)
+      || read_while(p)
+      || read_until(p)
+      || read_case(p)
+      || read_if(p))
+  {
+    //printf("AST READ_SHELL_COMMAND Success \n");
+    return  1;
+  }
+  //printf("AST READ SHELL COMMANDE FAIL \n" );
+  p->cursor = tmp;
+  return 0;
+}
