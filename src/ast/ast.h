@@ -98,9 +98,10 @@ struct s_node_list
 {
   struct s_node_and_or *and_or;
   char *mode_exec;
+  int child;
+  enum type_grammar type;
   struct s_node_list *next;
 };
-
 /*
 ** node andor
 */
