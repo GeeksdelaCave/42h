@@ -35,6 +35,6 @@ int builtin_exit(char *argv[]);
 
 */
 
-int builtin_cd(char *argv[]);
+int builtin_cmd(char *argv[]);
 
 # endif
