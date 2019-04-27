@@ -66,11 +66,11 @@ union all_grammar
     struct s_node_if *node_if;
     struct s_node_for *node_for;
     struct s_node_while *node_while;
-    struct s_node_case_item *case_item;
-    struct s_node_compound_list *compoundlist;
-    struct s_do_group *dogroup;
-    struct s_node_until *until;
-    struct s_node_word *word;
+  struct s_node_case_item *case_item;
+  struct s_node_compound_list *compoundlist;
+  struct s_do_group *dogroup;
+  struct s_node_until *until;
+  struct s_node_word *word;
     struct s_symbole *symbole;
 };
 
@@ -220,6 +220,14 @@ struct s_node_while
 {
   struct s_node_compound_list *condition;
   struct s_node_compound_list *dogroup;
+};
+
+//else clause node
+struct s_node_else
+{
+  struct s_node_compound_list *else_body;
+  //struct s_node_compound_list *elif_body;
+  //struct s_node_compound_list *then_body;
 };
 
 /*

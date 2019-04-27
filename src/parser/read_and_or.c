@@ -26,16 +26,16 @@ int read_and_or(struct parser_s *p)
     int tmp = p->cursor;
     if (ZeroOrMany(read_spaces(p)) && read_pipeline(p) && ZeroOrMany(read_spaces(p)) && (ZeroOrMany((read_symbole(p, "ANDOR", "&&") || read_symbole(p, "ANDOR", "||")) && ZeroOrMany(read_spaces(p)) && ZeroOrMany(parser_readchar(p, '\n')) && ZeroOrMany(read_spaces(p)) && read_pipeline(p))))
     {
-        struct s_node_and_or *andor = init_andor(p);
-        //print_node(p->nodes);
-        //printf("enfant %d\n", andor->child);
-        while(find_pipeline(p, andor));
-        union all_grammar *grammar = malloc(sizeof(union all_grammar));
-        grammar->andor = andor;
-        list_node_store(p->nodes, grammar, ANDOR);
-        //printf("*****REUSSI ANDOR *******\n");
-	//print_and_or_to_pipeline(andor, fopen("ast.dot", "w+"));
-	return 1;
+      struct s_node_and_or *andor = init_andor(p);
+      //print_node(p->nodes);
+      //printf("enfant %d\n", andor->child);
+      while(find_pipeline(p, andor));
+      union all_grammar *grammar = malloc(sizeof(union all_grammar));
+      grammar->andor = andor;
+      list_node_store(p->nodes, grammar, ANDOR);
+      //printf("*****REUSSI ANDOR *******\n");
+      //print_and_or_to_pipeline(andor, fopen("ast.dot", "w+"));
+      return 1;
     }
     p->cursor = tmp;
     return 0;
