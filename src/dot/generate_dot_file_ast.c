@@ -7,19 +7,28 @@ int AND_CHILD =  0;
 int C_CHILD =  0;
 int S_CHILD = 0;
 int SH_CHILD = 0;
+int C_WHILE = 0;
+int C_CMP = 0;
 void print_simple_command(struct s_simple_cmd *simple_cmd, FILE *file)
 {
   //FILE *file = fopen("../ast.dot", "w+");
+printf("TEST ORDER SIMPLE_COMMAND\n");
   for (int i = 0; i < simple_cmd->child; i++)
   {
     if (simple_cmd->child_node[i].type == ASSIGN)
     {
+	printf("%s_child_%d -> \"%s = %s\";\n", "C", C_CHILD,
+simple_cmd->child_node[i].struct_type->assign->id,
+	      simple_cmd->child_node[i].struct_type->assign->num);
       fprintf(file,  "    %s_child_%d -> \"%s = %s\";\n", "C", C_CHILD,
 	      simple_cmd->child_node[i].struct_type->assign->id,
 	      simple_cmd->child_node[i].struct_type->assign->num); 
       S_CHILD++;
     }
     else {
+printf("%s_child_%d -> \"%s REDIR %s\";\n", "C", C_CHILD,
+	      simple_cmd->child_node[i].struct_type->redirection->number,
+	      simple_cmd->child_node[i].struct_type->redirection->word);
       fprintf(file,  "    %s_child_%d -> \"%s REDIR %s\";\n", "C", C_CHILD,
 	      simple_cmd->child_node[i].struct_type->redirection->number,
 	      simple_cmd->child_node[i].struct_type->redirection->word);
@@ -27,9 +36,32 @@ void print_simple_command(struct s_simple_cmd *simple_cmd, FILE *file)
     }
   }
 }
-void print_while_command(struct s_node_while *while, FILE *file)
+void print_while_command(struct s_node_while *s_while, FILE *file)
 {
-  
+  fprintf(file, "digraph AST {\n");
+  fprintf(file, "    node [fontname=\"Arial\"];\n");
+  fprintf(file,  "    %s_child_%d -> Condition\n", "WHILE", C_WHILE);
+  fprintf(file,  "    Condition -> \"%s_%d\"\n", "ComPoundLIst", C_CMP);
+  for (int i = 0; i < s_while->condition->child; i++)
+  {
+    fprintf(file,  "    \"%s_%d\" -> %s_child_%d;\n", "ComPoundLIst",C_CMP, "AND_OR", AND_CHILD);
+    print_and_or_to_pipeline(&s_while->condition->and_or[i], file);
+    AND_CHILD++;
+  }
+
+  C_CMP++;
+  fprintf(file,  "    %s_child_%d -> Dogroup\n", "WHILE", C_WHILE);
+  fprintf(file,  "    Dogroup -> \"ComPoundLIst_%d\"\n", C_CMP);
+  for (int i = 0; i < s_while->dogroup->child; i++)
+  {
+    fprintf(file,  "    %s_%d -> %s_child_%d;\n", "ComPoundLIst", C_CMP, "AND_OR", AND_CHILD);
+    print_and_or_to_pipeline(&s_while->dogroup->and_or[i], file);
+    AND_CHILD++;
+  }
+
+  fprintf(file, "}\n");
+  C_WHILE++;
+  C_CMP++;
 }
 /*
 void print_shell_command(struct s_shell_cmd *shell_cmd, FILE *file)
@@ -50,11 +82,12 @@ void print_command_ast(struct s_node_command *cmd, FILE *file)
   }
   if (cmd->type == WHILE)
   {
-    print_shell_command(cmd->struct_type->node_while, file);
+    print_while_command(cmd->struct_type->node_while, file);
   }
 }
 void print_pipeline_to_command_ast(struct s_node_pipeline *pipeline, FILE *file)
 {
+
   for (int i = 0; i < pipeline->child; i++)
   {
     printf("%d test \n", i);
@@ -75,15 +108,15 @@ void print_and_or_to_pipeline(struct s_node_and_or *and_or, FILE *file)
 }
 void print_compound_list(struct s_do_group *dogroup, FILE *file)
 {
-  fprintf(file, "digraph AST {\n");
+ fprintf(file, "digraph AST {\n");
   fprintf(file, "    node [fontname=\"Arial\"];\n");
-  printf("nb fils : %d \n", dogroup->cpd->child);
   for (int i = 0; i < dogroup->cpd->child; i++)
   {
     fprintf(file,  "    %s -> %s_child_%d;\n", "ComPoundLIst", "AND_OR", AND_CHILD);
     print_and_or_to_pipeline(&dogroup->cpd->and_or[i], file);
     AND_CHILD++;
   }
+  C_CMP++;
   fprintf(file, "}\n");
 }
 void print_list_to_and_or(struct s_node_list *list, FILE *file)
@@ -101,7 +134,6 @@ void my_print_ast(struct parser_s *p)
   
   fprintf(file, "digraph AST {\n");
   fprintf(file, "    node [fontname=\"Arial\"];\n");
-  fprintf(file,"JE REGARDE\n");
   if (!p->nodes)
   {
     // return 1;

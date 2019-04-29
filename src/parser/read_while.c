@@ -1,5 +1,5 @@
 #include "grammar.h" 
-
+#include "../dot/generate_dot_file_ast.h"
 /*
 rule_while: 
     'while' compound_list do_group
@@ -18,6 +18,7 @@ int read_while(struct parser_s *p)
         find_while(p, node_while);
         union all_grammar *grammar = malloc(sizeof(union all_grammar));
         grammar->node_while = node_while;
+        print_while_command(grammar->node_while, fopen("ast.dot", "w+"));
         list_node_store(p->nodes, grammar, WHILE);
         return 1;
     }

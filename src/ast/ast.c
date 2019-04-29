@@ -73,6 +73,7 @@ void eat_list_node(struct parser_s *p, enum type_grammar type)
     else if(pnode->next != NULL)
     {
         p->nodes = pnode->next;
+		//p->nodes->prev = NULL;
         pnode->next->prev = NULL;
         free(pnode);
     }
