@@ -5,8 +5,8 @@ void test_WHILE()
     char *str[] = 
     {
 		"",
-      "while ! a=5484 b=569 15 < k 16 < j | ugf=15 15 < z a=15 | JE=45 ; 15 < WORD 30 < wfv & 15 < fd 10 < WORD && ! a=1 b=2 60 < JE 80 < TEST 75 < MON 90 < CODE || ! a=5 do 15 < toto 45 < t 50 < MON 50 < CODE && ! WORD=10 b=50 ; 100 < JE 120 < TESTE 130 < MON 14 < CODE && a=5 15 < dada 15 < je 25 < test done",
-      "while ! a=15 b=569 15 < a 16 < jsd uhh=15 15 < zrev a=35 | JE=45 a=5 do a=5 15 < dada 450 < pnl done",
+      "while ! a=1 b=2 10 < a 20 < b | c=3 30 < c d=4 | e=5 ; 40 < d 50 < e & 60 < f 70 < g && ! f=7 g=8 80 < JE 90 < TEST 100 < MON 110 < CODE || ! h=9 do 120 < toto 130 < t 140 < MON 150 < CODE && ! i=10 j=50 ; 160 < JE 170 < TESTE 180 < MON 190 < CODE && k=5 200 < dada 210 < je 220 < test done",
+      "while ! l=15 n=569 15 < a 16 < jsd m=15 15 < zrev o=35 | p=45 q=5 do r=5 15 < dada 450 < pnl done",
     };
     struct parser_s *p1= parser_new_from_string(str[1]);
     read_while(p1);

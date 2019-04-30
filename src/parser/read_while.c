@@ -18,7 +18,7 @@ int read_while(struct parser_s *p)
         find_while(p, node_while);
         union all_grammar *grammar = malloc(sizeof(union all_grammar));
         grammar->node_while = node_while;
-        //print_while_command(grammar->node_while, fopen("ast.dot", "w+"));
+        print_while_command(node_while, fopen("ast.dot", "w+"));
         list_node_store(p->nodes, grammar, WHILE);
         return 1;
     }
