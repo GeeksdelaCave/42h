@@ -14,6 +14,7 @@ int find_while(struct parser_s *p, struct s_node_while *node_while)
         return 0;
     }
     node_while->condition = cmp_node->node->compoundlist;
+    
     node_while->dogroup = dogroup_node->node->dogroup->cpd;
     return 1;
 }

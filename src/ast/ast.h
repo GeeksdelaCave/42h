@@ -282,10 +282,10 @@ void list_node_store(struct list_node_s *list_node, union all_grammar *s_node,
 		     enum type_grammar type);
 struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum 
 				     type_grammar type);
-void eat_list_node(struct parser_s *p, enum type_grammar type);
 struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
 void print_node(struct list_node_s *node);
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type);
 int ast_check_sym(struct parser_s *p, enum type_grammar type);
 enum type_grammar list_type_lookup(struct list_node_s *list_node, enum type_grammar type);
+struct list_node_s *ast_check_last(struct parser_s *p, enum type_grammar type);
 #endif

@@ -61,6 +61,22 @@ enum type_grammar list_type_lookup(struct list_node_s *list_node, enum type_gram
     return -1;
 }
 
+/*
+** find and get the last node of the type : type 
+*/
+struct list_node_s *lookup_last(struct list_node_s *list_node, enum type_grammar type)
+{
+    struct list_node_s *last = NULL; 
+    for (; list_node->next; list_node = list_node->next)
+    {
+        if (list_node->type == type)
+        {
+            last = list_node; 
+        }
+    }
+    return last;
+}
+
 void eat_list_node(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
@@ -88,6 +104,33 @@ void eat_list_node(struct parser_s *p, enum type_grammar type)
     }   
 }
 
+void eat_list_last(struct parser_s *p, enum type_grammar type)
+{
+    struct list_node_s *pnode = lookup_last(p->nodes, type);
+    if (pnode->next != NULL && pnode->prev != NULL)
+    {
+        pnode->prev->next = pnode->next;
+        pnode->next->prev = pnode->prev;
+        free(pnode);
+    }
+    else if(pnode->next != NULL)
+    {
+        p->nodes = pnode->next;
+        //p->nodes->prev = NULL;
+        pnode->next->prev = NULL;
+        free(pnode);
+    }
+    else if(pnode->prev != NULL)
+    {
+        pnode->prev->next = NULL;
+        free(pnode);
+    }
+    else
+    {
+        free(pnode);
+    }   
+}
+
 /*
 ** check node and get if true
 */
@@ -101,6 +144,16 @@ struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type)
     return pnode;
 }
 
+struct list_node_s *ast_check_last(struct parser_s *p, enum type_grammar type)
+{
+    struct list_node_s *pnode = lookup_last(p->nodes, type);
+    if (!pnode){
+      return NULL;
+    }
+    eat_list_last(p, type);
+    return pnode;
+}
+
 /*
 ** check sym and get if true
 */
@@ -110,7 +163,7 @@ int ast_check_sym(struct parser_s *p, enum type_grammar type)
     if (!pnode){
       return 0;
     }
-    eat_list_node(p, type); 
+    eat_list_node(p, type);
     return 1;
 }
 
