@@ -1,0 +1,33 @@
+digraph AST {
+    node [fontname="Arial"];
+    ComPoundLIst -> AND_OR_child_0;
+    AND_OR_child_0 -> P_child_0;
+    P_child_0 -> C_child_0;
+    C_child_0 -> "a = 15";
+    C_child_0 -> "b = 569";
+    C_child_0 -> "15 REDIR ker";
+    C_child_0 -> "16 REDIR jsd";
+    P_child_0 -> C_child_1;
+    C_child_1 -> "u = 15";
+    C_child_1 -> "15 REDIR zre";
+    P_child_0 -> C_child_2;
+    C_child_2 -> "JE = 45";
+    C_child_2 -> "15 REDIR W";
+    C_child_2 -> "30 REDIR w";
+    C_child_2 -> "15 REDIR f";
+    C_child_2 -> "10 REDIR W";
+    AND_OR_child_0 -> P_child_1;
+    P_child_1 -> C_child_3;
+    C_child_3 -> "a = 1";
+    C_child_3 -> "b = 2";
+    AND_OR_child_0 -> P_child_2;
+    P_child_2 -> C_child_4;
+    C_child_4 -> "a = 5";
+    C_child_4 -> "15 REDIR toto";
+    ComPoundLIst -> AND_OR_child_1;
+    AND_OR_child_1 -> P_child_3;
+    P_child_3 -> C_child_5;
+    C_child_5 -> "WORD = 10";
+    C_child_5 -> "b = 50";
+    C_child_5 -> "15 REDIR dada";
+}

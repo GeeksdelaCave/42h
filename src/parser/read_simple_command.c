@@ -9,8 +9,20 @@ int read_simple_command(struct parser_s *p)
   if ((OneOrMany(read_prefix(p)) && ZeroOrMany(read_element(p))) || (ZeroOrMany(read_prefix(p)) && OneOrMany(read_element(p))))
   {
  	struct s_simple_cmd *s_cmd = init_simple_command(p);
-    print_node(p->nodes);
-    while(find_assign(p, s_cmd)|| find_redir(p, s_cmd) || find_word(p, s_cmd));
+    struct list_node_s *node = p->nodes;
+    for(; node; node = node->next)
+    {
+        if(node->type == ASSIGN)
+        {
+            find_assign(p, s_cmd);    
+        }else if(node->type == REDIRECTION)
+        {
+            find_redir(p, s_cmd);
+        }else if(node->type == WORD1)
+        {
+            find_word(p, s_cmd);
+        }
+    }
     printf("AST SIMPLE COMMAND SUCCESS\n");
     union all_grammar *grammar = malloc(sizeof(union all_grammar));
     grammar->simple_c = s_cmd;
