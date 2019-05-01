@@ -5,7 +5,7 @@ struct list_node_s *init_list_node()
     struct list_node_s *new_list = malloc(sizeof(struct list_node_s));
     if (new_list == NULL)
     {
-      return NULL;
+        return NULL;
     }
     new_list->type = -1;
     new_list->node = malloc(sizeof(union all_grammar));
@@ -19,25 +19,27 @@ void free_list_node(struct list_node_s *lnodes)
     struct list_node_s *prev_node = lnodes;
     while (lnodes)
     {
-      prev_node = lnodes;
-      lnodes = lnodes->next;
-      free(prev_node);
+        prev_node = lnodes;
+        lnodes = lnodes->next;
+        free(prev_node);
     }
 }
 
-void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, enum type_grammar type)
+void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, 
+enum type_grammar type)
 {
-  for(; list_node->next; list_node = list_node->next);
-  list_node->next = init_list_node();
-  list_node->type = type;
-  list_node->node = s_node;
-  list_node->next->prev = list_node;
+    for (; list_node->next; list_node = list_node->next);
+    list_node->next = init_list_node();
+    list_node->type = type;
+    list_node->node = s_node;
+    list_node->next->prev = list_node;
 }
 
 /*
 ** find and get the node 
 */
-struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_grammar type)
+struct list_node_s *list_node_lookup(struct list_node_s *list_node, 
+enum type_grammar type)
 {
     for (; list_node->next; list_node = list_node->next)
     {
@@ -49,7 +51,8 @@ struct list_node_s *list_node_lookup(struct list_node_s *list_node, enum type_gr
     return NULL;
 }
 
-enum type_grammar list_type_lookup(struct list_node_s *list_node, enum type_grammar type)
+enum type_grammar list_type_lookup(struct list_node_s *list_node, 
+enum type_grammar type)
 {
     for (; list_node->next; list_node = list_node->next)
     {
@@ -64,7 +67,8 @@ enum type_grammar list_type_lookup(struct list_node_s *list_node, enum type_gram
 /*
 ** find and get the last node of the type : type 
 */
-struct list_node_s *lookup_last(struct list_node_s *list_node, enum type_grammar type)
+struct list_node_s *lookup_last(struct list_node_s *list_node,
+enum type_grammar type)
 {
     struct list_node_s *last = NULL; 
     for (; list_node->next; list_node = list_node->next)
@@ -89,7 +93,6 @@ void eat_list_node(struct parser_s *p, enum type_grammar type)
     else if(pnode->next != NULL)
     {
         p->nodes = pnode->next;
-		//p->nodes->prev = NULL;
         pnode->next->prev = NULL;
         free(pnode);
     }
@@ -116,7 +119,6 @@ void eat_list_last(struct parser_s *p, enum type_grammar type)
     else if(pnode->next != NULL)
     {
         p->nodes = pnode->next;
-        //p->nodes->prev = NULL;
         pnode->next->prev = NULL;
         free(pnode);
     }
@@ -138,7 +140,7 @@ struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
     if (!pnode){
-      return NULL;
+        return NULL;
     }
     eat_list_node(p, type);
     return pnode;
@@ -148,7 +150,7 @@ struct list_node_s *ast_check_last(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = lookup_last(p->nodes, type);
     if (!pnode){
-      return NULL;
+        return NULL;
     }
     eat_list_last(p, type);
     return pnode;
@@ -161,7 +163,7 @@ int ast_check_sym(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
     if (!pnode){
-      return 0;
+        return 0;
     }
     eat_list_node(p, type);
     return 1;
@@ -169,7 +171,7 @@ int ast_check_sym(struct parser_s *p, enum type_grammar type)
 
 void print_node(struct list_node_s *node)
 {
-    for(; node; node = node->next)
+    for (; node; node = node->next)
     {
         printf("TYPE : %d ", node->type);
         if(node->prev)
