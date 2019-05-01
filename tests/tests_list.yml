@@ -5,5 +5,5 @@ TEST-00:
 
 TEST-01:
     desc: Test List
-    ref: bash --posix -c "if a=5 b=6 ss=6 15 < qbddq then b=5 a=5 fi"
-    cmd: ./42sh -c "if a=5 b=6 ss=6 15 < qbddq then b=5 a=5 fi"
+    ref: bash --posix -c "if a=5 b=6 ss=6 15 < qbd then b=5 a=5 fi"
+    cmd: ./42sh -c "if a=5 b=6 ss=6 15 < qbd then b=5 a=5 fi"
