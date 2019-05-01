@@ -5,8 +5,8 @@ TEST-00:
 
 TEST-01:
     desc: Test Pipeline
-    ref: bash --posix -c " 30 < wfvkfdkvndfkbv"
-    cmd: ./42sh -c " 30 < wfvkfdkvndfkbv"
+    ref: bash --posix -c " 30 < wfvkf"
+    cmd: ./42sh -c " 30 < wfvkf"
 
 TEST-02:
 	desc: Test Pipeline
