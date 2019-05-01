@@ -3,3 +3,8 @@ TEST-00:
     ref: bash --posix -c ""
     cmd: ./42sh -c ""
 
+TEST-00:
+    desc: Test Input
+    ref: bash --posix -c "test input"
+    cmd: ./42sh -c "test input"
+
