@@ -5,6 +5,6 @@ TEST-00:
 
 TEST-01:
     desc: Test Simple_command
-    ref: bash --posix -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfjvnf"
-    cmd: ./42sh -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfjvnf"
+    ref: bash --posix -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfj"
+    cmd: ./42sh -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfj"
 
