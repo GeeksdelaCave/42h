@@ -5,12 +5,12 @@ TEST-00:
 
 TEST-01:
     desc: TEST AND_OR
-    ref: bash --posix -c "! a=15 b=569 15 < kergjkergerklg 16"
-    cmd: ./42sh -c "! a=15 b=569 15 < kergjkergerklg 16"
+    ref: bash --posix -c "! a=15 b=569 15 < kerg 16"
+    cmd: ./42sh -c "! a=15 b=569 15 < me  16"
 
 TEST-02:
     desc: TEST AND_OR
-    ref: bash --posix -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
+    ref: bash --posix -c "kergjker 16 < jjsdfhvs | uhhvhbrb=15 15"
     cmd: ./42sh -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
 
 TEST-03:
