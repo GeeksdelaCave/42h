@@ -2,3 +2,8 @@ TEST-00:
     desc: Test Eof
     ref: bash --posix -c "\n"
     cmd: ./42sh -c "\n"
+
+TEST-01:
+    desc: Test Eof
+    ref: bash --posix -c " \n"
+    cmd: ./42sh -c " \n"
