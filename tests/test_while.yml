@@ -5,8 +5,8 @@ TEST-00:
 
 TEST-01:
     desc: Test While
-    ref: bash --posix -c "while ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv do a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
-    cmd: ./42sh -c "while ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv do a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
+    ref: bash --posix -c "while ! a=15 b=569 15 < kerg 16 < jsdh | uhhv=15 15 < zrev do a=15 | JE=45 15 < WORDfa 30 < wfvkf 15 < fdjkb 10< WORD done"
+    cmd: ./42sh -c "while ! a=15 b=569 15 < kerg 16 < jsdh | uhhv=15 15 < zrev do a=15 | JE=45 15 < WORDfa 30 < wfvkf 15 < fdjkb 10< WORD done"
 
 TEST-02:
     desc: Test While
