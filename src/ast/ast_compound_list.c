@@ -2,7 +2,7 @@
 struct s_node_compound_list *init_compound(struct parser_s *p)
 {
     struct s_node_compound_list *s_compound = malloc(sizeof(struct s_node_compound_list));
-    s_compound->and_or = malloc(sizeof(struct s_node_command) * check_compound_list(p));
+    s_compound->and_or = malloc(sizeof(struct s_node_and_or) * check_compound_list(p));
     s_compound->child = 0;
     return s_compound;
 }

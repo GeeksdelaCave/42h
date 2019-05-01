@@ -6,7 +6,7 @@ int main()
   //test_PIPELINE();
   //test_INPUT();
   //test_INPUT();
-  test_WHILE();
+  test_LIST();
   //test_DOGROUP();
   printf("\033[0;32m");
   printf("All tests OK!\n");

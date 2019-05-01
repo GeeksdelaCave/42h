@@ -12,8 +12,12 @@ int read_list(struct parser_s *p)
       ZeroOrMany(read_spaces(p)) && 
       (ZeroOrOne(read_virgule(p)) || ZeroOrOne(read_and(p))))
    {
-     printf("AST LIST Success \n");
-     return 1;
+        struct s_node_list *list = init_list(p);
+        while(list_and_or(p, list));
+        union all_grammar *grammar = malloc(sizeof(union all_grammar));
+        grammar->list = list;
+        list_node_store(p->nodes, grammar, LIST);
+        return 1;
    }
   p->cursor = tmp;
   printf("AST LIst FAil \n");

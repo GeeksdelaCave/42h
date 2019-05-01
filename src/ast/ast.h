@@ -15,6 +15,7 @@
 #include "ast_while.h"
 #include "ast_until.h"
 #include "ast_if.h"
+#include "ast_list.h"
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
     exit(ERROR_MEM)							\
@@ -77,7 +78,6 @@ union all_grammar
     struct s_symbole *symbole;
 };
 
-
 struct s_symbole
 {
     char *symbole;
@@ -97,10 +97,7 @@ struct list_node_s
 struct s_node_list
 {
   struct s_node_and_or *and_or;
-  char *mode_exec;
   int child;
-  enum type_grammar type;
-  struct s_node_list *next;
 };
 /*
 ** node andor
