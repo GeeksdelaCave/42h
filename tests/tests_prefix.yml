@@ -15,8 +15,8 @@ TEST-02:
 
 TEST-04:
     desc: Test Prefix
-    ref: bash --posix -c "a =                  aveavz"
-    cmd: ./42sh -c "a =                  aveavz"
+    ref: bash --posix -c "a  =  aveavz"
+    cmd: ./42sh -c "a  =  aveavz"
 
 TEST-05:
     desc: Test Prefix
