@@ -7,3 +7,9 @@ TEST-01:
     desc: Test Eof
     ref: bash --posix -c " \n"
     cmd: ./42sh -c " \n"
+
+
+TEST-03:
+    desc: Test Eof
+    ref: bash --posix -c " "
+    cmd: ./42sh -c " "
