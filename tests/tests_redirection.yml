@@ -13,7 +13,7 @@ TEST-02:
     ref: bash --posix -c "20 < word"
     cmd: ./42sh -c "20 < word"
 
-TEST-02:
+TEST-03:
     desc: Test Redirection
     ref: bash --posix -c "20 > word"
     cmd: ./42sh -c "20 > word"
