@@ -5,10 +5,15 @@ TEST-00:
 
 TEST-01:
     desc: Test Redirection
-    ref: bash --posix -c "       15    <               word"
-    cmd: ./42sh -c "       15    <               word"
+    ref: bash --posix -c "  15  <  word"
+    cmd: ./42sh -c "  15  <  word"
 
-TEST-01:
+TEST-02:
     desc: Test Redirection
     ref: bash --posix -c "20 < word"
     cmd: ./42sh -c "20 < word"
+
+TEST-02:
+    desc: Test Redirection
+    ref: bash --posix -c "20 > word"
+    cmd: ./42sh -c "20 > word"
