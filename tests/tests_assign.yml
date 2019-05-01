@@ -5,8 +5,8 @@ TEST-00:
 
 TEST-01:
     desc: TEST ASSIGN
-    ref: bash --posix -c "          word"
-    cmd: ./42sh -c "          word"
+    ref: bash --posix -c " word"
+    cmd: ./42sh -c " word"
 
 TEST-02:
     desc: TEST ASSIGN
