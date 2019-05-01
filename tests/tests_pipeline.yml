@@ -22,3 +22,8 @@ TEST-05:
     desc: Test Pipeline
     ref: bash --posix -c "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 fdhvhkdvhfd=20 15 < zrevjzrjvjerv a=15 | JE=45 15 < 8561ddada"
     cmd: ./42sh -c "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 fdhvhkdvhfd=20 15 < zrevjzrjvjerv a=15 | JE=45 15 < 8561ddada"
+
+TEST-04:
+    desc: Test Pipeline
+    ref: bash --posix -c "10 | WORD"
+    cmd: ./42sh -c "10 | WORD"
