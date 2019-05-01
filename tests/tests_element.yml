@@ -5,8 +5,8 @@ TEST-00:
 
 TEST-01:
     desc: TEST ELEMENT
-    ref: bash --posix -c "12        <      WORD"
-    cmd: ./42sh -c "12        <      WORD"
+    ref: bash --posix -c "12  <  WORD"
+    cmd: ./42sh -c "12  <  WORD"
 
 TEST-02:
     desc: TEST ELEMENT
