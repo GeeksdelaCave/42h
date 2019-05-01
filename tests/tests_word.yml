@@ -22,3 +22,8 @@ TEST-04:
     desc: TEST WORD
     ref: bash --posix -c "gdfgf dffd gfdd sdvs"
     cmd: ./42sh -c "gdfgf dffd gfdd sdvs"
+
+TEST-05:
+    desc: TEST WORD
+    ref: bash --posix -c " \"word"
+    cmd: ./42sh -c " \"word"
