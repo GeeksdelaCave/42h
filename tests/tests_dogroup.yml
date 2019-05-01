@@ -5,8 +5,8 @@ TEST-00:
 
 TEST-01:
     desc: TEST DOGROUP
-    ref: bash --posix -c "do ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
-    cmd: ./42sh -c "do ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD done"
+    ref: bash --posix -c "do ! a=15 b=569 15 < kerg 16 < jsd | uhh=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkj 10< WORD done"
+    cmd: ./42sh -c "do ! a=15 b=569 15 < kerg 16 < jsd | uhh=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkj 10< WORD done"
 
 TEST-02:
     desc: TEST DOGROUP
