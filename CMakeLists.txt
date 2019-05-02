@@ -34,7 +34,8 @@ add_executable(42sh
   src/builtin/builtin.h
   src/builtin/builtin.c
   src/builtin/builtin_exit.c
-    src/utils/string.c
+  src/builtin/builtin_while.c
+  src/utils/string.c
   src/utils/string.h
   )
 
