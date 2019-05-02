@@ -37,4 +37,15 @@ int builtin_exit(char *argv[]);
 
 int builtin_cmd(char *argv[]);
 
+/*!
+** Builtin while :)
+**
+** @param argv argument vector
+**
+** @retrun success status
+
+*/
+
+int builtin_while(char *argv[]);
+
 # endif
