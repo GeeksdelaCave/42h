@@ -133,15 +133,16 @@ struct ast_node_compound_list //s_ast_node
 
 enum {NODE_TYPE_COUNT = 9};
 
-void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
-                    unsigned int *node_id);
+//void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
+                  //  unsigned int *node_id);
 
-void ast_destruct(struct ast_node_compound_list *ast);
+//void ast_destruct(struct ast_node_compound_list *ast);
 
 
 /*
  * ================ IF RELATED FUNCTIONS ================
- */
+ *
+
 struct ast_node_compound_list *create_node_if(struct ast_node_compound_list
                                               *condition,
                                               struct ast_node_compound_list
@@ -153,10 +154,10 @@ void ast_if_print(struct ast_node_compound_list *node, FILE *out,
 void ast_if_destruct(struct ast_node_compound_list *node);
 
 
-
+*/
 /*
  * ================ CASE RELATED FUNCTIONS ================
- */
+ *
 struct ast_node_compound_list *create_node_case(char *word);
 void ast_case_add_item(struct ast_node_compound_list *node,
                        char **pattern, struct ast_node_compound_list *exec);
@@ -165,10 +166,10 @@ void ast_case_print(struct ast_node_compound_list *node, FILE *out,
 void ast_case_destruct_node(struct ast_node_compound_list *node);
 void ast_case_destruct(struct ast_node_compound_list *node);
 
-
+*/
 /*
  * ================ WHILE RELATED FUNCTIONS ================
- */
+
 struct ast_node_compound_list *create_node_while(struct ast_node_compound_list
                                                  *condition,
                                                  struct ast_node_compound_list
@@ -178,11 +179,11 @@ void ast_while_print(struct ast_node_compound_list *node, FILE *out,
 void ast_while_destruct_node(struct ast_node_compound_list *node);
 void ast_while_destruct(struct ast_node_compound_list *node);
 
-
+*/
 
 /*
  * ================ FOR RELATED FUNCTIONS ================
- */
+
 struct ast_node_compound_list *create_node_for(char *varname, char **values,
                                                struct ast_node_compound_list
                                                *exec);
@@ -192,10 +193,10 @@ void ast_for_destruct_node(struct ast_node_compound_list *node);
 void ast_for_destruct(struct ast_node_compound_list *node);
 
 
-
+*/
 /*
  * ================ FOR RELATED FUNCTIONS ================
- */
+ *
 struct ast_node_compound_list *create_node_red(void);
 void add_red_ast(struct ast_node_compound_list *node,
                  enum e_red_type type,
@@ -206,10 +207,10 @@ void ast_red_destruct_node(struct ast_node_compound_list *node);
 void ast_red_destruct(struct ast_node_compound_list *node);
 
 
-
+*/
 /*
  * ================ CMD RELATED FUNCTIONS ================
- */
+
 struct ast_node_compound_list *create_node_cmd(void);
 void add_cmd_ast_argv(struct ast_node_compound_list *node, char *argv);
 void add_cmd_ast_prefix(struct ast_node_compound_list *node,
@@ -220,10 +221,10 @@ void ast_cmd_destruct_node(struct ast_node_compound_list *node);
 void ast_cmd_destruct(struct ast_node_compound_list *node);
 
 
-
+*/
 /*
  * ================ AND RELATED FUNCTIONS ================
- */
+ *
 struct ast_node_compound_list *create_node_and(struct ast_node_compound_list
                                                *lhs,
                                                struct ast_node_compound_list
@@ -234,10 +235,10 @@ void ast_and_destruct_node(struct ast_node_compound_list *node);
 void ast_and_destruct(struct ast_node_compound_list *node);
 
 
-
+*/
 /*
  * ================ OR RELATED FUNCTIONS ================
- */
+ *
 struct ast_node_compound_list *create_node_or(struct ast_node_compound_list
                                                *lhs,
                                                struct ast_node_compound_list
@@ -247,11 +248,10 @@ void ast_or_print(struct ast_node_compound_list *node, FILE *out,
 void ast_or_destruct_node(struct ast_node_compound_list *node);
 void ast_or_destruct(struct ast_node_compound_list *node);
 
-
-
-/*
- * ================ OR RELATED FUNCTIONS ================
- */
+*/
+//*
+ //* ================ OR RELATED FUNCTIONS ================
+ /*
 struct ast_node_compound_list *create_node_pipe(struct ast_node_compound_list
                                                *lhs,
                                                struct ast_node_compound_list
@@ -260,5 +260,5 @@ void ast_pipe_print(struct ast_node_compound_list *node, FILE *out,
                   unsigned int *node_id);
 void ast_pipe_destruct_node(struct ast_node_compound_list *node);
 void ast_pipe_destruct(struct ast_node_compound_list *node);
-
+*/
 # endif

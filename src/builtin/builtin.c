@@ -7,7 +7,7 @@
 **builtin the function c
 */
 
-enum { NB_BUILTIN = 1 };
+enum { NB_BUILTIN = 2 };
 
 struct s_builtin_tab
 {
@@ -17,7 +17,10 @@ struct s_builtin_tab
 
 static struct s_builtin_tab s_builtin_tab[NB_BUILTIN] =
 {
-    {"exit", builtin_exit}
+    {"exit", builtin_exit},
+    {"while", builtin_while}
+    //{"cd", builtin_cd}
+
 };
 
 func_builtin is_a_builtin(const char *name)

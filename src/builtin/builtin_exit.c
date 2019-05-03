@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include "builtin.h"
 # define isinteractive() (isatty(STDIN_FILENO) && isatty(STDERR_FILENO))
+
 int builtin_exit(char *argv[])
 {
     long i;

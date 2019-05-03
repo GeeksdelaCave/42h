@@ -26,4 +26,26 @@ struct shell
 
 int builtin_exit(char *argv[]);
 
+/*!
+** Builtin cd :)
+**
+** @param argv argument vector
+**
+** @retrun success status
+
+*/
+
+int builtin_cmd(char *argv[]);
+
+/*!
+** Builtin while :)
+**
+** @param argv argument vector
+**
+** @retrun success status
+
+*/
+
+int builtin_while(char *argv[]);
+
 # endif
