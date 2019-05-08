@@ -6,6 +6,6 @@
 #define READ_PIPELINE_H
 /**
  ** \fn int read_pipeline(struct parser_s *p);
- */  
+ */
 int read_pipeline(struct parser_s *p);
 #endif

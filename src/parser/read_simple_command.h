@@ -6,6 +6,6 @@
 #define SIMPLE_COMMAND_H
 /**
  ** \fn int read_simple_command(struct parser_s *p);
- */  
+ */
 int read_simple_command(struct parser_s *p);
 #endif

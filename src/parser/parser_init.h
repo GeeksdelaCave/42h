@@ -6,50 +6,50 @@
 #define PARSER_INIT_H
 /**
  ** \def TRUE 1
- */ 
+ */
 #define TRUE 1
 /**
  ** \def FALSE 0
- */ 
+ */
 #define FALSE 0
 /**
  ** \def ZeroOrOne(R)
- */ 
+ */
 #define ZeroOrOne(R)   \
   __extension__({      \
-      R;       \
-      TRUE;       \
+      R;	       \
+      TRUE;	       \
     })
 /**
  ** \def ZeroOrMany(R)
- */  
+ */
 #define ZeroOrMany(R)  \
   __extension__({      \
-      while(R)       \
-	;       \
-      TRUE;       \
+      while(R)	       \
+	;	       \
+      TRUE;	       \
     })
 /**
  ** \def OneOrMany(R)
- */  
-#define OneOrMany(R)    \
-  __extension__ ({    \
-      int res = FALSE;      \
-      if(R)      \
-	{      \
-	  while(R)      \
-	    ;                 \
-	  res = TRUE;      \
-	}                 \
-      res;  \
+ */
+#define OneOrMany(R)	      \
+  __extension__ ({	      \
+      int res = FALSE;	      \
+      if(R)		      \
+      {			      \
+	while(R)	      \
+	  ;		      \
+	res = TRUE;	      \
+      }			      \
+      res;		      \
     })
 /**
  ** \struct parser_s
  ** \brief struct of the parser
  **  the string input
  **  a int cursor
- **  structure of list of capture
- **  structure of list of node
+ **  structure of catch list
+ **  structure of node list
  */
 struct parser_s
 {

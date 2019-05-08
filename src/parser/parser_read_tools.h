@@ -1,12 +1,12 @@
 /**
  ** \file PARSER_READ_TOOLS
  ** \brief Declaration file PARSER_READ_TOOLS_H
-*/
+ */
 #ifndef PARSER_READ_TOOLS_H
 #define PARSER_READ_TOOLS_H
 /**
  ** \fn int read_pipe(struct parser_s *p);
- */ 
+ */
 int read_pipe(struct parser_s *p);
 /**
  ** \fn int read_excla(struct parser_s *p);

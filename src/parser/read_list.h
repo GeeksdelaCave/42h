@@ -6,6 +6,6 @@
 #define READ_LIST_H
 /**
  ** \fn int read_list(struct parser_s *p);
- */ 
+ */
 int read_list(struct parser_s *p);
 #endif
