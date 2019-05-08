@@ -1,3 +1,7 @@
+/**
+ ** \file GRAMMAR
+ ** \brief Declaration file GRAMMAR_H
+ */
 #ifndef GRAMMAR_H
 #define GRAMMAR_H
 #include "parser.h"

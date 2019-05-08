@@ -1,5 +1,12 @@
+/**
+ ** \file PARSER
+ ** \brief Declaration file PARSER_H
+ */
 #ifndef PARSER_H
 #define PARSER_H
+/**
+ ** \def _XOPEN_SOURCE 700
+ */ 
 #define _XOPEN_SOURCE 700
 #include <stdio.h>
 #include <stdlib.h>
