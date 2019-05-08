@@ -5,6 +5,7 @@
 #include "../grammar.h" 
 void test_WORD();
 void test_PREFIX();
+void test_ELSE();
 void test_ELEMENT();
 void test_REDIRECTION();
 void test_SIMPLECOMMAND();
