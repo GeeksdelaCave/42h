@@ -22,13 +22,13 @@ configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  CO
 
 add_executable(42sh
   src/core/main.c
-  src/ast/ast/ast.h
+  src/exec/ast.h
 
-  src/ast/execution/exec.h
-  src/ast/execution/exec_if.c
-  src/ast/execution/exec_node.c
-  src/ast/execution/exec_while.c
-  src/ast/execution/redirection.c
+  src/exec/exec.h
+  src/exec/exec_if.c
+  src/exec/exec_node.c
+  src/exec/exec_while.c
+  src/exec/redirection.c
 
 
   src/builtin/builtin.h
