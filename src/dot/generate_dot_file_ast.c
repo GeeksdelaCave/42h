@@ -161,8 +161,6 @@ void print_else_command(struct s_node_else *s_else, FILE *file)
  */
 void print_if_command(struct s_node_if *s_if, FILE *file)
 {
-  fprintf(file, "digraph AST {\n");
-  fprintf(file, "    node [fontname=\"Arial\"];\n");
   fprintf(file,  "    %s_child_%d -> Condition\n", "IF", C_IF);
   fprintf(file,  "    Condition -> \"%s_%d\"\n", "ComPoundLIst", C_CMP);
   for (int i = 0; i < s_if->condition->child; i++)
@@ -189,7 +187,6 @@ void print_if_command(struct s_node_if *s_if, FILE *file)
   }
   C_IF++;
   C_CMP++;
-  fprintf(file, "}\n");
 }
 /**
  ** \brief this function determines the treatment to be applied for the various
@@ -302,8 +299,16 @@ void my_print_ast(struct parser_s *p)
   fprintf(file, "    node [fontname=\"Arial\"];\n");
   if (p->nodes != NULL)
   {
-    print_list_to_and_or(p->nodes->node->list, file);
-    //print_list_to_and_or(p->nodes->node->list, file);
+    struct s_node_while *list = NULL;
+    for (; p->nodes != NULL; p->nodes = p->nodes->next)
+    {
+      if (p->nodes->type == WHILE)
+      {
+		list = p->nodes->node->node_while;
+      }
+    }
+    //print_node(p->nodes);
+    print_while_command(list, file);
   }
   fprintf(file, "}\n");
 }

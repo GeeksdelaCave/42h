@@ -9,5 +9,5 @@ void test_LIST()
     };
   struct parser_s *p1= parser_new_from_string(str[1]);
   assert(read_list(p1) == 1);
-  printf("%s \n", p1->input);
+  // printf("%s \n", p1->input);
 }

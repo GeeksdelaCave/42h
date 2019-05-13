@@ -30,7 +30,7 @@ void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, e
   for(; list_node->next; list_node = list_node->next);
   list_node->next = init_list_node();
   list_node->type = type;
-	printf("----------------------------------------TEST IN LIST_NODE_STORE-------------------------------%d\n", list_node->type);  
+	//printf("----------------------------------------TEST IN LIST_NODE_STORE-------------------------------%d\n", list_node->type);  
 list_node->node = s_node;
   list_node->next->prev = list_node;
 }
