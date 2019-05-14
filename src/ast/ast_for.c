@@ -1,8 +1,8 @@
 #include "ast.h"
 struct s_node_for *init_for()
 {
-  struct s_node_for *node_for = malloc(sizeof(struct s_node_for));
-  return node_for;
+    struct s_node_for *node_for = malloc(sizeof(struct s_node_for));
+    return node_for;
 }
 /*
 int find_for(struct parser_s *p, struct s_node_for *node_for)
