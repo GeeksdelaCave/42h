@@ -1,8 +1,8 @@
 #include "ast.h"
 struct s_node_until *init_until()
 {
-  struct s_node_until *node_until = malloc(sizeof(struct s_node_until));
-  return node_until;
+    struct s_node_until *node_until = malloc(sizeof(struct s_node_until));
+    return node_until;
 }
 int find_until(struct parser_s *p, struct s_node_until *node_until)
 {
