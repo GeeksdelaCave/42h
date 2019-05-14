@@ -5,7 +5,4 @@ enum error
 {
     ERROR_MEM = 42
 };
-
-
-
 # endif
