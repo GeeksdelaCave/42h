@@ -5,7 +5,7 @@ struct list_node_s *init_list_node()
     struct list_node_s *new_list = malloc(sizeof(struct list_node_s));
     if (new_list == NULL)
     {
-      return NULL;
+        return NULL;
     }
     new_list->type = -1;
     new_list->node = malloc(sizeof(union all_grammar));
@@ -19,9 +19,9 @@ void free_list_node(struct list_node_s *lnodes)
     struct list_node_s *prev_node = lnodes;
     while (lnodes)
     {
-      prev_node = lnodes;
-      lnodes = lnodes->next;
-      free(prev_node);
+        prev_node = lnodes;
+        lnodes = lnodes->next;
+        free(prev_node);
     }
 }
 
