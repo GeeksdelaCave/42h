@@ -7,7 +7,7 @@
 **builtin the function c
 */
 
-enum { NB_BUILTIN = 2 };
+enum { NB_BUILTIN = 3 };
 
 struct s_builtin_tab
 {
