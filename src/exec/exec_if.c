@@ -13,7 +13,7 @@
 
 void exec_if_node(struct list_node_s *node)
 {
-    //assert(node);
+    //assert(node)s;
     exec_node(node->condition);
     if (!shell->status)
       exec_node(node->if_body);
