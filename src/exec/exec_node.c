@@ -14,13 +14,9 @@
  */
 void exec_node(list_node_s *body)
 {
-<<<<<<< HEAD
     //assert(body)n;
-    switch (node->type)
-=======
     assert(body);
     switch (body->type)
->>>>>>> d05fc55a4ceebaa9f4f17618dd30e26f9ce65649
     {
         case IF: exec_if(&body->node.node_if);
             break;
