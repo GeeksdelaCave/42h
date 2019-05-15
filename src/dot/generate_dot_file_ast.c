@@ -225,7 +225,7 @@ void print_command_ast(struct s_node_command *cmd, FILE *file)
 void print_pipeline_to_command_ast(struct s_node_pipeline *pipeline, FILE *file)
 {
 
-  for (int i = 0; i < pipeline->child; i++)
+  for (int i = 0; i <= pipeline->child; i++)
   {
     fprintf(file,  "    %s_child_%d -> %s_child_%d;\n", "P",P_CHILD ,"C",
 	    C_CHILD);
@@ -299,16 +299,9 @@ void my_print_ast(struct parser_s *p)
   fprintf(file, "    node [fontname=\"Arial\"];\n");
   if (p->nodes != NULL)
   {
-    struct s_node_while *list = NULL;
-    for (; p->nodes != NULL; p->nodes = p->nodes->next)
-    {
-      if (p->nodes->type == WHILE)
-      {
-		list = p->nodes->node->node_while;
-      }
-    }
+    struct s_node_list *list = p->nodes->node->list;
     //print_node(p->nodes);
-    print_while_command(list, file);
+    print_list_to_and_or(list, file);
   }
   fprintf(file, "}\n");
 }
