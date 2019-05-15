@@ -11,10 +11,10 @@
 
 void exec_node(list_node_s *body)
 {
-    assert(body);
+    //assert(body);
     switch (node->type)
     {
-        case IF: exec_if(&body->node.node_if); 
+        case IF: exec_if(&body->node.node_if);
             break;
         case WHILE: exec_while(&body->node.node_while);
             break;
