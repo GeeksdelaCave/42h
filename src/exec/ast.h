@@ -18,7 +18,7 @@
 
 
 /*
- * ================ IF RELATED FUNCTIONS ================
+ * ================ IF RELATED FUNCTIONS ===================
  *
 
 struct ast_node_compound_list *create_node_if(struct ast_node_compound_list
