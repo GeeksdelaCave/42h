@@ -4,6 +4,11 @@ TEST-00:
     cmd: ./42sh -c ""
 
 TEST-01:
-    desc: Test Ast
-    ref: bash --posix -c ""
+    desc: Test Ast1
+    ref: bash --posix -h ""
     cmd: ./42sh -c ""
+
+TEST-02:
+    desc: Test Ast2
+    ref: bash --posix -g ""
+    cmd: ./42sh -g ""
