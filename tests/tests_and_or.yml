@@ -17,3 +17,8 @@ TEST-03:
     desc: TEST AND_OR
     ref: bash --posix -c "! a=1 b=2 || ! a=5 15 < toto"
     cmd: ./42sh -c "! a=1 b=2 || ! a=5 15 < toto"
+
+TEST-04:
+    desc: TEST AND_OR
+    ref: bash --posix -c "! a=1 b=3 || ! a=5 15 < toto"
+    cmd: ./42sh -c "! a=1 b=3 || ! a=5 15 < toto"
