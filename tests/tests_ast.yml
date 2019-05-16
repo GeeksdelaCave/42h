@@ -2,3 +2,8 @@ TEST-00:
     desc: Test Ast
     ref: bash --posix -c ""
     cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Ast
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
