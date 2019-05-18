@@ -225,7 +225,7 @@ void print_command_ast(struct s_node_command *cmd, FILE *file)
 void print_pipeline_to_command_ast(struct s_node_pipeline *pipeline, FILE *file)
 {
 
-  for (int i = 0; i <= pipeline->child; i++)
+  for (int i = 0; i < pipeline->child; i++)
   {
     fprintf(file,  "    %s_child_%d -> %s_child_%d;\n", "P",P_CHILD ,"C",
 	    C_CHILD);

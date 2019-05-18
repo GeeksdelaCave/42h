@@ -24,6 +24,7 @@ void pipeline_store(struct s_node_pipeline *pipeline,
 struct s_node_pipeline *new_command, int nb_child)
 {
     pipeline->commands[nb_child] = *new_command->commands;
+    printf("------------------------- NB CHILD ----------------------%d\n", nb_child);
     pipeline->b_and = new_command->b_and;
     pipeline->b_or = new_command->b_or;
 }

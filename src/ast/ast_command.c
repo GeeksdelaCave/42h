@@ -41,7 +41,7 @@ enum type_grammar check_type_cmd(struct parser_s *p)
 }
 
 int find_s_command(struct parser_s *p)
-{
+{   
     enum type_grammar type = SIMPLECOMMAND ;
     int excla = ast_check_sym(p, EXCLA);
     int pipe = ast_check_sym(p, PIPE);
@@ -63,8 +63,8 @@ int find_s_command(struct parser_s *p)
     command->pipe = pipe;
     union all_grammar *grammar = malloc(sizeof(union all_grammar));
     grammar->command = command;
-    list_node_store(p->nodes, grammar, COMMAND);
-    return 1;
+    list_node_store(p->nodes, grammar, COMMAND);    
+return 1;
 }
 
 /*
