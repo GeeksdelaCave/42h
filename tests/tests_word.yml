@@ -25,5 +25,5 @@ TEST-04:
 
 TEST-05:
     desc: TEST WORD
-    ref: bash --posix -c " \"word"
-    cmd: ./42sh -c " \"word"
+    ref: bash --posix -c " \"word2"
+    cmd: ./42sh -c " \"word2"
