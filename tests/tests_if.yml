@@ -1,5 +1,5 @@
 TEST-00:
-    desc: Test if 
+    desc: Test if
     ref: bash --posix -c ""
     cmd: ./42sh -C ""
 
@@ -9,11 +9,11 @@ TEST-01:
     cmd: ./42sh -c "if a"
 
 TEST-02:
-	desc: Test if
-	ref: bash --posix -c "if ! a=15 b=569 15 < kerg 16 < jsdhv  | uhhvhbrb=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkbh 10< WORD fi"
-	cmd : ./42sh -c "if ! a=15 b=569 15 < kerg 16 < jsdhv  | uhhvhbrb=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkbh 10< WORD fi"
+    desc: Test if
+    ref: bash --posix -c "if ! a=15 b=569 15 < kerg 16 < jsdhv  | uhhvhbrb=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkbh 10< WORD fi"
+    cmd : ./42sh -c "if ! a=15 b=569 15 < kerg 16 < jsdhv  | uhhvhbrb=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkbh 10< WORD fi"
 
 TEST-03:
-	desc: Test if
-	ref: bash --posix -c "if ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada then ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dadaklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD fi"
-	cmd : ./42sh -c "if ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD fi"
+    desc: Test if
+    ref: bash --posix -c "if ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada then ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dadaklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD fi"
+    cmd : ./42sh -c "if ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD fi"
