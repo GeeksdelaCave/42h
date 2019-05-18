@@ -1,5 +1,12 @@
+/**
+ ** \file  ast.c
+ */
 #include "ast.h"
-
+/**
+ ** \brief Initialization of node
+ **
+ ** \return a new struct list node
+ */
 struct list_node_s *init_list_node()
 {
     struct list_node_s *new_list = malloc(sizeof(struct list_node_s));
@@ -13,7 +20,12 @@ struct list_node_s *init_list_node()
     new_list->prev = NULL;
     return new_list;
 }
-
+/**
+ ** \brief free of node list
+ **
+ ** \param list_nodes (lnodes) struct list_nodes_s
+ ** 
+ */
 void free_list_node(struct list_node_s *lnodes)
 {
     struct list_node_s *prev_node = lnodes;
@@ -24,7 +36,15 @@ void free_list_node(struct list_node_s *lnodes)
         free(prev_node);
     }
 }
-
+/**
+ ** \brief list of node store
+ **
+ ** \param list_nodes (lnodes) struct list_nodes_s
+ ** 
+ ** \param union all_grammar *s_node
+ **
+ ** \param enum type_grammar type
+ */
 void list_node_store(struct list_node_s *list_node, union all_grammar *s_node,
 enum type_grammar type)
 {
@@ -34,10 +54,15 @@ enum type_grammar type)
     list_node->node = s_node;
     list_node->next->prev = list_node;
 }
-
-/*
-** find and get the node 
-*/
+/**
+ ** \brief list_node_lookup : find and get the node 
+ **
+ ** \param list_nodes (lnodes) struct list_nodes_s
+ ** 
+ ** \param enum type_grammar type
+ **
+ ** \return a struct list_node_s
+ */
 struct list_node_s *list_node_lookup(struct list_node_s *list_node, 
 enum type_grammar type)
 {
@@ -50,7 +75,15 @@ enum type_grammar type)
     }
     return NULL;
 }
-
+/**
+ ** \brief list_type_lookup
+ **
+ ** \param list_nodes (lnodes) struct list_nodes_s
+ ** 
+ ** \param enum type_grammar type
+ **
+ ** \return a enum type_grammar
+ */
 enum type_grammar list_type_lookup(struct list_node_s *list_node,
 enum type_grammar type)
 {
@@ -63,10 +96,15 @@ enum type_grammar type)
     }
     return -1;
 }
-
-/*
-** find and get the last node of the type : type 
-*/
+/**
+ ** \brief lookup_last : find and get the last node of the type : type 
+ **
+ ** \param list_nodes (lnodes) struct list_nodes_s
+ ** 
+ ** \param enum type_grammar type
+ **
+ ** \return struct list_node_s
+ */
 struct list_node_s *lookup_last(struct list_node_s *list_node, enum type_grammar type)
 {
     struct list_node_s *last = NULL; 
@@ -79,7 +117,14 @@ struct list_node_s *lookup_last(struct list_node_s *list_node, enum type_grammar
     }
     return last;
 }
-
+/**
+ ** \brief eat_list_node
+ **
+ ** \param struct parser_s *p
+ ** 
+ ** \param enum type_grammar type
+ **
+ */
 void eat_list_node(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
@@ -105,7 +150,14 @@ void eat_list_node(struct parser_s *p, enum type_grammar type)
         free(pnode);
     }   
 }
-
+/**
+ ** \brief eat_list_last
+ **
+ ** \param struct parser_s *p
+ ** 
+ ** \param enum type_grammar type
+ **
+ */
 void eat_list_last(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = lookup_last(p->nodes, type);
@@ -131,10 +183,15 @@ void eat_list_last(struct parser_s *p, enum type_grammar type)
         free(pnode);
     }   
 }
-
-/*
-** check node and get if true
-*/
+/**
+ ** \brief ast_check_node : check node and get if true
+ **
+ ** \param struct parser_s *p
+ ** 
+ ** \param enum type_grammar type
+ **
+ ** \return a struct list_node_s
+ */
 struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
@@ -144,7 +201,15 @@ struct list_node_s *ast_check_node(struct parser_s *p, enum type_grammar type)
     eat_list_node(p, type);
     return pnode;
 }
-
+/**
+ ** \brief ast_check_last
+ **
+ ** \param struct parser_s *p
+ ** 
+ ** \param enum type_grammar type
+ **
+ ** \return a struct list_node_s
+ */
 struct list_node_s *ast_check_last(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = lookup_last(p->nodes, type);
@@ -154,10 +219,15 @@ struct list_node_s *ast_check_last(struct parser_s *p, enum type_grammar type)
     eat_list_last(p, type);
     return pnode;
 }
-
-/*
-** check sym and get if true
-*/
+/**
+ ** \brief ast_check_sym : check sym and get if true
+ **
+ ** \param struct parser_s *p
+ ** 
+ ** \param enum type_grammar type
+ **
+ ** \return a int 
+ */
 int ast_check_sym(struct parser_s *p, enum type_grammar type)
 {
     struct list_node_s *pnode = list_node_lookup(p->nodes, type);
@@ -167,7 +237,15 @@ int ast_check_sym(struct parser_s *p, enum type_grammar type)
     eat_list_node(p, type);
     return 1;
 }
-
+/**
+ ** \brief print a node 
+ **
+ ** \param struct list_node_s *node
+ ** 
+ ** \param enum type_grammar type
+ **
+ ** \return a int 
+ */
 void print_node(struct list_node_s *node)
 {
     for(; node; node = node->next)
