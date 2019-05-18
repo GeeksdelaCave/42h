@@ -10,5 +10,5 @@ TEST-01:
 
 TEST-02:
     desc: Test Simple_command
-    ref: bash --posix -c "20 < word"
-    cmd: ./42sh -c "20 < word"
+    ref: bash --posix -c "20 < word1"
+    cmd: ./42sh -c "20 < word1"
