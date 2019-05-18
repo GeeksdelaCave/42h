@@ -12,3 +12,8 @@ TEST-02:
     desc: TEST DOGROUP
     ref: bash --posix -c "do ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
     cmd: ./42sh -c "do ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+
+TEST-03:
+    desc: TEST DOGROUP
+    ref: bash --posix -c "do ! a=10 b=12 || ! a=10 20 < toto ; ! WORD=20 b=60 10 < dada done"
+    cmd: ./42sh -c "do ! a=10 b=12 || ! a=10 20 < toto ; ! WORD=20 b=60 10 < dada done"
