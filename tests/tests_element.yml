@@ -12,3 +12,8 @@ TEST-02:
     desc: TEST ELEMENT
     ref: bash --posix -c "a=15 b=16 c=17 word word2 word3"
     cmd: ./42sh -c "a=15 b=16 c=17 word word2 word3"
+
+TEST-04:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "20  < TRAVEL"
+    cmd: ./42sh -c "20  <  TRAVEL"
