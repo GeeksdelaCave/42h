@@ -11,128 +11,6 @@
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
         exit(ERROR_MEM)                                                 \
 
-//if ast node
-
-struct ast_node_if
-{
-    struct ast_node_compound_list *condition;
-    struct ast_node_compound_list *if_body;
-    struct ast_node_compound_list *else_body;
-
-};
-
-//for ast node
-
-struct ast_node_for
-{
-    char *varname;
-    char **values;
-    struct ast_node_compound_list *exec;
-};
-
-//Case ast node
-
-struct s_case_item
-{
-    char **pattern;
-    struct ast_node_compound_list *exec;
-    struct s_case_item *next;
-};
-
-struct ast_node_case
-{
-    char *word;
-    struct s_case_item *items;
-};
-
-//while ast node
-
-struct ast_node_while
-{
-    struct ast_node_compound_list *condition;
-    struct ast_node_compound_list *exec;
-};
-
-// Enumeration different type of redirection
-enum e_red_type
-{
-    R_LESS,                 /* <  */
-    R_LESSAND,              /* <& */
-    R_GREAT,                /* >  */
-    R_GREATAND,             /* >& */
-    R_DGREAT,               /* >> */
-    R_LESSGREAT,            /* <> */
-    R_CLOBBER,              /* >| */
-    R_DLESS,                /* << */
-    R_DLESSDASH             /* <<-*/
-};
-
-//Redirection ast node
-struct s_red_node
-{
-    size_t size;
-    enum e_red_type *type;
-    int *fd;
-    char **words;
-    struct ast_node_compound_list *mhs;
-};
-
-//type shell command
-enum shell_command_child_type
-{
-    T_IF,
-    T_CASE,
-    T_FOR,
-    T_WHILE,
-    T_RED,
-    T_CMD,
-    T_AND,
-    T_OR,
-    T_PIPE
-};
-
-/*
-**Command ast node
-*/
-
-struct s_cmd_node
-{
-    char **argv;
-    char **prefix;
-};
-
-/*
-** struct for ast ant pip ...
-*/
-
-struct s_ast_bin
-{
-    struct ast_node_compound_list *lhs;
-    struct ast_node_compound_list *rhs;
-};
-
-union shell_command_child
-{
-    struct ast_node_if child_if;
-    struct ast_node_case child_case;
-    struct ast_node_for child_for;
-    struct ast_node_while child_while;
-    struct s_red_node child_red;
-    struct s_cmd_node child_cmd;
-    struct s_ast_bin child_and;
-    struct s_ast_bin child_or;
-    struct s_ast_bin child_pipe;
-};
-
-
-struct ast_node_compound_list //s_ast_node
-{
-    enum shell_command_child_type type;
-    union shell_command_child child;//body
-};
-
-enum {NODE_TYPE_COUNT = 9};
-
 //void ast_print_node(struct ast_node_compound_list *ast, FILE *out,
                   //  unsigned int *node_id);
 
@@ -140,7 +18,7 @@ enum {NODE_TYPE_COUNT = 9};
 
 
 /*
- * ================ IF RELATED FUNCTIONS ================
+ * ================ IF RELATED FUNCTIONS ===================
  *
 
 struct ast_node_compound_list *create_node_if(struct ast_node_compound_list
@@ -261,4 +139,245 @@ void ast_pipe_print(struct ast_node_compound_list *node, FILE *out,
 void ast_pipe_destruct_node(struct ast_node_compound_list *node);
 void ast_pipe_destruct(struct ast_node_compound_list *node);
 */
+
+enum type_grammar
+{
+  LIST,         //0
+  ANDOR,        //1
+  PIPELINE,     //2
+  COMMAND,      //3
+  SIMPLECOMMAND,//4
+  FUNDEC,       //5
+  ASSIGN,       //6
+  REDIRECTION,  //7
+  WORD1,        //8
+  COUMPOUND,    //9
+  FOR,      //10
+  IF,       //11
+  WHILE,    //12
+  UNTIL,    //13
+  CASE,     //14
+  ELSECLAUSE,   //15
+  DOGROUP,      //16
+  CASECLAUSE,   //17
+  CASEITEM,     //18
+  PIPE,         //19
+  EXCLA,        //20
+  AND,          //21
+  OR,           //22
+  S_AND,        //23
+  VIRGULE       //24
+};
+
+union all_grammar
+{
+    struct s_node_list *list;
+    struct s_node_and_or *andor;
+    struct s_node_pipeline *pipeline;
+    struct s_node_command *command;
+    struct s_simple_cmd *simple_c;
+    struct s_node_assign *assign;
+    struct s_node_redirection *redirection;
+    struct s_node_if *node_if;
+	struct s_node_else *node_else;
+    struct s_node_for *node_for;
+    struct s_node_while *node_while;
+    struct s_node_case_item *case_item;
+    struct s_node_compound_list *compoundlist;
+    struct s_do_group *dogroup;
+    struct s_node_until *node_until;
+    struct s_node_word *word;
+    struct s_symbole *symbole;
+};
+
+struct s_symbole
+{
+    char *symbole;
+};
+
+/*
+** node list
+*/
+struct list_node_s
+{
+  enum type_grammar type;
+  union all_grammar *node;
+  struct list_node_s *next;
+  struct list_node_s *prev;
+};
+
+struct s_node_list
+{
+  struct s_node_and_or *and_or;
+  int child;
+};
+/*
+** node andor
+*/
+struct s_node_and_or
+{
+    struct s_node_pipeline *pipelines;
+    int simple_and;
+    int virgule;
+    int type;
+    int child;
+};
+
+/*
+** node pipeline
+*/
+struct s_node_pipeline
+{
+    int b_and;
+    int b_or;
+    struct s_node_command *commands;
+    int child;
+};
+
+
+/*
+** node commands
+*/
+struct s_node_command
+{
+    int excla;
+    enum type_grammar type;
+    union all_grammar *struct_type;
+    int pipe;
+};
+
+
+/*
+** node simple commands
+*/
+struct s_simple_cmd
+{
+  enum type_grammar type;
+  struct s_node_command *child_node;
+  int child;
+};
+
+/*
+** node shell commands
+*/
+
+struct s_node_shell_command
+{
+    enum type_grammar type;
+    union all_grammar *struct_type;
+};
+
+/*
+** Assign Struct
+*/
+struct s_node_assign
+{
+  char *id;
+  char *num;
+};
+
+/*
+** WORD
+*/
+
+struct s_node_word
+{
+    char *word;
+};
+
+// Enumeration different type of redirection
+enum e_red_type
+{
+  R_LESS,                 /* <  */
+  R_LESSAND,              /* <& */
+  R_GREAT,                /* >  */
+  R_GREATAND,             /* >& */
+  R_DGREAT,               /* >> */
+  R_LESSGREAT,            /* <> */
+  R_CLOBBER,              /* >| */
+  R_DLESS,                /* << */
+  R_DLESSDASH             /* <<-*/
+};
+
+/*
+** Redirection
+*/
+struct s_node_redirection
+{
+  char *number;
+  enum e_red_type redirection;
+  char *word;
+};
+
+//if ast node
+struct s_node_if
+{
+  struct s_node_compound_list *condition;
+  struct s_node_compound_list *if_body;
+  struct s_node_else *else_body;
+};
+
+//else ast node
+struct s_node_else
+{
+  struct s_node_compound_list *else_body;
+  struct s_node_compound_list *elif_body;
+  struct s_node_compound_list *then_body;
+};
+
+//for ast node
+struct s_node_for
+{
+  char *varname;
+  char **values;
+  struct s_node_compound_list *dogroup;
+};
+
+//while ast node
+
+struct s_node_while
+{
+  struct s_node_compound_list *condition;
+  struct s_node_compound_list *dogroup;
+};
+
+/*
+** until ast node
+*/
+
+struct s_node_until
+{
+  struct s_node_compound_list *condition;
+  struct s_node_compound_list *dogroup;
+};
+
+//Case ast node
+
+struct s_node_case_item
+{
+    char **pattern;
+  struct s_node_compound_list *exec;
+  struct s_node_case_item *next;
+};
+
+//Case ast node
+
+struct s_node_case
+{
+  char *word;
+  struct s_case_item *items;
+};
+
+struct s_node_compound_list
+{
+    struct s_node_and_or *and_or;
+    int child;
+};
+
+
+struct s_do_group
+{
+    struct s_node_compound_list *cpd;
+};
+
 # endif

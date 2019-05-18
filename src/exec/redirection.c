@@ -38,9 +38,24 @@ void redirection (char *argv[], char* in,char* out)
 
 }
 
-int main (int argc, char *argv[])
+void exec_redirection_node(struct list_node_s *n, struct list_node_s *prev, struct list_node_s *next, struct s_node_redirection *node)
+{
+    assert(node);
+    switch(node->redirection)
+    {
+        case R_GREAT: exec_R_GREAT(&node->word, &node->number); 
+            break;
+        case R_DGREAT: exec_R_GREAT(&body->word, &node->number);
+            break;   
+        default:
+            assert(0);    
+    }
+}
+
+/*int main (int argc, char *argv[])
 {
   //case for ">"
   redirection(argv, argv[0], argv[2]);
   return 0;
 }
+*/
