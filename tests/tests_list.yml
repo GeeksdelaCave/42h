@@ -7,3 +7,8 @@ TEST-01:
     desc: Test List
     ref: bash --posix -c "if a=5 b=6 ss=6 15 < qbd then b=5 a=5 fi"
     cmd: ./42sh -c "if a=5 b=6 ss=6 15 < qbd then b=5 a=5 fi"
+
+TEST-02:
+    desc: Test List
+    ref: bash --posix -c "if a=10 b=12 ss=9 30 < qbd then b=5 a=5 fi"
+    cmd: ./42sh -c "if a=10 b=12 ss=9 30 < qbd then b=5 a=5 fi"
