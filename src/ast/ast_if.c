@@ -1,10 +1,22 @@
+/**
+ ** \file  ast_if.c
+ */
 #include "ast.h"
+/**
+ ** \brief initialization of if node 
+ ** 
+ ** \return a struct s_node_if
+ */  
 struct s_node_if *init_if()
 {
     struct s_node_if *node_if = malloc(sizeof(struct s_node_if));
     return node_if;
 }
-
+/**
+ ** \brief a find if node 
+ ** 
+ ** \return 1 or 0 if find the if node
+ */ 
 int find_if(struct parser_s *p, struct s_node_if *node_if)
 {
     struct list_node_s *condition = ast_check_node(p, COUMPOUND);
