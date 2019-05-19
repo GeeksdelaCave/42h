@@ -1,4 +1,12 @@
+/**
+ ** \file  ast_pipeline.c
+ */
 #include "ast.h"
+/**
+ ** \brief check a pipeline node 
+ ** \param p type of struct parser_s
+ ** \return a number of child
+ */  
 int check_pipeline(struct parser_s *p)
 {
     int nb_child = 0;
@@ -10,7 +18,11 @@ int check_pipeline(struct parser_s *p)
     }
     return nb_child;
 }
-
+/**
+ ** \brief initialization of pipeline node
+ ** \param p type of struct parser_s
+ ** \return a struct s_node_pipeline
+ */ 
 struct s_node_pipeline *init_pipeline(struct parser_s *p)
 {
     struct s_node_pipeline *s_pipline = malloc(sizeof(struct s_node_pipeline));
@@ -19,16 +31,25 @@ struct s_node_pipeline *init_pipeline(struct parser_s *p)
     s_pipline->child = 0;
     return s_pipline;
 }
-
+/**
+ ** \brief store a pipeline node
+ ** \param pipeline type of struct s_node_pipeline
+ ** \param new_command type of struct s_node_pipeline
+ ** \param nb_child type of int
+ */
 void pipeline_store(struct s_node_pipeline *pipeline, 
 struct s_node_pipeline *new_command, int nb_child)
 {
     pipeline->commands[nb_child] = *new_command->commands;
-    printf("------------------------- NB CHILD ----------------------%d\n", nb_child);
     pipeline->b_and = new_command->b_and;
     pipeline->b_or = new_command->b_or;
 }
-
+/**
+ ** \brief find a command node
+ ** \param p type of struct parser_s
+ ** \param s_pipeline type of struct s_node_pipeline
+ ** \return 1 or 0 if find a command node
+ */
 int find_command(struct parser_s *p, struct s_node_pipeline *s_pipeline)
 {
     struct list_node_s *command_node = ast_check_node(p, COMMAND);
