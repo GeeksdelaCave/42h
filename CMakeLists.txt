@@ -22,10 +22,11 @@ FILE(GLOB MyCSources src/parser/*.c)
 FILE(GLOB MyCSourcesast src/ast/*.c)
 FILE(GLOB MyHeaderParser src/parser/*.h)
 FILE(GLOB MyHeaderAst src/ast/*.h)
+FILE(GLOB Main src/*.c)
 add_executable(42sh
                 ${MyHeaderParser}
                 ${MyHeaderAst}
                 ${MyCSources}
                 ${MyCSourcesast}
-
+				${Main}
                )
