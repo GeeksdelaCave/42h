@@ -3,18 +3,18 @@
  */
 #include "ast.h"
 /**
- ** \brief check a simple command node 
+ ** \brief check a simple command node
  ** \param p type of struct parser_s
  ** \return a number of child
- */ 
+ */
 int check_simple_command(struct parser_s *p)
 {
     int nb_child = 0;
     struct list_node_s *pnode = p->nodes;
     for(;pnode; pnode = pnode->next)
     {
-        if((pnode->type == ASSIGN) || (pnode->type == WORD1) || 
-        (pnode->type == REDIRECTION))
+        if((pnode->type == ASSIGN) || (pnode->type == WORD1) ||
+           (pnode->type == REDIRECTION))
         {
             nb_child++;
         }
@@ -22,31 +22,32 @@ int check_simple_command(struct parser_s *p)
     return nb_child;
 }
 /**
- ** \brief initialization of simple command node 
+ ** \brief initialization of simple command node
  ** \param p type of struct parser_s
  ** \return a struct s_simple_cmd
- */ 
+ */
 struct s_simple_cmd *init_simple_command(struct parser_s *p)
 {
     struct s_simple_cmd *s_command = malloc(sizeof(struct s_simple_cmd));
     s_command->child = 0;
     s_command->type = SIMPLECOMMAND;
     s_command->child_node = malloc(
-    sizeof(struct s_node_command) * check_simple_command(p));
+        sizeof(struct s_node_command) * check_simple_command(p));
     return s_command;
 }
 /**
- ** \brief store of simple command node 
+ ** \brief store of simple command node
  ** \param command type of struct parser_s
  ** \param new_command type of struct s_node_command
  ** \param nb_child type of int
  */
-void simple_command_store(struct s_simple_cmd *command, struct s_node_command *new_command, int nb_child)
+void simple_command_store(struct s_simple_cmd *command,
+                          struct s_node_command *new_command, int nb_child)
 {
     command->child_node[nb_child] = *new_command;
 }
 /**
- ** \brief find a assign node 
+ ** \brief find a assign node
  ** \param p type of struct parser_s
  ** \param s_command type of struct s_simple_cmd
  ** \return 0 or 1 if find assign
@@ -67,7 +68,7 @@ int find_assign(struct parser_s *p, struct s_simple_cmd *s_command)
     return 1;
 }
 /**
- ** \brief find redirection  node 
+ ** \brief find redirection  node
  ** \param p type of struct parser_s
  ** \param s_command a type of struct s_simple_cmd
  ** \return 0 or 1 if find refirection node
@@ -83,13 +84,13 @@ int find_redir(struct parser_s *p, struct s_simple_cmd *s_command)
     simple_command = init_command_node();
     simple_command->type = REDIRECTION;
     simple_command->struct_type->redirection = redirection_node->
-    node->redirection;
+        node->redirection;
     simple_command_store(s_command, simple_command,s_command->child);
     s_command->child++;
     return 1;
 }
 /**
- ** \brief find word  node 
+ ** \brief find word  node
  ** \param p type of struct parser_s
  ** \param command type of struct s_simple_cmd
  ** \return 0 or 1 if find word
