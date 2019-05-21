@@ -23,15 +23,15 @@
 #include "ast_list.h"
 /**
  ** \def mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
- */ 
+ */
 # define mymalloc(name, size) if (!(name = malloc(size))) exit(ERROR_MEM)
 /**
- ** \def myrealloc(ret, name, size) if (!(ret = realloc(name, size))) 
- */  
+ ** \def myrealloc(ret, name, size) if (!(ret = realloc(name, size)))
+ */
 # define myrealloc(ret, name, size) if (!(ret = realloc(name, size)))   \
-    exit(ERROR_MEM)							\
-      /*-----------------------------------------------------------------------
--------------------------------------------------------------------------
+        exit(ERROR_MEM)                                                 \
+        /*-----------------------------------------------------------------------
+        -------------------------------------------------------------------------
 ----------------------- VERSION NEED TO DEV -----------------------------
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------*/
@@ -41,7 +41,7 @@
  */
 enum type_grammar
 {
-  LIST,         //0
+    LIST,         //0
   ANDOR,        //1
   PIPELINE,     //2
   COMMAND,      //3
@@ -81,7 +81,7 @@ union all_grammar
     struct s_node_assign *assign;
     struct s_node_redirection *redirection;
     struct s_node_if *node_if;
-	  struct s_node_else *node_else;
+    struct s_node_else *node_else;
     struct s_node_for *node_for;
     struct s_node_while *node_while;
     struct s_node_case_item *case_item;
@@ -93,7 +93,7 @@ union all_grammar
 };
 /**
  ** \struct s_symbole
- ** \brief declaration of a symbole 
+ ** \brief declaration of a symbole
  **  char *symbole
  */
 struct s_symbole
@@ -102,7 +102,7 @@ struct s_symbole
 };
 /**
  ** \struct list_node_s
- ** \brief declaration a list of node 
+ ** \brief declaration a list of node
  **  enum type_grammar type
  **  union all_grammar *node
  **  struct list_node_s *next
@@ -110,21 +110,21 @@ struct s_symbole
  */
 struct list_node_s
 {
-  enum type_grammar type;
-  union all_grammar *node;
-  struct list_node_s *next;
-  struct list_node_s *prev;
+    enum type_grammar type;
+    union all_grammar *node;
+    struct list_node_s *next;
+    struct list_node_s *prev;
 };
 /**
  ** \struct s_node_list
- ** \brief declaration a node list 
+ ** \brief declaration a node list
  **  struct s_node_and_or *and_or
  **  int child
  */
 struct s_node_list
 {
-  struct s_node_and_or *and_or;
-  int child;
+    struct s_node_and_or *and_or;
+    int child;
 };
 /**
  ** \struct s_node_and_or
@@ -140,7 +140,7 @@ struct s_node_and_or
     int simple_and;
     int virgule;
     int type;
-    int child;  
+    int child;
 };
 /**
  ** \struct node pipeline
@@ -181,9 +181,9 @@ struct s_node_command
  */
 struct s_simple_cmd
 {
-  enum type_grammar type;
-  struct s_node_command *child_node;
-  int child;
+    enum type_grammar type;
+    struct s_node_command *child_node;
+    int child;
 };
 /**
  ** \struct s_node_shell_command
@@ -204,8 +204,8 @@ struct s_node_shell_command
  */
 struct s_node_assign
 {
-  char *id;
-  char *num;
+    char *id;
+    char *num;
 };
 /**
  ** \struct s_node_word
@@ -222,7 +222,7 @@ struct s_node_word
  */
 enum e_red_type
 {
-  R_LESS,                 /* <  */
+    R_LESS,                 /* <  */
   R_LESSAND,              /* <& */
   R_GREAT,                /* >  */
   R_GREATAND,             /* >& */
@@ -241,9 +241,9 @@ enum e_red_type
  */
 struct s_node_redirection
 {
-  char *number;
-  enum e_red_type redirection;
-  char *word;
+    char *number;
+    enum e_red_type redirection;
+    char *word;
 };
 /**
  ** \struct s_node_if
@@ -254,9 +254,9 @@ struct s_node_redirection
  */
 struct s_node_if
 {
-  struct s_node_compound_list *condition;
-  struct s_node_compound_list *if_body;
-  struct s_node_else *else_body;
+    struct s_node_compound_list *condition;
+    struct s_node_compound_list *if_body;
+    struct s_node_else *else_body;
 };
 /**
  ** \struct s_node_else
@@ -267,9 +267,9 @@ struct s_node_if
  */
 struct s_node_else
 {
-  struct s_node_compound_list *else_body;
-  struct s_node_compound_list *elif_body;
-  struct s_node_compound_list *then_body;
+    struct s_node_compound_list *else_body;
+    struct s_node_compound_list *elif_body;
+    struct s_node_compound_list *then_body;
 };
 /**
  ** \struct s_node_for
@@ -280,9 +280,9 @@ struct s_node_else
  */
 struct s_node_for
 {
-  char *varname;
-  char **values;
-  struct s_node_compound_list *dogroup;
+    char *varname;
+    char **values;
+    struct s_node_compound_list *dogroup;
 };
 /**
  ** \struct s_node_while
@@ -292,8 +292,8 @@ struct s_node_for
  */
 struct s_node_while
 {
-  struct s_node_compound_list *condition;
-  struct s_node_compound_list *dogroup;
+    struct s_node_compound_list *condition;
+    struct s_node_compound_list *dogroup;
 };
 /**
  ** \struct s_node_until
@@ -303,8 +303,8 @@ struct s_node_while
  */
 struct s_node_until
 {
-  struct s_node_compound_list *condition;
-  struct s_node_compound_list *dogroup;
+    struct s_node_compound_list *condition;
+    struct s_node_compound_list *dogroup;
 };
 /**
  ** \struct s_node_case_item
@@ -315,9 +315,9 @@ struct s_node_until
  */
 struct s_node_case_item
 {
-  char **pattern;
-  struct s_node_compound_list *exec;
-  struct s_node_case_item *next;
+    char **pattern;
+    struct s_node_compound_list *exec;
+    struct s_node_case_item *next;
 };
 /**
  ** \struct s_node_case
@@ -327,8 +327,8 @@ struct s_node_case_item
  */
 struct s_node_case
 {
-  char *word;
-  struct s_case_item *items;
+    char *word;
+    struct s_case_item *items;
 };
 /**
  ** \struct s_node_compound_list
@@ -373,17 +373,18 @@ struct list_node_s *init_list_node();
  */
 void free_list_node(struct list_node_s *lnodes);
 /**
- ** \fn void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, 
+ ** \fn void list_node_store(struct list_node_s *list_node,
+ **    union all_grammar *s_node,
  **   enum type_grammar type)
  */
-void list_node_store(struct list_node_s *list_node, union all_grammar *s_node, 
-enum type_grammar type);
+void list_node_store(struct list_node_s *list_node, union all_grammar *s_node,
+                     enum type_grammar type);
 /**
  ** \fn struct list_node_s *list_node_lookup(struct list_node_s *list_node,
  **  enum type_grammar type)
  */
 struct list_node_s *list_node_lookup(struct list_node_s *list_node,
-enum type_grammar type);
+                                     enum type_grammar type);
 /**
  ** \fn struct list_node_s *ast_get_node(struct parser_s *p, enum type_grammar type);
  **   void print_node(struct list_node_s *node)
@@ -403,7 +404,7 @@ int ast_check_sym(struct parser_s *p, enum type_grammar type);
  **   enum type_grammar type)
  */
 enum type_grammar list_type_lookup(struct list_node_s *list_node,
-enum type_grammar type);
+                                   enum type_grammar type);
 /**
  ** \fn struct list_node_s *ast_check_last(struct parser_s *p, enum type_grammar type)
  */
