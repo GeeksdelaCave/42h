@@ -4,7 +4,7 @@
  */
 #ifndef AST_DOGROUP_H
 #define AST_DOGROUP_H
- /**
+/**
  ** \def struct s_do_group *init_dogroup()
  */
 struct s_do_group *init_dogroup();
