@@ -6,7 +6,7 @@
  ** \brief check a and or
  **
  ** \param p of type struct parser_s
- ** 
+ **
  ** \return a nb_child
  */
 int check_andor(struct parser_s *p)
@@ -21,23 +21,23 @@ int check_andor(struct parser_s *p)
     return nb_child;
 }
 /**
- ** \brief Initialization of and or 
+ ** \brief Initialization of and or
  **
  ** \param p of type struct parser_s
- ** 
+ **
  ** \return a struct s_node_and_or
  */
 struct s_node_and_or *init_andor(struct parser_s *p)
 {
     struct s_node_and_or *s_andor = malloc(sizeof(struct s_node_and_or));
-    s_andor->pipelines = malloc(sizeof(struct s_node_pipeline) * 
-    check_andor(p));
+    s_andor->pipelines = malloc(sizeof(struct s_node_pipeline) *
+                                check_andor(p));
     s_andor->child = 0;
     return s_andor;
 }
 
-void andor_store(struct s_node_and_or *andor, struct s_node_pipeline 
-*new_pipeline, int nb_child)
+void andor_store(struct s_node_and_or *andor,
+                 struct s_node_pipeline *new_pipeline, int nb_child)
 {
     andor->pipelines[nb_child] = *new_pipeline;
 }
@@ -47,8 +47,8 @@ void andor_store(struct s_node_and_or *andor, struct s_node_pipeline
  ** \param p of type struct parser_s
  **
  ** \param s_andor struct s_node_and_or
- ** 
- ** \return a int 
+ **
+ ** \return a int
  */
 int find_pipeline(struct parser_s *p, struct s_node_and_or *s_andor)
 {
