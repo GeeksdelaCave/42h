@@ -3,10 +3,10 @@
  */
 #include "ast.h"
 /**
- ** \brief check a pipeline node 
+ ** \brief check a pipeline node
  ** \param p type of struct parser_s
  ** \return a number of child
- */  
+ */
 int check_pipeline(struct parser_s *p)
 {
     int nb_child = 0;
@@ -22,12 +22,12 @@ int check_pipeline(struct parser_s *p)
  ** \brief initialization of pipeline node
  ** \param p type of struct parser_s
  ** \return a struct s_node_pipeline
- */ 
+ */
 struct s_node_pipeline *init_pipeline(struct parser_s *p)
 {
     struct s_node_pipeline *s_pipline = malloc(sizeof(struct s_node_pipeline));
-    s_pipline->commands = malloc(sizeof(struct s_node_command) * 
-    check_pipeline(p));
+    s_pipline->commands = malloc(sizeof(struct s_node_command) *
+                                 check_pipeline(p));
     s_pipline->child = 0;
     return s_pipline;
 }
@@ -37,8 +37,8 @@ struct s_node_pipeline *init_pipeline(struct parser_s *p)
  ** \param new_command type of struct s_node_pipeline
  ** \param nb_child type of int
  */
-void pipeline_store(struct s_node_pipeline *pipeline, 
-struct s_node_pipeline *new_command, int nb_child)
+void pipeline_store(struct s_node_pipeline *pipeline,
+                    struct s_node_pipeline *new_command, int nb_child)
 {
     pipeline->commands[nb_child] = *new_command->commands;
     pipeline->b_and = new_command->b_and;
