@@ -3,8 +3,8 @@
  */
 #include "ast.h"
 /**
- ** \brief initialization of command node 
- ** 
+ ** \brief initialization of command node
+ **
  ** \return a struct s_node_command
  */
 struct s_node_command *init_command_node()
@@ -20,17 +20,17 @@ struct s_node_command *init_command_node()
 }
 /**
  ** \brief check_type_cmd
- ** 
+ **
  ** \param  p of type struct parser_s
- **   
- ** \return a enum type_grammar 
+ **
+ ** \return a enum type_grammar
  */
 enum type_grammar check_type_cmd(struct parser_s *p)
 {
     enum type_grammar pnode = list_type_lookup(p->nodes, FOR);
     if (!pnode)
     {
-        pnode = list_type_lookup(p->nodes, WHILE); 
+        pnode = list_type_lookup(p->nodes, WHILE);
     }
     if (!pnode)
     {
@@ -48,10 +48,10 @@ enum type_grammar check_type_cmd(struct parser_s *p)
 }
 /**
  ** \brief find_s_command
- ** 
+ **
  ** \param  p of type struct parser_s
- **   
- ** \return a int 
+ **
+ ** \return a int
  */
 int find_s_command(struct parser_s *p)
 {
@@ -81,9 +81,9 @@ int find_s_command(struct parser_s *p)
 }
 /**
  ** \brief check_shell_cmd
- ** 
+ **
  ** \param  p of type struct parser_s
- **   
+ **
  ** \return a struct list_node_s
  */
 struct list_node_s *check_shell_cmd(struct parser_s *p)
@@ -91,7 +91,7 @@ struct list_node_s *check_shell_cmd(struct parser_s *p)
     struct list_node_s *pnode = ast_check_node(p, FOR);
     if (!pnode)
     {
-        pnode = ast_check_node(p, WHILE); 
+        pnode = ast_check_node(p, WHILE);
     }
     if (!pnode)
     {
