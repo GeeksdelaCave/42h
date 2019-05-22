@@ -11,12 +11,13 @@
      int status;
  };
 
-void exec_if_node(struct list_node_s *node)
+void exec_if_node(struct s_node_if *body)
 {
     //assert(node)s;
-    exec_node(node->condition);
+    struct s_node_compound_list *res = malloc(sizeof(struct s_node_compound_list));
+    exec_node(res->body.condition);
     if (!shell->status)
-      exec_node(node->if_body);
+      exec_node(res->body.if_body);
     else
-      exec_node(node->else_body);
+      exec_node(body->else_body);
 }
