@@ -41,7 +41,7 @@ void print_simple_command(struct s_simple_cmd *simple_cmd, FILE *file)
     }
     else
     {
-      fprintf(file,  "    %s_child_%d -> %s\";\n", "C", C_CHILD,
+      fprintf(file,  "    %s_child_%d -> \"%s\";\n", "C", C_CHILD,
 	      simple_cmd->child_node[i].struct_type->word->word);
       S_CHILD++;
     }
