@@ -1,0 +1,19 @@
+TEST-00:
+    desc: Test COMPOUND
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: TEST COMPOUND
+    ref: bash --posix -c "! a=15 b=569 15 < kerg 16"
+    cmd: ./42sh -c "! a=15 b=569 15 < kerg 16"
+
+TEST-02:
+    desc: TEST COMPOUND
+    ref: bash --posix -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
+    cmd: ./42sh -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
+
+TEST-03:
+    desc: TEST COMPOUND
+    ref: bash --posix -c " ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada "
+    cmd: ./42sh -c " ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada "

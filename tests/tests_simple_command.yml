@@ -1,0 +1,14 @@
+TEST-00:
+    desc: Test Simple_command
+    ref: bash --posix -c "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG "
+    cmd: ./42sh -c "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG "
+
+TEST-01:
+    desc: Test Simple_command
+    ref: bash --posix -c "12 < WORD 13 < JVFDH 15 < frnklf"
+    cmd: ./42sh -c "12 < WORD 13 < JVFDH 15 < frnklf"
+
+TEST-02:
+    desc: Test Simple_command
+    ref: bash --posix -c "20 < word1"
+    cmd: ./42sh -c "20 < word1"

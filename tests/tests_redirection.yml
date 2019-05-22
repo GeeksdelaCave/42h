@@ -1,0 +1,24 @@
+TEST-00:
+    desc: Test Redirection
+    ref: bash --posix -c "12<WORD
+    cmd: ./42sh -c "12<WORD"
+
+TEST-01:
+    desc: Test Redirection
+    ref: bash --posix -c "  15  <  word"
+    cmd: ./42sh -c "  15  <  word"
+
+TEST-02:
+    desc: Test Redirection
+    ref: bash --posix -c "20 < word"
+    cmd: ./42sh -c "20 < word"
+
+TEST-03:
+    desc: Test Redirection
+    ref: bash --posix -c "20 > word"
+    cmd: ./42sh -c "20 > word"
+
+TEST-04:
+    desc: Test Redirection
+    ref: bash --posix -c "text in the file word > word"
+    cmd: ./42sh -c "text in the file word > word"

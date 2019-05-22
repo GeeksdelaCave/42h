@@ -1,0 +1,9 @@
+TEST-00:
+    desc: Test Case
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Case
+    ref: bash --posix -h ""
+    cmd: ./42sh -h ""

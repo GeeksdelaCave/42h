@@ -1,0 +1,9 @@
+TEST-00:
+    desc: Test Funcdec
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-02:
+    desc: Test Funcdec
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""

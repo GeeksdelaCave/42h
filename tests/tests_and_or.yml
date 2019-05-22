@@ -1,0 +1,24 @@
+TEST-00:
+    desc: Test AND_OR
+    ref: bash --posix -c ""t
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: TEST AND_OR
+    ref: bash --posix -c "! a=15 b=569 15 < me 16"
+    cmd: ./42sh -c "! a=15 b=569 15 < me  16"
+
+TEST-02:
+    desc: TEST AND_OR
+    ref: bash --posix -c "kergjker 16 < jjsdfhvs | uhhvhbrb=15 15"
+    cmd: ./42sh -c "kergjker 16 < jjsdfhvs | uhhvhbrb=15 15"
+
+TEST-03:
+    desc: TEST AND_OR
+    ref: bash --posix -c "! a=1 b=2 || ! a=5 15 < toto"
+    cmd: ./42sh -c "! a=1 b=2 || ! a=5 15 < toto"
+
+TEST-04:
+    desc: TEST AND_OR
+    ref: bash --posix -c "! a=1 b=3 || ! a=5 15 < toto"
+    cmd: ./42sh -c "! a=1 b=3 || ! a=5 15 < toto"

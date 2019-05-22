@@ -1,0 +1,14 @@
+TEST-00:
+    desc: Test For
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test For
+    ref: bash --posix -c "for i"
+    cmd: ./42sh -c "for i"
+
+TEST-02:
+    desc: Test For
+    ref: bash --posix -c "for i = 0; i < 3 ; i++ "
+    cmd: ./42sh -c "for i = 0; i < 3 ; i++ "
