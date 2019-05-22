@@ -130,4 +130,23 @@ add_custom_target(check
   COMMAND python3 tests/tests_unit.py
   COMMAND python3 tests/tests_yaml.py
   COMMAND python3 tests/tests_while.yml
+  COMMAND python3 tests/tests_and_or.yml
+  COMMAND python3 tests/tests_assign.yml
+  COMMAND python3 tests/tests_ast.yml
+  COMMAND python3 tests/tests_case.yml
+  COMMAND python3 tests/tests_compound.yml
+  COMMAND python3 tests/tests_dogroup.yml
+  COMMAND python3 tests/tests_element.yml
+  COMMAND python3 tests/tests_eof.yml
+  COMMAND python3 tests/tests_for.yml
+  COMMAND python3 tests/tests_funcdec.yml
+  COMMAND python3 tests/tests_if.yml
+  COMMAND python3 tests/tests_input.yml
+  COMMAND python3 tests/tests_list.yml
+  COMMAND python3 tests/tests_pipeline.yml
+  COMMAND python3 tests/tests_prefix.yml
+  COMMAND python3 tests/tests_redirection.yml
+  COMMAND python3 tests/tests_shell_command.yml
+  COMMAND python3 tests/tests_simple_command.yml
+  COMMAND python3 tests/tests_word.yml
   )
