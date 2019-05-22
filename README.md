@@ -29,3 +29,6 @@ Commit messages must follow this syntax:
 Example :
 
 ``git commit -m "[ADD][GIT] First commit"``
+
+## Doxygen
+* command : enter in doc repository , you tape doxygen my_42sh_config
