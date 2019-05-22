@@ -43,6 +43,7 @@ add_executable(42sh
   src/ast/ast_for.c
   src/ast/ast_if.h
   src/ast/ast_if.c
+  src/ast/ast_list.h
   src/ast/ast_simple_command.c
   src/ast/ast_simple_command.h
   src/ast/error.h
