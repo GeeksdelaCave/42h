@@ -100,6 +100,8 @@ add_executable(42sh
   src/parser/read_word.c
   src/parser/repetition_tools.h
   src/parser/rules.h
+  src/parser/parser_option.h
+  #src/parser/parser_option.c
 
   src/parser/test/test.c
   src/parser/test/test.h
@@ -120,11 +122,8 @@ add_executable(42sh
   src/parser/test/test_UNTIL.c
   src/parser/test/test_WHILE.c
   src/parser/test/test_WORD.c
+  src/utils/main.c
 
-
-
-  #src/utils/string.c
-  #src/utils/string.h
   )
 
 add_custom_target(check
