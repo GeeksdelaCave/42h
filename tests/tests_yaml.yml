@@ -13,3 +13,424 @@ TEST-02:
     desc: Hello world
     ref: bash --posix -c "cat 'Hello World'"
     cmd: ./42sh -c "cat 'Hello World'"
+
+TEST-00:
+    desc: Test While
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test While
+    ref: bash --posix -c "while ! a=15 b=569 15 < kerg 16 < jsdh | uhhv=15 15 < zrev do a=15 | JE=45 15 < WORDfa 30 < wfvkf 15 < fdjkb 10< WORD done"
+    cmd: ./42sh -c "while ! a=15 b=569 15 < kerg 16 < jsdh | uhhv=15 15 < zrev do a=15 | JE=45 15 < WORDfa 30 < wfvkf 15 < fdjkb 10< WORD done"
+
+TEST-02:
+    desc: Test While
+    ref: bash --posix -c "while ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+    cmd: ./42sh -c "while ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+
+TEST-03:
+    desc: Test While
+    ref: bash --posix -c "while ! a=1 b=2 || ! a=6 15 < toto ; ! WORD=10 b=50 15 < dada ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+    cmd: ./42sh -c "while ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+TEST-00:
+    desc: Test AND_OR
+    ref: bash --posix -c ""t
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: TEST AND_OR
+    ref: bash --posix -c "! a=15 b=569 15 < me 16"
+    cmd: ./42sh -c "! a=15 b=569 15 < me  16"
+
+TEST-02:
+    desc: TEST AND_OR
+    ref: bash --posix -c "kergjker 16 < jjsdfhvs | uhhvhbrb=15 15"
+    cmd: ./42sh -c "kergjker 16 < jjsdfhvs | uhhvhbrb=15 15"
+
+TEST-03:
+    desc: TEST AND_OR
+    ref: bash --posix -c "! a=1 b=2 || ! a=5 15 < toto"
+    cmd: ./42sh -c "! a=1 b=2 || ! a=5 15 < toto"
+
+TEST-04:
+    desc: TEST AND_OR
+    ref: bash --posix -c "! a=1 b=3 || ! a=5 15 < toto"
+    cmd: ./42sh -c "! a=1 b=3 || ! a=5 15 < toto"
+
+TEST-00:
+    desc: Test ASSIGN
+    ref: bash --posix -c "word"
+    cmd: ./42sh -c "word"
+
+TEST-01:
+    desc: TEST ASSIGN
+    ref: bash --posix -c " word"
+    cmd: ./42sh -c " word"
+
+TEST-02:
+    desc: TEST ASSIGN
+    ref: bash --posix -c "\"word"
+    cmd: ./42sh -c "\"word"
+
+TEST-03:
+    desc: TEST ASSIGN
+    ref: bash --posix -c " jdfhdsjfhds word"
+    cmd: ./42sh -c " jdfhdsjfhds word"
+
+TEST-04:
+    desc: TEST ASSIGN
+    ref: bash --posix -c "gdfgf dffd gfdd sdvs"
+    cmd: ./42sh -c "gdfgf dffd gfdd sdvs"
+
+TEST-05:
+    desc: TEST ASSIGN
+    ref: bash --posix -c "gdfgfgf dffdtr gfddcc sdvs"
+    cmd: ./42sh -c "gdfgfgf dffdtr gfddcc sdvs"
+
+TEST-00:
+    desc: Test Ast
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Ast1
+    ref: bash --posix -h ""
+    cmd: ./42sh -c ""
+
+TEST-02:
+    desc: Test Ast2
+    ref: bash --posix -g ""
+    cmd: ./42sh -g ""
+
+TEST-00:
+    desc: Test Ast
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Ast1
+    ref: bash --posix -h ""
+    cmd: ./42sh -c ""
+
+TEST-02:
+    desc: Test Ast2
+    ref: bash --posix -g ""
+    cmd: ./42sh -g ""
+
+TEST-00:
+    desc: Test Command
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Simple_command
+    ref: bash --posix -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfj"
+    cmd: ./42sh -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfj"
+
+
+TEST-02:
+    desc: Test Simple_command
+    ref: bash --posix -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfj"
+    cmd: ./42sh -c "12 < WORD 13 < JVFDHBVFSDBV 15 < frnklfdbfj"
+
+TEST-00:
+    desc: Test COMPOUND
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: TEST COMPOUND
+    ref: bash --posix -c "! a=15 b=569 15 < kerg 16"
+    cmd: ./42sh -c "! a=15 b=569 15 < kerg 16"
+
+TEST-02:
+    desc: TEST COMPOUND
+    ref: bash --posix -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
+    cmd: ./42sh -c "kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15"
+
+TEST-03:
+    desc: TEST COMPOUND
+    ref: bash --posix -c " ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada "
+    cmd: ./42sh -c " ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada "
+
+TEST-00:
+    desc: Test DOGROUP
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: TEST DOGROUP
+    ref: bash --posix -c "do ! a=15 b=569 15 < kerg 16 < jsd | uhh=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkj 10< WORD done"
+    cmd: ./42sh -c "do ! a=15 b=569 15 < kerg 16 < jsd | uhh=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkj 10< WORD done"
+
+TEST-02:
+    desc: TEST DOGROUP
+    ref: bash --posix -c "do ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+    cmd: ./42sh -c "do ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada done"
+
+TEST-03:
+    desc: TEST DOGROUP
+    ref: bash --posix -c "do ! a=10 b=12 || ! a=10 20 < toto ; ! WORD=20 b=60 10 < dada done"
+    cmd: ./42sh -c "do ! a=10 b=12 || ! a=10 20 < toto ; ! WORD=20 b=60 10 < dada done"
+
+TEST-00:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "WORD"
+    cmd: ./42sh -c "WORD"
+
+TEST-01:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "12  <  WORD"
+    cmd: ./42sh -c "12  <  WORD"
+
+TEST-02:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "a=15 b=16 c=17 word word2 word3"
+    cmd: ./42sh -c "a=15 b=16 c=17 word word2 word3"
+
+TEST-04:
+    desc: TEST ELEMENT
+    ref: bash --posix -c "20  < TRAVEL"
+    cmd: ./42sh -c "20  <  TRAVEL"
+
+TEST-00:
+    desc: Test Eof
+    ref: bash --posix -c "\n"
+    cmd: ./42sh -c "\n"
+
+TEST-01:
+    desc: Test Eof
+    ref: bash --posix -c " \n"
+    cmd: ./42sh -c " \n"
+
+
+TEST-03:
+    desc: Test Eof
+    ref: bash --posix -c " "
+    cmd: ./42sh -c " "
+
+TEST-04:
+    desc: Test Eof
+    ref: bash --posix -c "\t"
+    cmd: ./42sh -c "\t"
+
+TEST-00:
+    desc: Test For
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test For
+    ref: bash --posix -c "for i"
+    cmd: ./42sh -c "for i"
+
+TEST-02:
+    desc: Test For
+    ref: bash --posix -c "for i = 0; i < 3 ; i++ "
+    cmd: ./42sh -c "for i = 0; i < 3 ; i++ "
+
+TEST-00:
+    desc: Test Funcdec
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-02:
+    desc: Test Funcdec
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-00:
+    desc: Test if
+    ref: bash --posix -c ""
+    cmd: ./42sh -C ""
+
+TEST-01:
+    desc: Test if
+    ref: bash --posix -c "if a "
+    cmd: ./42sh -c "if a"
+
+TEST-02:
+    desc: Test if
+    ref: bash --posix -c "if ! a=15 b=569 15 < kerg 16 < jsdhv  | uhhvhbrb=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkbh 10< WORD fi"
+    cmd : ./42sh -c "if ! a=15 b=569 15 < kerg 16 < jsdhv  | uhhvhbrb=15 15 < zrev a=15 | JE=45 15 < WORDf 30 < wfvkfd 15 < fdjkbh 10< WORD fi"
+
+TEST-03:
+    desc: Test if
+    ref: bash --posix -c "if ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada then ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dadaklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD fi"
+    cmd : ./42sh -c "if ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD fi"
+
+TEST-00:
+    desc: Test Input
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Input
+    ref: bash --posix -c "test input"
+    cmd: ./42sh -c "test input"
+
+TEST-02:
+    desc: Test Input
+    ref: bash --posix -c "message input"
+    cmd: ./42sh -c "message input"
+TEST-00:
+    desc: Test List
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test List
+    ref: bash --posix -c "if a=5 b=6 ss=6 15 < qbd then b=5 a=5 fi"
+    cmd: ./42sh -c "if a=5 b=6 ss=6 15 < qbd then b=5 a=5 fi"
+
+TEST-02:
+    desc: Test List
+    ref: bash --posix -c "if a=10 b=12 ss=9 30 < qbd then b=5 a=5 fi"
+    cmd: ./42sh -c "if a=10 b=12 ss=9 30 < qbd then b=5 a=5 fi"
+
+TEST-00:
+    desc: Test Pipeline
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Pipeline
+    ref: bash --posix -c " 30 < wfvkf"
+    cmd: ./42sh -c " 30 < wfvkf"
+
+TEST-02:
+    desc: Test Pipeline
+    ref: bash --posix -c "15 < fdjkbhdfbjekbej"
+    cmd: ./42sh -c "15 < fdjkbhdfbjekbej"
+
+TEST-04:
+    desc: Test Pipeline
+    ref: bash --posix -c "10< WORD"
+    cmd: ./42sh -c "10< WORD"
+
+TEST-05:
+    desc: Test Pipeline
+    ref: bash --posix -c "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 fdhvhkdvhfd=20 15 < zrevjzrjvjerv a=15 | JE=45 15 < 8561ddada"
+    cmd: ./42sh -c "! a=15 b=569 12 < WORD 13 < ERJGNERJG 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 fdhvhkdvhfd=20 15 < zrevjzrjvjerv a=15 | JE=45 15 < 8561ddada"
+
+TEST-04:
+    desc: Test Pipeline
+    ref: bash --posix -c "10 | WORD"
+    cmd: ./42sh -c "10 | WORD"
+
+TEST-00:
+    desc: Test Prefix
+    ref: bash --posix -c "a=5"
+    cmd: ./42sh -c "a=5"
+
+TEST-01:
+    desc: Test Prefix
+    ref: bash --posix -c "b=a"
+    cmd: ./42sh -c "b=a"
+
+TEST-02:
+    desc: Test Prefix
+    ref: bash --posix -c "a=10"
+    cmd: ./42sh -c "a=10"
+
+TEST-04:
+    desc: Test Prefix
+    ref: bash --posix -c "a=aveavz"
+    cmd: ./42sh -c "a=aveavz"
+
+TEST-05:
+    desc: Test Prefix
+    ref: bash --posix -c " sjvghskjvsdfvb  < Word"
+    cmd: ./42sh -c " sjvghskjvsdfvb  < Word"
+
+
+TEST-06:
+    desc: Test Prefix
+    ref: bash --posix -c "a=10"
+    cmd: ./42sh -c "a=10"
+
+TEST-07:
+    desc: Test Prefix
+    ref: bash --posix -c "b =rvfbvfsdkvf"
+    cmd: ./42sh -c "b =rvfbvfsdkvf"
+
+TEST-00:
+    desc: Test Redirection
+    ref: bash --posix -c "12<WORD
+    cmd: ./42sh -c "12<WORD"
+
+TEST-01:
+    desc: Test Redirection
+    ref: bash --posix -c "  15  <  word"
+    cmd: ./42sh -c "  15  <  word"
+
+TEST-02:
+    desc: Test Redirection
+    ref: bash --posix -c "20 < word"
+    cmd: ./42sh -c "20 < word"
+
+TEST-03:
+    desc: Test Redirection
+    ref: bash --posix -c "20 > word"
+    cmd: ./42sh -c "20 > word"
+
+TEST-04:
+    desc: Test Redirection
+    ref: bash --posix -c "text in the file word > word"
+    cmd: ./42sh -c "text in the file word > word"
+
+TEST-00:
+    desc: Test Shell_Command
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Shell_Command
+    ref: bash --posix -c "cat test.txt"
+    cmd: ./42sh -c "cat test.txt"
+
+TEST-00:
+    desc: Test Simple_command
+    ref: bash --posix -c "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG "
+    cmd: ./42sh -c "a = 15 a = 15 b = 569 12 < WORD 13 < ERJGNERJG "
+
+TEST-01:
+    desc: Test Simple_command
+    ref: bash --posix -c "12 < WORD 13 < JVFDH 15 < frnklf"
+    cmd: ./42sh -c "12 < WORD 13 < JVFDH 15 < frnklf"
+
+TEST-02:
+    desc: Test Simple_command
+    ref: bash --posix -c "20 < word1"
+    cmd: ./42sh -c "20 < word1"
+
+TEST-00:
+    desc: Test WORD
+    ref: bash --posix -c "word"
+    cmd: ./42sh -c "word"
+
+TEST-01:
+    desc: TEST WORD
+    ref: bash --posix -c "          word"
+    cmd: ./42sh -c "          word"
+
+TEST-02:
+    desc: TEST WORD
+    ref: bash --posix -c "\"word"
+    cmd: ./42sh -c "\"word"
+
+TEST-03:
+    desc: TEST WORD
+    ref: bash --posix -c " jdfhdsjfhds word"
+    cmd: ./42sh -c " jdfhdsjfhds word"
+
+TEST-04:
+    desc: TEST WORD
+    ref: bash --posix -c "gdfgf dffd gfdd sdvs"
+    cmd: ./42sh -c "gdfgf dffd gfdd sdvs"
+
+TEST-05:
+    desc: TEST WORD
+    ref: bash --posix -c " \"word2"
+    cmd: ./42sh -c " \"word2"
