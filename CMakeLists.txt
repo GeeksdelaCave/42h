@@ -51,6 +51,7 @@ add_executable(42sh
   src/ast/ast_simple_command.h
   src/ast/ast_until.h
   src/ast/ast_until.c
+  src/ast/ast_while.h
   src/ast/error.h
 
   #src/parser/ast.h
