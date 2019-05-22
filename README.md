@@ -1,3 +1,4 @@
+/** \mainpage readme
 # 42sh
 
 ## Git
