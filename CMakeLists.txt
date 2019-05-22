@@ -128,4 +128,6 @@ add_executable(42sh
 
 add_custom_target(check
   COMMAND python3 tests/tests_unit.py
-  COMMAND python3 tests/tests_yaml.py)
+  COMMAND python3 tests/tests_yaml.py
+  COMMAND python3 tests/tests_while.yml
+  )
