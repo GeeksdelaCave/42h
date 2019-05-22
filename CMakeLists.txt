@@ -145,4 +145,5 @@ add_custom_target(check
   COMMAND python3 tests/tests_list.yml
   COMMAND python3 tests/tests_pipeline.yml
   COMMAND python3 tests/tests_prefix.yml
+  COMMAND python3 tests/tests_redirection.yml
   )
