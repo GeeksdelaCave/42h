@@ -140,4 +140,5 @@ add_custom_target(check
   COMMAND python3 tests/tests_eof.yml
   COMMAND python3 tests/tests_for.yml
   COMMAND python3 tests/tests_funcdec.yml
+  COMMAND python3 tests/tests_if.yml
   )
