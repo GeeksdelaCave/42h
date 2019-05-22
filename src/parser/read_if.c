@@ -25,7 +25,6 @@ int read_if(struct parser_s *p)
     find_if(p, node_if);
     union all_grammar *grammar = malloc(sizeof(union all_grammar));
     grammar->node_if = node_if;
-    print_if_command(node_if, fopen("ast.dot", "w+"));
     list_node_store(p->nodes, grammar, IF);
     return 1;
   }

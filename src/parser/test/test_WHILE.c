@@ -8,5 +8,5 @@ void test_WHILE()
       "while ! l=15 n=569 15 < a 16 < jsd m=15 15 < zrev o=35 do q=4 done",
     };
   struct parser_s *p1= parser_new_from_string(str[1]);
-  read_while(p1);
+  read_and_or(p1);
 }

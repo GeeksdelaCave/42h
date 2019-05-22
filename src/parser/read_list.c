@@ -24,7 +24,7 @@ int read_list(struct parser_s *p)
     while(list_and_or(p, list));
     union all_grammar *grammar = malloc(sizeof(union all_grammar));
     grammar->list = list;
-    list_node_store(p->nodes, grammar, LIST);
+    p->nodes->node->list = list;
     return 1;
   }
   p->cursor = tmp;

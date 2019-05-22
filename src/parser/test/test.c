@@ -1,5 +1,5 @@
 #include "test.h"
-int main()
+void test()
 {
   //test_ANDOR();
   //test_PIPELINE();

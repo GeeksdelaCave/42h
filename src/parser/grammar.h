@@ -6,6 +6,7 @@
 #define GRAMMAR_H
 #include "parser.h"
 #include "read_grammar.h"
+#include "parser_option.h"
 #include "read_funcdec.h"
 #include "rules.h"
 #include "commands.h"

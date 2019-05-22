@@ -18,7 +18,8 @@ int read_command(struct parser_s *p)
       (read_shell_command(p) && ZeroOrMany(read_redirection(p))) ||
       (read_funcdec(p) && ZeroOrMany(read_redirection(p))))
   {
-    return 1;
+	find_s_command(p);    
+	return 1;  
   }
   p->cursor = tmp;
   return 0;
