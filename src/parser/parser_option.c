@@ -38,7 +38,6 @@ int read_option(int argc, char **argv)
 {
   char *text = my_strcat(malloc(sizeof(char) * (strlenarray(argv, argc))),
 			 argv, argc);
-  printf("----------------------------------------- %s---------------\n", text);
   struct parser_s *p= parser_new_from_string(text);
   p->cursor = 0;
   if (parser_readtext(p, "-c") && OneOrMany(read_spaces(p)) &&
