@@ -1,0 +1,31 @@
+/** \mainpage TODO
+ ** \brief list of tasks
+ */
+
+*******************************************************************************
+*********                                                             *********
+*********                    EPITA 2019                               *********
+*********                                                             *********
+*********                   42sh project                              *********
+*********                                                             *********
+*********     fatou.c - jiemiao.z - souleymane.b - safa.k - tristan.d *********
+*********                                                             *********
+*********                          TODO                               *********
+*********                                                             *********
+*******************************************************************************
+-To check the Doxygen , you must to enter in the doc repository
+-Check all code to be doxygened
+-Builins
+-Lexer variable and arithmetic expansion matching
+    -Version 0.3
+      -Manual
+      -Option Parser
+      -Shell Parser
+      -AST Printer
+      -Cmake
+      -Tests suite
+      -Test program
+      -Advanced features
+
+    -Version 0.5
+  

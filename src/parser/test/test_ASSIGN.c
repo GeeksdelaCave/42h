@@ -12,9 +12,8 @@ void test_ASSIGN()
       "gdfgf dffd gfdd sdvs",
     };
   for (int i = 0; i < size; i++)
-    {
-      struct parser_s *p = parser_new_from_string(str[i]);
-      assert(read_word(p) == 1);
-    }
-  
+  {
+    struct parser_s *p = parser_new_from_string(str[i]);
+    assert(read_word(p) == 1);
+  }
 }

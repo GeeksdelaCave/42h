@@ -1,7 +1,7 @@
 /**
  ** \file  parser_capture.c
  */
-#include "grammar.h" 
+#include "grammar.h"
 /**
  ** \brief store the capt add in
  **  the list capt
@@ -28,12 +28,12 @@ void list_capt_store(struct list_capt_s *capture, const char *tag, struct captur
 struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag)
 {
   for (; captur->next; captur = captur->next)
+  {
+    if (strcmp(captur->tag, tag) == 0)
     {
-      if (strcmp(captur->tag, tag) == 0)
-    {
-      return &(captur->capt); 
+      return &(captur->capt);
     }
-    }
+  }
   return NULL;
 }
 /**
@@ -45,11 +45,11 @@ struct capture_s *list_capt_lookup(struct list_capt_s *captur, const char *tag)
 void eat_list_capt(struct parser_s *p)
 {
   if (p->capture->next != NULL)
-    {
+  {
       struct list_capt_s *list = p->capture->next;
       free(p->capture);
       p->capture = list;
-    }
+  }
 }
 /**
  ** \brief Function that retrieves the tag
@@ -90,7 +90,7 @@ bool parser_end_capture(struct parser_s *p, const char *tag)
  ** \param p structure of parser and char* tag
  **
  ** \return true or false
- */ 
+ */
 bool parser_begin_capture(struct parser_s *p, const char *tag)
 {
   struct capture_s capt =  {p->cursor, 0 };

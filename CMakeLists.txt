@@ -21,10 +21,10 @@ configure_file(${TESTS_DIR_IN}/tests_yaml.py  ${TESTS_DIR_OUT}/tests_yaml.py  CO
 
 
 add_executable(42sh
- 
+
   src/dot/generate_dot_file_ast.c
   src/dot/generate_dot_file_ast.c
- 
+
   src/ast/ast.c
   src/ast/ast.h
   src/ast/ast_andor.c
@@ -33,13 +33,28 @@ add_executable(42sh
   src/ast/ast_command.c
   src/ast/ast_compound_list.c
   src/ast/ast_compound_list.h
+  src/ast/ast_dogroup.h
+  src/ast/ast_dogroup.c
   src/ast/ast_pipeline.c
   src/ast/ast_pipeline.h
+  src/ast/ast_else.h
+  src/ast/ast_else.c
+  src/ast/ast_for.h
+  src/ast/ast_for.c
+  src/ast/ast_if.h
+  src/ast/ast_if.c
+  src/ast/ast_list.h
+  src/ast/ast_list.c
+  src/ast/ast_pipeline.h
+  src/ast/ast_pipeline.c
   src/ast/ast_simple_command.c
   src/ast/ast_simple_command.h
-  src/ast/error.h
- 
-  src/parser/ast.h
+  src/ast/ast_until.h
+  src/ast/ast_until.c
+  src/ast/ast_while.h
+  src/ast/ast_while.c
+
+  #src/parser/ast.h
   src/parser/commands.h
   src/parser/grammar.h
   src/parser/parser.h
@@ -84,6 +99,8 @@ add_executable(42sh
   src/parser/read_word.c
   src/parser/repetition_tools.h
   src/parser/rules.h
+  src/parser/parser_option.h
+  src/parser/parser_option.c
 
   src/parser/test/test.c
   src/parser/test/test.h
@@ -104,30 +121,11 @@ add_executable(42sh
   src/parser/test/test_UNTIL.c
   src/parser/test/test_WHILE.c
   src/parser/test/test_WORD.c
-  
-  src/ast/ast/ast.h
-  src/ast/ast/ast_and.c
-  src/ast/ast/ast_case.c
-  src/ast/ast/ast_cmd.c
-  src/ast/ast/ast_destruct.c
-  src/ast/ast/ast_for.c
-  src/ast/ast/ast_if.c
-  src/ast/ast/ast_or.c
-  src/ast/ast/ast_pipeline.c
-  src/ast/ast/ast_print.c
-  src/ast/ast/ast_red.c
-  src/ast/ast/ast_while.c
-  src/ast/ast/error.h
-  
-  src/ast/execution/exec.h
-  src/ast/execution/exec_if.c
-  src/ast/execution/exec_node.c
-  src/ast/execution/exec_while.c
+  src/utils/main.c
 
-  src/utils/string.c
-  src/utils/string.h
   )
 
 add_custom_target(check
   COMMAND python3 tests/tests_unit.py
-  COMMAND python3 tests/tests_yaml.py)
+  COMMAND python3 tests/tests_yaml.py
+  )
