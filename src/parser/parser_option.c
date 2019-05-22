@@ -42,7 +42,7 @@ int read_option(int argc, char **argv)
   struct parser_s *p= parser_new_from_string(text);
   p->cursor = 0;
   if (parser_readtext(p, "-c") && OneOrMany(read_spaces(p)) &&
-      parser_readtext(p, "[") && read_list(p) && parser_readtext(p, "]"))
+      parser_readtext(p, "\"") && read_list(p) && parser_readtext(p, "\""))
   {
     fprintf(stdout, "Version 0.3\n");
   }
@@ -54,8 +54,8 @@ int read_option(int argc, char **argv)
   }
   p->cursor = 0;
   if (parser_readtext(p, "--ast-print") && OneOrMany(read_spaces(p))
-      && parser_readtext(p, "[") && read_list(p)
-      && parser_readtext(p, "]"))
+      && parser_readtext(p, "\"") && read_list(p)
+      && parser_readtext(p, "\""))
   {
     my_print_ast(p);
   }
