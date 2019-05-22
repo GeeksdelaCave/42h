@@ -137,4 +137,5 @@ add_custom_target(check
   COMMAND python3 tests/tests_compound.yml
   COMMAND python3 tests/tests_dogroup.yml
   COMMAND python3 tests/tests_element.yml
+  COMMAND python3 tests/tests_eof.yml
   )
