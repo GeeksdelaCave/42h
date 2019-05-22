@@ -131,4 +131,5 @@ add_custom_target(check
   COMMAND python3 tests/tests_yaml.py
   COMMAND python3 tests/tests_while.yml
   COMMAND python3 tests/tests_and_or.yml
+  COMMAND python3 tests/tests_assign.yml
   )
