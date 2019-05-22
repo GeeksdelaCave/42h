@@ -1,0 +1,14 @@
+TEST-00:
+    desc: Test Input
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
+
+TEST-01:
+    desc: Test Input
+    ref: bash --posix -c "test input"
+    cmd: ./42sh -c "test input"
+
+TEST-02:
+    desc: Test Input
+    ref: bash --posix -c "message input"
+    cmd: ./42sh -c "message input"

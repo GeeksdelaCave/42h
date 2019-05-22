@@ -1,7 +1,7 @@
 /**
  ** \file  parser_read_tools.c
  */
-#include "grammar.h" 
+#include "grammar.h"
 /**
  ** \brief retrieve a char
  **
@@ -44,20 +44,18 @@ int read_excla(struct parser_s *p)
   int tmp = p->cursor;
   if (parser_begin_capture(p, "excla") && parser_readchar(p, '!')
       && parser_end_capture(p, "excla"))
-    {
-        char *excla = parser_get_capture(p, "excla");
-        //printf("EXCLAMATION : %s \n", excla);
-        struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
-        node_sym->symbole = excla;
-
-        union all_grammar *grammar = malloc(sizeof(union all_grammar));
-        grammar->symbole = node_sym;
-        list_node_store(p->nodes, grammar, EXCLA);
-        return 1;
-    }
-    parser_get_capture(p,"excla");
-    p->cursor = tmp;
-    return 0;
+  {
+    char *excla = parser_get_capture(p, "excla");
+    struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
+    node_sym->symbole = excla;
+    union all_grammar *grammar = malloc(sizeof(union all_grammar));
+    grammar->symbole = node_sym;
+    list_node_store(p->nodes, grammar, EXCLA);
+    return 1;
+  }
+  parser_get_capture(p,"excla");
+  p->cursor = tmp;
+  return 0;
 }
 /**
  ** \brief return true
@@ -70,27 +68,23 @@ int read_excla(struct parser_s *p)
 int read_and(struct parser_s *p)
 {
   int tmp = p->cursor;
-  
   if (parser_begin_capture(p, "and") && parser_readchar(p, '&')
       && parser_end_capture(p, "and"))
-    {  
-        //printf("%c\n", p->input[p->cursor]);
-        if(p->input[p->cursor] != '&')
-        {
-            char *and = parser_get_capture(p, "and");
-            //printf("%s\n", and);
-            struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
-            node_sym->symbole = and;
-
-            union all_grammar *grammar = malloc(sizeof(union all_grammar));
-            grammar->symbole = node_sym;
-            list_node_store(p->nodes, grammar, S_AND);
-            return 1;
-        }
+  {
+    if (p->input[p->cursor] != '&')
+    {
+      char *and = parser_get_capture(p, "and");
+      struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
+      node_sym->symbole = and;
+      union all_grammar *grammar = malloc(sizeof(union all_grammar));
+      grammar->symbole = node_sym;
+      list_node_store(p->nodes, grammar, S_AND);
+      return 1;
     }
-    parser_get_capture(p, "and");
-    p->cursor = tmp;
-    return 0;
+  }
+  parser_get_capture(p, "and");
+  p->cursor = tmp;
+  return 0;
 }
 /**
  ** \brief return true if it read "virgule"
@@ -104,20 +98,18 @@ int read_virgule(struct parser_s *p)
   int tmp = p->cursor;
   if (parser_begin_capture(p, "virgule") && parser_readchar(p, ';')
       && parser_end_capture(p, "virgule"))
-    {  
-        char *virgule = parser_get_capture(p, "virgule");
-        //printf("%s\n", virgule);  
-        struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
-        node_sym->symbole = virgule;
-
-        union all_grammar *grammar = malloc(sizeof(union all_grammar));
-        grammar->symbole = node_sym;
-        list_node_store(p->nodes, grammar, VIRGULE);
-        return 1;
-    }
-    parser_get_capture(p, "virgule");
-    p->cursor = tmp;
-    return 0;
+  {
+    char *virgule = parser_get_capture(p, "virgule");
+    struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
+    node_sym->symbole = virgule;
+    union all_grammar *grammar = malloc(sizeof(union all_grammar));
+    grammar->symbole = node_sym;
+    list_node_store(p->nodes, grammar, VIRGULE);
+    return 1;
+  }
+  parser_get_capture(p, "virgule");
+  p->cursor = tmp;
+  return 0;
 }
 /**
  ** \brief return true if read PIPE
@@ -128,26 +120,24 @@ int read_virgule(struct parser_s *p)
  */
 int read_pipe(struct parser_s *p)
 {
-    int tmp = p->cursor;
-    if (parser_begin_capture(p, "pipe") && parser_readchar(p, '|')
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, "pipe") && parser_readchar(p, '|')
       && parser_end_capture(p, "pipe"))
-    {    
-        if(p->input[p->cursor] != '|')
-        {
-	        char *pipe = parser_get_capture(p, "pipe");
-	        //printf("%s\n", pipe);  
-	        struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
-            node_sym->symbole = pipe;
-
-            union all_grammar *grammar = malloc(sizeof(union all_grammar));
-            grammar->symbole = node_sym;
-            list_node_store(p->nodes, grammar, PIPE);
-            return 1;
-        }
+  {
+    if(p->input[p->cursor] != '|')
+    {
+      char *pipe = parser_get_capture(p, "pipe");
+      struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
+      node_sym->symbole = pipe;
+      union all_grammar *grammar = malloc(sizeof(union all_grammar));
+      grammar->symbole = node_sym;
+      list_node_store(p->nodes, grammar, PIPE);
+      return 1;
     }
-    parser_get_capture(p, "pipe");
-    p->cursor = tmp;
-    return 0;
+  }
+  parser_get_capture(p, "pipe");
+  p->cursor = tmp;
+  return 0;
 }
 
 /**
@@ -159,11 +149,11 @@ int read_pipe(struct parser_s *p)
  */
 int parser_eof(struct parser_s *p)
 {
-    if(p->input[p->cursor] == '\0' || p->input[p->cursor] == 0)
-      {
+  if(p->input[p->cursor] == '\0' || p->input[p->cursor] == 0)
+  {
     return 1;
-      }
-    return 0;
+  }
+  return 0;
 }
 
 /**
@@ -176,23 +166,22 @@ int parser_eof(struct parser_s *p)
 int read_Assign(struct parser_s *p)
 {
   int tmp = p->cursor;
-  if (ZeroOrMany(read_spaces(p)) && parser_begin_capture(p, "id") && parser_readidentifier(p) && 
-      parser_end_capture(p, "id") && parser_readchar(p, '=')
-      && parser_begin_capture(p, "num") && parser_readinteger(p) 
+  if (ZeroOrMany(read_spaces(p)) && parser_begin_capture(p, "id")
+      && parser_readidentifier(p)
+      && parser_end_capture(p, "id") && parser_readchar(p, '=')
+      && parser_begin_capture(p, "num") && parser_readinteger(p)
       && parser_end_capture(p, "num") && ZeroOrMany(read_spaces(p)))
-    {
-      char *id = parser_get_capture(p, "id");
-      char *num = parser_get_capture(p, "num");
-      //printf("ID %s : %s \n", id, num);
-      struct s_node_assign *assign = malloc(sizeof(struct s_node_assign));
-      assign->id = id;
-      assign->num = num;
-
-      union all_grammar *grammar = malloc(sizeof(union all_grammar));
-      grammar->assign = assign;
-      list_node_store(p->nodes, grammar, ASSIGN);
-      return 1;
-    }
+  {
+    char *id = parser_get_capture(p, "id");
+    char *num = parser_get_capture(p, "num");
+    struct s_node_assign *assign = malloc(sizeof(struct s_node_assign));
+    assign->id = id;
+    assign->num = num;
+    union all_grammar *grammar = malloc(sizeof(union all_grammar));
+    grammar->assign = assign;
+    list_node_store(p->nodes, grammar, ASSIGN);
+    return 1;
+  }
   parser_get_capture(p, "id");
   parser_get_capture(p, "num");
   p->cursor = tmp;
@@ -210,23 +199,26 @@ int read_Assign(struct parser_s *p)
  */
 int read_symbole(struct parser_s *p, char* tag, char* type)
 {
-    int tmp = p->cursor;
-    if (parser_begin_capture(p, tag) && parser_readtext(p, type)
+  int tmp = p->cursor;
+  if (parser_begin_capture(p, tag) && parser_readtext(p, type)
       && parser_end_capture(p, tag))
+  {
+    char* andor = parser_get_capture(p, "ANDOR");
+    struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
+    node_sym->symbole = andor;
+    union all_grammar *grammar = malloc(sizeof(union all_grammar));
+    grammar->symbole = node_sym;
+    if(strcmp(andor, "||") == 0)
     {
-        char* andor = parser_get_capture(p, "ANDOR");
-        struct s_symbole *node_sym = malloc(sizeof(struct s_symbole));
-        node_sym->symbole = andor;
-
-        union all_grammar *grammar = malloc(sizeof(union all_grammar));
-        grammar->symbole = node_sym;
-        if(strcmp(andor, "||") == 1)
-            list_node_store(p->nodes, grammar, OR);
-        else
-            list_node_store(p->nodes, grammar, AND);
-        return 1;
+      list_node_store(p->nodes, grammar, OR);
     }
-    p->cursor = tmp;
-    parser_get_capture(p, "ANDOR");
-    return 0;
+    else
+    {
+      list_node_store(p->nodes, grammar, AND);
+    }
+    return 1;
+  }
+  p->cursor = tmp;
+  parser_get_capture(p, "ANDOR");
+  return 0;
 }

@@ -18,6 +18,7 @@ color_dict = {
 }
 
 
+
 # Change output color
 def set_color(color):
     return "\033[0m" if (color == 'RESET') else "\033[" + color_dict[color] + "m"

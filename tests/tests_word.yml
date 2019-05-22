@@ -1,0 +1,29 @@
+TEST-00:
+    desc: Test WORD
+    ref: bash --posix -c "word"
+    cmd: ./42sh -c "word"
+
+TEST-01:
+    desc: TEST WORD
+    ref: bash --posix -c "          word"
+    cmd: ./42sh -c "          word"
+
+TEST-02:
+    desc: TEST WORD
+    ref: bash --posix -c "\"word"
+    cmd: ./42sh -c "\"word"
+
+TEST-03:
+    desc: TEST WORD
+    ref: bash --posix -c " jdfhdsjfhds word"
+    cmd: ./42sh -c " jdfhdsjfhds word"
+
+TEST-04:
+    desc: TEST WORD
+    ref: bash --posix -c "gdfgf dffd gfdd sdvs"
+    cmd: ./42sh -c "gdfgf dffd gfdd sdvs"
+
+TEST-05:
+    desc: TEST WORD
+    ref: bash --posix -c " \"word2"
+    cmd: ./42sh -c " \"word2"

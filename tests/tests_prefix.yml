@@ -1,0 +1,35 @@
+TEST-00:
+    desc: Test Prefix
+    ref: bash --posix -c "a=5"
+    cmd: ./42sh -c "a=5"
+
+TEST-01:
+    desc: Test Prefix
+    ref: bash --posix -c "b=a"
+    cmd: ./42sh -c "b=a"
+
+TEST-02:
+    desc: Test Prefix
+    ref: bash --posix -c "a=10"
+    cmd: ./42sh -c "a=10"
+
+TEST-04:
+    desc: Test Prefix
+    ref: bash --posix -c "a=aveavz"
+    cmd: ./42sh -c "a=aveavz"
+
+TEST-05:
+    desc: Test Prefix
+    ref: bash --posix -c " sjvghskjvsdfvb  < Word"
+    cmd: ./42sh -c " sjvghskjvsdfvb  < Word"
+
+
+TEST-06:
+    desc: Test Prefix
+    ref: bash --posix -c "a=10"
+    cmd: ./42sh -c "a=10"
+
+TEST-07:
+    desc: Test Prefix
+    ref: bash --posix -c "b =rvfbvfsdkvf"
+    cmd: ./42sh -c "b =rvfbvfsdkvf"

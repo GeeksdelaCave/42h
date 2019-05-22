@@ -1,16 +1,11 @@
 #include "test.h"
-
 void test_IF()
 {
-  char *str[] = 
+  char *str[] =
     {
       "",
-      "if ! a=15 b=569 15 < kergjkergerklg 16 < jsdhvjsdfhvs | uhhvhbrb=15 15 < zrevjzrjvjerv a=15 | JE=45 15 < WORDfadde 30 < wfvkfdkvndfkbv 15 < fdjkbhdfbjekbej 10< WORD && ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada then ! a=1 b=2 || ! a=5 15 < toto ; ! WORD=10 b=50 15 < dada fi",
+     "if ! 1 < b 2 < c && ! d=4 e=5 || ! f=6 7 < g ; ! i=10 then ! j=11 fi",
     };
-  /* struct parser_s *p = parser_new_from_string(str[0]);
-     assert(read_pipeline(p) == 1); */
   struct parser_s *p1= parser_new_from_string(str[1]);
-  read_if(p1);
-  //assert(read_and_or(p1) == 1);
-  printf("%s \n", p1->input);
+  assert(read_if(p1) == 1);
 }

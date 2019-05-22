@@ -1,7 +1,7 @@
 /**
  ** \file  parser_read.c
  */
-#include "grammar.h" 
+#include "grammar.h"
 /**
  ** \brief return true if the current
  **  char = c and move cursor
@@ -14,10 +14,10 @@
 int parser_readchar(struct parser_s *p, char c)
 {
   if (p->input[p->cursor] == c)
-    {
-      p->cursor++;
-      return 1;
-    }
+  {
+    p->cursor++;
+    return 1;
+  }
   return 0;
 }
 /**
@@ -34,16 +34,15 @@ int parser_readtext(struct parser_s *p, char *text)
   char *cmp = p->input + p->cursor;
   int tmp = p->cursor;
   for(int i = 0; text[i]; i++)
-    {
-        ////printf("x = %c y = %c \n",cmp[i], text[i] );
+  {
     if(cmp[i] != text[i])
-      {
-        p->cursor = tmp;
-        return 0;
+    {
+      p->cursor = tmp;
+      return 0;
       }
-      p->cursor++;
-    }
-    return 1;
+    p->cursor++;
+  }
+  return 1;
 }
 /**
  ** \brief True if the char
@@ -59,13 +58,13 @@ int parser_readtext(struct parser_s *p, char *text)
 int parser_readrange(struct parser_s *p, char begin, char end)
 {
   int tmp = p->cursor;
-    if (p->input[p->cursor] >= begin && p->input[p->cursor] <= end)
-      {
+  if (p->input[p->cursor] >= begin && p->input[p->cursor] <= end)
+  {
     p->cursor += 1;
-        return 1;
-      }
-    p->cursor = tmp;
-    return 0;
+    return 1;
+  }
+  p->cursor = tmp;
+  return 0;
 }
 /**
  ** \brief true if the char at the
@@ -80,17 +79,16 @@ int parser_readrange(struct parser_s *p, char begin, char end)
 int parser_readinset(struct parser_s *p, char *set)
 {
   int tmp = p->cursor;
-    for(int i = 0; set[i]; i++)
+  for(int i = 0; set[i]; i++)
+  {
+    if (p->input[p->cursor] == set[i])
     {
-        if (p->input[p->cursor] == set[i])
-        {
-      ////printf("SUCCES Check Space de '%c' à '%c' \n", p->input[p->cursor],
       p->cursor++;
       return 1;
     }
-    }
-    p->cursor = tmp;
-    return 0;
+  }
+  p->cursor = tmp;
+  return 0;
 }
 /**
  ** \brief true if the char at the
@@ -106,13 +104,13 @@ int parser_readoutset(struct parser_s *p, char *set)
 {
   int tmp = p->cursor;
   for(int i = 0; set[i]; i++)
+  {
+    if (p->input[p->cursor] == set[i])
     {
-      if (p->input[p->cursor] == set[i])
-    {
-        p->cursor = tmp;
-       return 0;
-       }
+      p->cursor = tmp;
+      return 0;
     }
+  }
   p->cursor = tmp;
   return 1;
 }
@@ -128,12 +126,12 @@ int parser_readalpha(struct parser_s *p)
 {
   int tmp = p->cursor;
   if(parser_readrange(p, 'a', 'z') || parser_readrange(p, 'A', 'Z'))
-    {
-      return 1;
-    }
+  {
+    return 1;
+  }
   p->cursor = tmp;
   return 0;
-} 
+}
 /**
  ** \brief true if the current char
  **  is a number
@@ -141,14 +139,14 @@ int parser_readalpha(struct parser_s *p)
  ** \param p struct parser
  **
  ** \return true or false
-*/
+ */
 int parser_readnum(struct parser_s *p)
 {
   int tmp = p->cursor;
   if(parser_readrange(p, '0', '9'))
-    {
-        return 1;
-    }
+  {
+    return 1;
+  }
   p->cursor = tmp;
   return 0;
 }
@@ -163,9 +161,9 @@ int parser_var(struct parser_s *p)
 {
   int tmp = p->cursor;
   if (parser_readnum(p) || parser_readalpha(p) || parser_readchar(p, '_'))
-    {
-      return 1;
-    }
+  {
+    return 1;
+  }
   p->cursor = tmp;
   return 0;
 }
@@ -179,10 +177,11 @@ int parser_var(struct parser_s *p)
 int parser_readidentifier(struct parser_s *p)
 {
   int tmp = p->cursor;
-  if ((parser_readalpha(p) || parser_readchar(p, '_')) && ZeroOrMany(parser_var(p)))
-    {
-      return 1;
-    }
+  if ((parser_readalpha(p) || parser_readchar(p, '_')) &&
+      ZeroOrMany(parser_var(p)))
+  {
+    return 1;
+  }
   p->cursor = tmp;
   return 0;
 }
@@ -197,9 +196,9 @@ int parser_readinteger(struct parser_s *p)
 {
   int tmp = p->cursor;
   if (OneOrMany(parser_readnum(p)))
-    {
-      return 1;
-    }
-    p->cursor = tmp;
-    return 0;
+  {
+    return 1;
+  }
+  p->cursor = tmp;
+  return 0;
 }

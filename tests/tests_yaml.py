@@ -37,12 +37,14 @@ def main():
     with open("tests/tests_yaml.yml", "r") as f:
         tests = yaml.load(f)
 
-    ok = 0
     ko = 0
+    ok = 0
 
     for test, data in tests.items():
-        ref = run("bash --posix -c '" + data["ref"] + "'")
-        cmd = run("./42sh -c " + data["cmd"] + "'")
+        #ref = run("bash --posix -c '" + data["ref"] + "'")
+        #cmd = run("./42sh -c " + data["cmd"] + "'")
+        ref = run(data["ref"])
+        cmd = run(data["cmd"])
 
         errors = []
         if ref.stdout != cmd.stdout:
@@ -77,6 +79,7 @@ def main():
     print(f'{ok}{set_color("GREEN")} passed{set_color("RESET")} ({(ok * 100) // (ko + ok)}.{ok % (ko + ok) * 100 // 100}%)')
     print(f'{ko}{set_color("RED")} failed{set_color("RESET")} ({(ko * 100) // (ko + ok)}.{ko % (ko + ok) * 100 // 100}%)')
 
+    exit(ko)
 
 if __name__ == "__main__":
     print(f'\n\n{set_color("L_YELLOW")}Launching tests YAML{set_color("RESET")}\n')
