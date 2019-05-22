@@ -95,13 +95,13 @@ TEST-00:
 
 TEST-01:
     desc: Test Ast1
-    ref: bash --posix -h ""
+    ref: bash --posix -c ""
     cmd: ./42sh -c ""
 
 TEST-02:
     desc: Test Ast2
-    ref: bash --posix -g ""
-    cmd: ./42sh -g ""
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
 
 TEST-00:
     desc: Test Ast
@@ -110,13 +110,13 @@ TEST-00:
 
 TEST-01:
     desc: Test Ast1
-    ref: bash --posix -h ""
+    ref: bash --posix -c ""
     cmd: ./42sh -c ""
 
 TEST-02:
     desc: Test Ast2
-    ref: bash --posix -g ""
-    cmd: ./42sh -g ""
+    ref: bash --posix -c ""
+    cmd: ./42sh -c ""
 
 TEST-00:
     desc: Test Command
@@ -243,7 +243,7 @@ TEST-02:
 TEST-00:
     desc: Test if
     ref: bash --posix -c ""
-    cmd: ./42sh -C ""
+    cmd: ./42sh -c ""
 
 TEST-01:
     desc: Test if
