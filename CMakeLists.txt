@@ -101,7 +101,7 @@ add_executable(42sh
   src/parser/repetition_tools.h
   src/parser/rules.h
   src/parser/parser_option.h
-  #src/parser/parser_option.c
+  src/parser/parser_option.c
 
   src/parser/test/test.c
   src/parser/test/test.h
