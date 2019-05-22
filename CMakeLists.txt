@@ -46,6 +46,7 @@ add_executable(42sh
   src/ast/ast_list.h
   src/ast/ast_list.c
   src/ast/ast_pipeline.h
+  src/ast/ast_pipeline.c
   src/ast/ast_simple_command.c
   src/ast/ast_simple_command.h
   src/ast/error.h
