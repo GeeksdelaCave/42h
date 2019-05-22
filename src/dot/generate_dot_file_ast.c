@@ -279,8 +279,7 @@ void print_list_to_and_or(struct s_node_list *list, FILE *file)
 {
   for (int i = 0; i < list->child; i++)
   {
-    fprintf(file,  "    %d -> %d_child_%d;\n", 1, list->and_or[i].type,
-	    AND_CHILD);
+    fprintf(file,  "    %s -> %s_child_%d;\n", "LIST", "AND_OR", AND_CHILD);
     print_and_or_to_pipeline(&list->and_or[i], file);
     AND_CHILD++;
   }
